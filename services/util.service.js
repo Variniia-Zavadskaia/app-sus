@@ -11,7 +11,7 @@
 //     getRandomDate
 // }
 
-export function saveToStorage(key, val) {
+export function saveToStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data))
 }
 

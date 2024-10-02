@@ -92,18 +92,18 @@ function _createNote(type) {
     switch (type) {
         case 'NoteTxt':
             note.info = {
-                txt: makeLorem(50),
+                txt: makeLorem(20),
             }
             break;
         case 'NoteImg':
             note.info = {
-                title: makeLorem(10),
+                title: makeLorem(5),
                 url: 'assets/img/BATMAN.jpeg',
             }
             break;
         case 'NoteTodos':
             note.info = {
-                title: makeLorem(10),
+                title: makeLorem(5),
                 todos: [
                     { txt: makeLorem(20), doneAt: null },
                     { txt: makeLorem(20), doneAt: getRandomDate(note.createdAt, new Date()) }
