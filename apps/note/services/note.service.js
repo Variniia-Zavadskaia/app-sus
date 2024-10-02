@@ -1,5 +1,5 @@
-import { loadFromStorage, makeId, getRandomIntInclusive, saveToStorage, getRandomDate } from './util.service.js'
-import { storageService } from './async-storage.service.js'
+import { loadFromStorage, makeId, getRandomIntInclusive, saveToStorage, getRandomDate, makeLorem } from '../../../services/util.service.js'
+import { storageService } from '../../../services/async-storage.service.js'
 
 const NOTE_KEY = 'noteDB'
 _createNotes()
@@ -8,18 +8,21 @@ export const noteService = {
     query,
     get,
     remove,
-    save
+    save,
+    getFilterFromSearchParams
 }
 
 function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
         .then(notes => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
-                notes = notes.filter(note => regExp.test(note.search))
-            }
+            console.log('All notes:', notes);
+            // if (filterBy.txt) {
+            //     const regExp = new RegExp(filterBy.txt, 'i')
+            //     notes = notes.filter(note => regExp.test(note.search))
+            // }
             if (filterBy.type) {
                 notes = notes.filter(note => note.type.includes(filterBy.type))
+                console.log('Filtered notes by type:', notes);
             }
             return notes
         })
@@ -54,16 +57,18 @@ function getEmptyNote(type = '', backgroundColor = '#00d') {
     }
 }
 
-function getDefaultFilter() {
+function getFilterFromSearchParams(searchParams) {
+    // const txt = searchParams.get('txt') || ''
+    const type = searchParams.get('type') || ''
     return {
-        txt: '',
-        type: '',
+        // txt,
+        type
     }
 }
 
 function _createNotes() {
     const type = ['NoteTxt', 'NoteImg', 'NoteTodos']
-    let notes = loadFromStorage(NOTE_KEY) || []
+    let notes = loadFromStorage(NOTE_KEY) 
     if (!notes || !notes.length) {
         notes = [
             _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
@@ -71,6 +76,10 @@ function _createNotes() {
             _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
             _createNote(type[getRandomIntInclusive(0, type.length - 1)])
         ]
+
+        console.log(notes);
+        
+
         saveToStorage(NOTE_KEY, notes)
     }
 }

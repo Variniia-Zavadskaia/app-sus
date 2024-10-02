@@ -2,7 +2,61 @@ const { useEffect, useState } = React
 const { Link, useSearchParams } = ReactRouterDOM
 
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../services/event-bus.service.js"
+import { NoteList } from "../cmps/NoteList.jsx"
+import { noteService } from "../services/note.service.js"
+import { getTruthyValues } from "../../../services/util.service.js"
 
 export function NoteIndex() {
-    return <div>note app</div>
+console.log('hihihih');
+
+    const [notes, setNotes] = useState(null)
+    const [searchPrms, setSearchPrms] = useSearchParams()
+    const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
+console.log('dfdfdf');
+
+    useEffect(()=>{
+        console.log('wewewew'); 
+        loadNotes()
+        setSearchPrms(getTruthyValues(filterBy))
+    },[filterBy])
+
+    function loadNotes() {
+        console.log('dudud');
+        
+        noteService.query(filterBy)
+            .then(setNotes)
+            .catch(err => {
+                console.log('Problems getting notes:', err)
+            })
+    }
+
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId)
+            .then(() => {
+                setNotes(notes => notes.filter(note => note.id !== noteId))
+                showSuccessMsg(`Note removed successfully!`)
+            })
+            .catch(err => {
+                console.log('Problems removing note:', err)
+                showErrorMsg(`Problems removing note (${noteId})`)
+            })
+    }
+
+    function onSetFilterBy(filterBy) {
+        setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
+    }
+    if (!notes) return <h1>Loading...</h1>
+    return (
+        <section className="note-index">
+            {/* <CarFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} /> */}
+            {/* <section>
+                <Link to="/note/edit" >Add Note</Link>
+            </section> */}
+            <NoteList
+                notes={notes}
+                onRemoveNote={onRemoveNote}
+            />
+
+        </section>
+    )
 }
