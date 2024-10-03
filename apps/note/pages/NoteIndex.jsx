@@ -1,28 +1,23 @@
 const { useEffect, useState } = React
 const { Link, useSearchParams } = ReactRouterDOM
 
-import { showErrorMsg, showSuccessMsg, showUserMsg } from "../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../../../services/util.service.js"
 
 export function NoteIndex() {
-console.log('hihihih');
 
     const [notes, setNotes] = useState(null)
     const [searchPrms, setSearchPrms] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
-console.log('dfdfdf');
 
     useEffect(()=>{
-        console.log('wewewew'); 
         loadNotes()
         setSearchPrms(getTruthyValues(filterBy))
     },[filterBy])
 
     function loadNotes() {
-        console.log('dudud');
-        
         noteService.query(filterBy)
             .then(setNotes)
             .catch(err => {
