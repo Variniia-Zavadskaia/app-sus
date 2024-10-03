@@ -24,11 +24,11 @@ export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length))
-    }
+  for (var i = 0; i < length; i++) {
+    txt += possible.charAt(Math.floor(Math.random() * possible.length))
+  }
 
-    return txt
+  return txt
 }
 
 export function makeLorem(size = 100) {
@@ -64,7 +64,6 @@ export function getDayName(date, locale) {
     date = new Date(date)
     return date.toLocaleDateString(locale, { weekday: 'long' })
 }
-
 
 export function getMonthName(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
