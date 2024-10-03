@@ -1,0 +1,36 @@
+.mail-preview {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.mail-header {
+  font-weight: bold;
+}
+
+.mail-status {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.mail-from,
+.mail-to,
+.mail-sent,
+.mail-labels {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.mail-body {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.mail-preview.read h2 {
+  color: #999;
+}
+
+.mail-preview.unread h2 {
+  color: #333;
+  font-weight: bold;
+}
