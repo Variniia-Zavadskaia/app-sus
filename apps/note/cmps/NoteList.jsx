@@ -8,7 +8,7 @@ export function NoteList({ notes, onRemoveNote }) {
         <ul className="note-list">
             {notes.map(note =>
                 <li key={note.id}>
-                    <NotePreview note={note} />
+                    <NotePreview note={note} onRemoveNote={onRemoveNote} />
                     <section>
                         {/* <button onClick={() => onRemoveNote(note.id)}>Remove</button> */}
                         {/* <button ><Link to={`/note/${note.id}`}>Details</Link></button> */}
