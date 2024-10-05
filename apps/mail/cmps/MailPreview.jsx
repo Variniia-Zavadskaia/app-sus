@@ -1,5 +1,6 @@
 export function MailPreview({mail}) {
   const {subject, body, from, to, sentAt, isRead, labels} = mail
+  const truncatedBody = body.length > 10 ? `${body.substring(0, 50)}...` : body
 
   return (
     <section className={`mail-preview ${isRead ? 'read' : 'unread'} flex column space-between`}>
@@ -15,13 +16,13 @@ export function MailPreview({mail}) {
           <strong>Sent at:</strong> {new Date(sentAt).toLocaleString()}
         </p>
       </div>
-      <div className="mail-info flex column">
-        <p className="mail-from">
-          <strong>From:</strong> {from}
-        </p>
-      </div>
+
+      <p className="mail-from">
+        <strong>From:</strong> {from}
+      </p>
+
       <div className="mail-content flex  space-between">
-        <p className="mail-body">{body}</p>
+        <p className="mail-body">{truncatedBody}</p>
         <p className="mail-status">{isRead ? 'Read' : 'Unread'}</p>
       </div>
     </section>

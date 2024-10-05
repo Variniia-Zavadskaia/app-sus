@@ -1,7 +1,7 @@
 import {utilService} from '../../../services/util.service.js'
-const { loadFromStorage, saveToStorage, makeId } = utilService
+const {loadFromStorage, saveToStorage, makeId} = utilService
 
-import { storageService } from '../../../services/async-storage.service.js'
+import {storageService} from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
 const loggedInUser = {
@@ -19,24 +19,30 @@ export const mailService = {
   getEmptyMail,
   getDefaultFilter,
   getFilterFromSearchParams,
-  debounce
+  debounce,
 }
 
 function query(filterBy = {}) {
   return storageService.query(MAIL_KEY).then((mails) => {
+    // console.log('Fetched mails:', mails)
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, 'i')
       mails = mails.filter((mail) => regExp.test(mail.subject) || regExp.test(mail.body))
     }
-    if (filterBy.isRead !== null) {
+    if (filterBy.isRead !== undefined && filterBy.isRead !== null) {
       mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
     }
+    // console.log(mails, 'query mails')
+    // console.log('FilterBy:', filterBy)
+
     return mails
   })
 }
 
 function get(mailId) {
-  return storageService.get(MAIL_KEY, mailId).then((mail) => _setNextPrevMailId(mail))
+  return storageService.get(MAIL_KEY, mailId)
+  .then(mail => _setNextPrevMailId(mail))
+
 }
 
 function remove(mailId) {
@@ -53,7 +59,7 @@ function save(mail) {
 
 function getEmptyMail(subject = '', body = '', from = loggedInUser.email, to = '') {
   return {
-    id:  makeId(),
+    id: makeId(),
     subject,
     body,
     isRead: false,
@@ -87,17 +93,28 @@ function getFilterFromSearchParams(searchParams) {
 }
 
 function _createMails() {
-    let mails = loadFromStorage(MAIL_KEY)
-    if (!mails || !mails.length) {
-      mails = [
-        _createMail('Miss you!', 'Would love to catch up sometimes', 'momo@momo.com', loggedInUser.email, ['romantic']),
-        _createMail('Project meeting', 'Don\'t forget our meeting tomorrow at 10 AM.', 'boss@appsus.com', loggedInUser.email, ['important']),
-        _createMail('Party Invite', 'You are invited to my birthday party.', 'friend@appsus.com', loggedInUser.email, ['social']),
-        _createMail('Newsletter', 'Check out our latest products!', 'shop@appsus.com', loggedInUser.email, [])
-       ]
-      saveToStorage(MAIL_KEY, mails)
-    }
+  const mails = loadFromStorage(MAIL_KEY)
+  if (!mails || !mails.length) {
+    const defaultMails = [
+      _createMail('Miss you!', 'Would love to catch up sometimes', 'momo@momo.com', loggedInUser.email, ['romantic']),
+      _createMail(
+        'Project meeting',
+        "Don't forget our meeting tomorrow at 10 AM.",
+        'boss@appsus.com',
+        loggedInUser.email,
+        ['important']
+      ),
+      _createMail('Party Invite', 'You are invited to my birthday party.', 'friend@appsus.com', loggedInUser.email, [
+        'social',
+      ]),
+      _createMail('Newsletter', 'Check out our latest products!', 'shop@appsus.com', loggedInUser.email, []),
+    ]
+    saveToStorage(MAIL_KEY, defaultMails)
+    // console.log('Mails initialized and saved:', defaultMails)
+  } else {
+    // console.log('Existing mails found, no initialization needed.')
   }
+}
 
 function _createMail(subject, body, from, to, labels = []) {
   const mail = getEmptyMail(subject, body, from, to)
@@ -106,14 +123,33 @@ function _createMail(subject, body, from, to, labels = []) {
 }
 
 function _setNextPrevMailId(mail) {
-  return query().then((mails) => {
-    const mailIdx = mails.findIndex((currMail) => currMail.id === mail.id)
-    const nextMail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
-    const prevMail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]
-    mail.nextMailId = nextMail.id
-    mail.prevMailId = prevMail.id
-    return mail
-  })
+  // console.log('Setting next and previous mail IDs for:', mail)
+  return query()
+    .then((mails) => {
+      // console.log('All mails fetched:', mails) // Check what's returned
+
+      if (!mails || mails.length === 0) {
+        // console.error('No mails found!')
+        return mail // Return the original mail if no mails are available
+      }
+
+      const mailIdx = mails.findIndex((currMail) => currMail.id === mail.id)
+
+      if (mailIdx === -1) {
+        // console.error('Mail not found in the list')
+        return mail // If the mail is not found, return the original mail
+      }
+      const nextMail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
+      const prevMail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]
+
+      mail.nextMailId = nextMail.id
+      mail.prevMailId = prevMail.id
+      return mail
+    })
+    .catch((err) => {
+      // console.error('Error fetching mails:', err)
+      return mail // Return the original mail in case of an error
+    })
 }
 
 function debounce(func, delay) {
