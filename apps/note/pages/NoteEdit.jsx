@@ -8,7 +8,7 @@ import { EditNoteTodos } from "../cmps/dynamic-inputs/NoteTodos.jsx";
 import { noteService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 
-export function NoteEdit() {
+export function NoteEdit({type = ''}) {
     const [note, setNote] = useState(noteService.getEmptyNote())
 
     const params = useParams()
@@ -18,6 +18,16 @@ export function NoteEdit() {
         if (!params.noteId) return
         noteService.get(params.noteId).then(setNote)
     }, [])
+
+    // useEffect(() => {
+    //     if (!params.noteId) {
+    //         setNote(prevNote => ({
+    //             ...prevNote, type }),
+    //         }))
+    //         return
+    //     }
+    //     noteService.get(params.noteId).then(setNote)
+    // }, [])
 
     function onSave(ev) {
         ev.preventDefault()
@@ -35,7 +45,8 @@ export function NoteEdit() {
     }
 
     return (
-        <section className="note-edit">
+        <section className="note-edit backdrop">
+            <AddNote/>
             <form onSubmit={onSave}>
                 <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
                 <button>Save</button>

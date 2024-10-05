@@ -1,27 +1,34 @@
-// const { useState } = React
 import { NoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
 import { NoteImg } from "./dynamic-inputs/NoteImg.jsx";
 import { NoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
+import { NotePrevFooter } from "./NotePrevFooter.jsx";
 
+const { useRef, useState } = React
+const { Outlet, NavLink } = ReactRouterDOM
 const { Link } = ReactRouterDOM
 
 
-export function NotePreview({ note, onRemoveNote  }) {
+
+export function NotePreview({ note, onRemoveNote }) {
 
     // const [isPinned, setIsPinned] = useState(false);
     // const handlePin = () => {
     //     setIsPinned(!isPinned);
     //   };
 
-   function onChangeInfo(params) {
-    
-   }
+    function onChangeInfo(params) {
+
+    }
 
     return (
         <article className="note-preview">
-           
+
             <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
-            
+
+            {/* <section className="active-btn"> */}
+            {/* <NotePrevFooter /> */}
+            {/* </section> */}
+
             <section className="active-btn">
                 <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
                 <button className="btn"><i className="fa-solid fa-palette"></i></button>

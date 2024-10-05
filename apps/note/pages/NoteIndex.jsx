@@ -5,6 +5,7 @@ import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/eve
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../../../services/util.service.js"
+import { AddNote } from "../cmps/AddNote.jsx"
 
 export function NoteIndex() {
 
@@ -44,9 +45,7 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             {/* <CarFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} /> */}
-            <section>
-                <Link to="/note/edit" >Add Note</Link>
-            </section>
+            <AddNote/>
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
@@ -55,3 +54,4 @@ export function NoteIndex() {
         </section>
     )
 }
+

@@ -37,12 +37,6 @@ export function EditNoteImg(props) {
         props.onChangeInfo(prop, value)
     }
 
-    // function handleChange(e) {
-    //     console.log(e.target.files);
-    //     // setFile(URL.createObjectURL(e.target.files[0]));
-    //     props.onChangeInfo('url', URL.createObjectURL(e.target.files[0]))
-    // }
-
     return (
         <div className="note-img-input">
             <label className='bold-txt' htmlFor="title">Title: </label>
