@@ -44,9 +44,9 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             {/* <CarFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} /> */}
-            {/* <section>
+            <section>
                 <Link to="/note/edit" >Add Note</Link>
-            </section> */}
+            </section>
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}

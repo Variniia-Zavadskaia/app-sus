@@ -68,7 +68,7 @@ function getFilterFromSearchParams(searchParams) {
 }
 
 function _createNotes() {
-    const type = ['NoteTxt', 'NoteImg', 'NoteTodos']
+    const type = ['NoteTxt', 'NoteImg']
     let notes = loadFromStorage(NOTE_KEY) 
     if (!notes || !notes.length) {
         notes = [
