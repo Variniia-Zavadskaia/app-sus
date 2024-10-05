@@ -9,7 +9,8 @@ export const noteService = {
     get,
     remove,
     save,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    getEmptyNote
 }
 
 function query(filterBy = {}) {
@@ -114,3 +115,16 @@ function _createNote(type) {
 
     return note
 }
+
+function _setNextPrevNoteId(note) {
+    return storageService.query(NOTE_KEY)
+        .then((notes) => {
+            const noteIdx = notes.findIndex((currNote) => currNote.id === note.id)
+            const nextNote = notes[noteIdx + 1] ? notes[noteIdx + 1] : notes[0]
+            const prevNote = notes[noteIdx - 1] ? notes[noteIdx - 1] : notes[notes.length - 1]
+            note.nextNoteId = nextNote.id
+            note.prevNoteId = prevNote.id
+            return note
+        })
+}
+

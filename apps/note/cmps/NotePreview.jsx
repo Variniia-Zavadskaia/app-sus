@@ -3,6 +3,8 @@ import { NoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
 import { NoteImg } from "./dynamic-inputs/NoteImg.jsx";
 import { NoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 
+const { Link } = ReactRouterDOM
+
 
 export function NotePreview({ note, onRemoveNote  }) {
 
@@ -11,20 +13,20 @@ export function NotePreview({ note, onRemoveNote  }) {
     //     setIsPinned(!isPinned);
     //   };
 
-    function onChangeInfo() {
-        
-    }
+   function onChangeInfo(params) {
+    
+   }
 
     return (
         <article className="note-preview">
            
-                <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
+            <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
             
             <section className="active-btn">
                 <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
                 <button className="btn"><i className="fa-solid fa-palette"></i></button>
                 <button className="btn"><i className="fa-solid fa-envelope"></i></button>
-                <button className="btn"><i className="fa-solid fa-pen-to-square"></i></button>
+                <Link to={`/note/edit/${note.id}`}><button className="btn"><i className="fa-solid fa-pen-to-square"></i></button></Link>
                 <button className="btn" onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
             </section>
         </article>
