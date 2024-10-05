@@ -1,11 +1,12 @@
-const { Route, Routes } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
+const { Route, Routes } = ReactRouterDOM
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { About } from "./pages/About.jsx"
 import { Home } from "./pages/Home.jsx"
 import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
+import { MailInfo } from "./apps/mail/pages/MailInfo.jsx"
 import { NoteEdit } from "./apps/note/pages/NoteEdit.jsx"
 
 
@@ -18,6 +19,7 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
+                <Route path="/mail/:mailId" element={<MailInfo />} />
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path='/note/edit' element={<NoteEdit />} />
                 <Route path='/note/edit/:noteId' element={<NoteEdit />} />

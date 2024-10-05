@@ -8,7 +8,7 @@ import {MailList} from '../cmps/MailList.jsx'
 import {mailService} from '../services/mail.service.js'
 
 export function MailIndex() {
-  const [mails, setMails] = useState(null)
+  const [mails, setMails] = useState([])
   const [searchPrms, setSearchPrms] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
 
@@ -23,19 +23,7 @@ export function MailIndex() {
       .then(setMails)
       .catch((err) => {
         console.log('Problems getting mails:', err)
-      })
-  }
-
-  function onRemoveMail(mailId) {
-    mailService
-      .remove(mailId)
-      .then(() => {
-        setMails((mails) => mails.filter((mail) => mail.id !== mailId))
-        showSuccessMsg(`Mail removed successfully!`)
-      })
-      .catch((err) => {
-        console.log('Problems removing mail:', err)
-        showErrorMsg(`Problems removing mail (${mailId})`)
+        showErrorMsg('Failed to load mails. Please try again.')
       })
   }
 
@@ -43,11 +31,20 @@ export function MailIndex() {
     setFilterBy((preFilter) => ({...preFilter, ...filterBy}))
   }
 
+  function updateMailStatus(id, updates) {
+    setMails((prevMails) =>
+        prevMails.map((mail) =>
+          mail.id === id ? { ...mail, ...updates } : mail
+        )
+      )
+    
+  }
+
   if (!mails) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
       <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-      <MailList mails={mails} />
+      <MailList mails={mails} updateMailStatus={updateMailStatus} />
     </section>
   )
 }

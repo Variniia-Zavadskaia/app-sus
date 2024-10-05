@@ -1,36 +1,69 @@
 .mail-preview {
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
+  padding: 1rem; /* Consistent padding */
+  border: 1px solid #ddd; /* Border around the mail preview */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+  margin-bottom: 1rem; /* Space between each mail preview */
+  transition: box-shadow 0.3s; /* Smooth transition for shadow on hover */
+}
+
+.mail-preview:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Darker shadow on hover for depth */
 }
 
 .mail-header {
-  font-weight: bold;
+  display: flex; /* Flex layout for header */
+  justify-content: space-between; /* Space between subject and sent time */
+  align-items: center; /* Align items vertically in the center */
 }
 
-.mail-status {
-  font-size: 0.9rem;
-  color: #888;
+.mail-subject {
+  font-weight: bold; /* Bold subject text */
+  margin: 0; /* Remove default margin */
 }
 
-.mail-from,
-.mail-to,
-.mail-sent,
-.mail-labels {
-  font-size: 0.85rem;
-  color: #666;
+.mail-sent {
+  font-size: 0.85rem; /* Smaller font size for sent time */
+  color: #888; /* Subdued color for sent time */
+}
+
+.mail-info {
+  margin-top: 0.5rem; /* Space above the from field */
+}
+
+.mail-from {
+  font-size: 0.85rem; /* Slightly smaller font size */
+  color: #666; /* Subdued color for from */
+  margin: 0; /* Remove default margin */
+}
+
+.mail-content {
+  margin-top: 0.5rem; /* Space above content */
+  display: flex; /* Flex layout for content */
+  justify-content: space-between; /* Space between body and status */
 }
 
 .mail-body {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
+  flex-grow: 1; /* Allow body to take available space */
+  margin: 0; /* Remove default margin */
 }
 
-.mail-preview.read h2 {
-  color: #999;
+.mail-status {
+  font-size: 0.9rem; /* Font size for read/unread status */
+  color: #888; /* Subdued color for status */
 }
 
-.mail-preview.unread h2 {
-  color: #333;
-  font-weight: bold;
+.mail-labels {
+  margin-bottom: 0.5rem; /* Space below labels */
+  font-size: 0.85rem; /* Smaller font for labels */
+  color: #666; /* Subdued color for labels */
+}
+
+.read .mail-subject {
+  color: #999; /* Color for read emails */
+}
+
+.unread .mail-subject {
+  color: #333; /* Color for unread emails */
+  font-weight: bold; /* Bold for unread emails */
 }
