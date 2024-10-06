@@ -6,7 +6,7 @@ import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event
 
 import {mailService} from '../services/mail.service.js'
 
-export function MailInfo() {
+export function MailDetails() {
   const [mail, setMail] = useState(null)
   const {mailId} = useParams()
   //   console.log(mailId, 'mailid from params')

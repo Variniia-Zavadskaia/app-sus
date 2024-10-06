@@ -4,6 +4,7 @@ const {Link, useSearchParams} = ReactRouterDOM
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
 import {MailFilter} from '../cmps/MailFilter.jsx'
+import {MailFolderList} from '../cmps/MailFolderList.jsx'
 import {MailList} from '../cmps/MailList.jsx'
 import {mailService} from '../services/mail.service.js'
 
@@ -32,19 +33,17 @@ export function MailIndex() {
   }
 
   function updateMailStatus(id, updates) {
-    setMails((prevMails) =>
-        prevMails.map((mail) =>
-          mail.id === id ? { ...mail, ...updates } : mail
-        )
-      )
-    
+    setMails((prevMails) => prevMails.map((mail) => (mail.id === id ? {...mail, ...updates} : mail)))
   }
 
   if (!mails) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
+    <div className="mail-filter-container">
+      <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
       <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-      <MailList mails={mails} updateMailStatus={updateMailStatus} />
-    </section>
+    </div>
+    <MailList mails={mails} updateMailStatus={updateMailStatus} />
+  </section>
   )
 }

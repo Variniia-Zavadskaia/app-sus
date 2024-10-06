@@ -1,0 +1,19 @@
+.mail-filter-container {
+    display: flex;
+    justify-content: space-between; /* Space out elements */
+    align-items: center; /* Vertically align items if needed */
+    margin-bottom: 20px; /* Space between the filter row and mail list */
+  }
+  
+  .mail-folder-list, .mail-filter {
+    flex: 1; /* Both take equal space, adjust this for different sizes */
+    margin-right: 10px; /* Space between the two filters */
+  }
+  
+  .mail-folder-list {
+    flex-basis: 30%; /* Folder filter takes 30% of row width */
+  }
+  
+  .mail-filter {
+    flex-basis: 70%; /* Text and Read/Unread filter takes 70% of row width */
+  }
