@@ -1,23 +1,24 @@
 import { TodoItem } from "./TodoItem.jsx"
 
-export function TodoList({ todos, setTodos }) {
-    console.log(todos.length);
+export function TodoList({ todos, onChangeTodo }) {
     console.log(todos);
+    console.log(todos.length);
+    
 
     function toggleTodo(ev, index) {
         console.log('kkk');
+        let doneAt = todos[index].doneAt
 
-
-        if (todos[index].doneAt === null) {
-            todos[index].doneAt = Date.now();
-            ev.target.checked = true
+        if (doneAt === null) {
+            doneAt = new Date(Date.now());
+            // ev.target.checked = true
         }
         else {
-            todos[index].doneAt = null
-            ev.target.checked = false
+            doneAt = null
+            // ev.target.checked = false
         }
-        setTodos(todos);
-        console.log(todos);
+        onChangeTodo(index, 'doneAt', doneAt);
+        // console.log(todos);
     }
 
     return (

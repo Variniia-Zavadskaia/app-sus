@@ -48,6 +48,14 @@ function save(note) {
     }
 }
 
+// function saveTodo(noteId, todoToSave) {
+//     return get(noteId).then(note => {
+//         const todo = _createReview(reviewToSave)
+//         book.reviews.unshift(review)
+//         return save(book).then(() => review)
+//     })
+// }
+
 function getEmptyNoteTodo()
 {
     return  { txt: '', doneAt: null }

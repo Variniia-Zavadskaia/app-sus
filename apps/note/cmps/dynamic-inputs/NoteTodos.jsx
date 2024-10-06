@@ -1,70 +1,38 @@
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
+const { useParams } = ReactRouterDOM
 
-import { TodoItem } from "./TodoItem.jsx";
+// import { TodoItem } from "./TodoItem.jsx";
 import { TodoList } from "./TodoList.jsx";
 import { noteService } from "../../services/note.service.js"
 
 export function NoteTodos(props) {
     console.log('GFTGHHG');
-    
+
     return (
         <section>
             <h2>{props.info.title}</h2>
-            <TodoList todos={props.info.todos}/>
-            {/* <ul className="todo-list">
-            {props.info.todos.map(todo =>
-                <li key={todo.id}>
-                    <TodoItem note={todo} />
-                    <section>
-                        <button onClick={() => onRemoveNote(note.id)}>Remove</button>
-                        <button ><Link to={`/note/${note.id}`}>Details</Link></button>
-                        <button ><Link to={`/note/edit/${note.id}`}>Edit</Link></button>
-                    </section>
-                </li>
-            )}
-            </ul> */}
+            <TodoList todos={props.info.todos} />
         </section>
     )
 }
 
 export function EditNoteTodos(props) {
-    const [todos, setTodos] = useState(props.info.todos);
+  
+    function onChangeTodo(index, field, value) {
+        // console.log('ffsdfdffd'); 
+        props.info.todos[index][field] = value
+        props.onChangeInfo('todos', props.info.todos)
+    }
 
-    // useEffect(() => {
-    //     if (todos.length === 0) {
-    //         setTodos([noteService.getEmptyNoteTodo()]);
-    //     }
-    // }, [])
+    // function handleSubmit(event) {
+    //     event.preventDefault();
+    //     // reset the form
+    //     event.target.reset();
+    // };
 
-    console.log(todos);
-    
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        // reset the form
-        event.target.reset();
-      };
-
-      return (
-        <div className="wrapper">
-            <div className="formtodo">
-
-                {/* <label htmlFor="todo">
-                    <input
-                    type="text"
-                    name="todo"
-                    id="todo"
-                    placeholder="Write your next task"
-                    />
-                </label> */}
-                {/* <button>
-                    <span className="visually-hidden">Submit</span>
-                    <svg>
-                    <path d="" />
-                    </svg>
-                </button> */}
-            </div>
-            <TodoList todos={todos} setTodos={setTodos} />
+    return (
+        <div className="todo-list">
+            <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} />
         </div>
-      );
+    );
 }
