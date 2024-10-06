@@ -1,5 +1,5 @@
-import { loadFromStorage, makeId, saveToStorage} from '../../../services/util.service.js'
-import { storageService } from '../../../services/async-storage.service.js'
+import {loadFromStorage, makeId, saveToStorage} from '../../../services/util.service.js'
+import {storageService} from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
 const loggedInUser = {
@@ -14,6 +14,7 @@ export const mailService = {
   get,
   remove,
   save,
+  update,
   getEmptyMail,
   getDefaultFilter,
   getFilterFromSearchParams,
@@ -35,9 +36,13 @@ function query(filterBy = {}) {
 }
 
 function get(mailId) {
-  return storageService.get(MAIL_KEY, mailId)
-  .then(mail => _setNextPrevMailId(mail))
+  return storageService.get(MAIL_KEY, mailId).then((mail) => _setNextPrevMailId(mail))
+}
 
+function update(mailId, updatedMail) {
+  return storageService.put(mailId, updatedMail).then(() => {
+    console.log('Mail updated in storage:', updatedMail)
+  })
 }
 
 function remove(mailId) {

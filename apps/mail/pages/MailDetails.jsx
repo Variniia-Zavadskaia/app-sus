@@ -1,15 +1,16 @@
 const {useEffect, useState} = React
-const {useParams, useNavigate} = ReactRouter
+const {useParams, useNavigate, useLocation} = ReactRouter
 const {Link} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
-
 import {mailService} from '../services/mail.service.js'
 
 export function MailDetails() {
   const [mail, setMail] = useState(null)
   const {mailId} = useParams()
   //   console.log(mailId, 'mailid from params')
+
+  const { state } = useLocation();
 
   const navigate = useNavigate()
 
@@ -39,12 +40,16 @@ export function MailDetails() {
         navigate('/mail')
       })
   }
+  
 
   function onRemoveMail(mailId) {
+    console.log(state ,'remove mail');
+    state.onRemove('Tezka')
+    const mailsFiltered = mail.filter((mail) => mail.id !== mailId)
     mailService
       .remove(mailId)
       .then(() => {
-        setMails((mails) => mails.filter((mail) => mail.id !== mailId))
+        setMails(mailsFiltered)
         showSuccessMsg(`Mail removed successfully!`)
       })
       .catch((err) => {

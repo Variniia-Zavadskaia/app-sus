@@ -12,7 +12,7 @@ export function MailFolderList({filterBy, onSetFilterBy}) {
   }
 
   return (
-    <div className="mail-folder-list">
+    <div className="mail-folder-list flex">
       <label>
         <input
           type="radio"

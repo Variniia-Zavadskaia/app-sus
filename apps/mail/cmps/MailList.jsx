@@ -1,16 +1,20 @@
 const {useNavigate} = ReactRouter
+
 import {MailPreview} from './MailPreview.jsx'
 
-export function MailList({mails, updateMailStatus}) {
+export function MailList({mails, updateMailStatus, onRemove}) {
   const navigate = useNavigate()
 
+
   const handleMailClick = (mail) => {
-    // Update the isRead status to true
     console.log(`Clicked mail ID: ${mail.id}`)
-    updateMailStatus(mail.id, {isRead: true})
-    console.log(`Updated mail:`, { ...mail, isRead: true });
-    // Navigate to the mail info page
-    navigate(`/mail/${mail.id}`)
+
+    // Update isRead status locally before navigating
+    const updatedMail = {...mail, isRead: true}
+    updateMailStatus(mail.id, updatedMail)
+
+    // Navigate to mail details
+    navigate(`/mail/${mail.id}`, {state: onRemove})
   }
 
   if (!mails.length) return <p>No mails to display</p>
