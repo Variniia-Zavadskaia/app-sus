@@ -11,48 +11,34 @@ export function MailFolderList({filterBy, onSetFilterBy}) {
     setSelectedFolder(folder)
   }
 
+  
+
+  const folders = [
+    { name: 'Inbox', value: 'inbox', icon: 'fa-solid fa-inbox' },
+    { name: 'Sent', value: 'sent', icon: 'fa-solid fa-paper-plane' },
+    { name: 'Trash', value: 'trash', icon: 'fa-solid fa-trash' },
+    { name: 'Draft', value: 'draft', icon: 'fa-solid fa-pencil-alt' },  ]
+
   return (
-    <div className="mail-folder-list flex">
-      <label>
-        <input
-          type="radio"
-          name="folder"
-          value="inbox"
-          checked={selectedFolder === 'inbox'}
-          onChange={() => handleFolderChange('inbox')}
-        />
-        Inbox
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="folder"
-          value="sent"
-          checked={selectedFolder === 'sent'}
-          onChange={() => handleFolderChange('sent')}
-        />
-        Sent
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="folder"
-          value="trash"
-          checked={selectedFolder === 'trash'}
-          onChange={() => handleFolderChange('trash')}
-        />
-        Trash
-      </label>
-      <label>
-        <input
-          type="radio"
-          name="folder"
-          value="draft"
-          checked={selectedFolder === 'draft'}
-          onChange={() => handleFolderChange('draft')}
-        />
-        Draft
-      </label>
+    <div className="mail-folder-list space-between">
+      {folders.map((folder) => (
+        <ul>
+          <label key={folder.value} className={`folder-icon ${selectedFolder === folder.name ? 'active' : ''}`}>
+            <li>
+              <input
+                type="radio"
+                name="folder"
+                value={folder.value}
+                checked={selectedFolder === folder.value}
+                onChange={() => handleFolderChange(folder.value)}
+                hidden
+              />
+              <i className={`fa-solid ${folder.icon}`}></i>
+              <span className="folder-label">{folder.label}</span>
+            </li>
+          </label>
+        </ul>
+      ))}
     </div>
   )
 }

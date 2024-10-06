@@ -71,40 +71,9 @@ export function MailFilter({filterBy, onSetFilterBy}) {
 
   return (
     <form className="mail-filter">
-      <input type="text" name="txt" value={filterBy.txt || ''} onChange={handleChange} placeholder="Search mails..." />
-      <label>
-        <input type="checkbox" name="isRead" checked={filterBy.isRead || false} onChange={handleChange} />
-        Read
-      </label>
-      <label>
-        <input type="checkbox" name="unread" checked={filterBy.unread || false} onChange={handleChange} />
-        Unread
-      </label>
-      <label>
-        <input type="checkbox" name="sent" checked={filterBy.sent || false} onChange={handleChange} />
-        Sent Mails
-      </label>
-      <div className="sort-options">
-        <label>
-          <input
-            type="checkbox"
-            name="sortBy"
-            value="date"
-            checked={filterBy.sortBy === 'date'}
-            onChange={handleChange}
-          />
-          Sort by Date
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="sortBy"
-            value="title"
-            checked={filterBy.sortBy === 'title'}
-            onChange={handleChange}
-          />
-          Sort by Title
-        </label>
+      <div className="mail-filter-container">
+        <input type="text" placeholder="Search... " aria-label="Search Mail" />
+        
       </div>
     </form>
   )

@@ -96,7 +96,13 @@ function _createMails() {
   const mails = loadFromStorage(MAIL_KEY)
   if (!mails || !mails.length) {
     const defaultMails = [
-      _createMail('Miss you!', 'Would love to catch up sometimes', 'momo@momo.com', loggedInUser.email, ['romantic']),
+      _createMail('Miss you!',
+         'Would love to catch up sometimes',
+         'momo@momo.com',
+          loggedInUser.email, 
+        ['romantic']
+      ),
+
       _createMail(
         'Project meeting',
         "Don't forget our meeting tomorrow at 10 AM.",
@@ -104,10 +110,44 @@ function _createMails() {
         loggedInUser.email,
         ['important']
       ),
-      _createMail('Party Invite', 'You are invited to my birthday party.', 'friend@appsus.com', loggedInUser.email, [
-        'social',
-      ]),
-      _createMail('Newsletter', 'Check out our latest products!', 'shop@appsus.com', loggedInUser.email, []),
+
+      _createMail('Party Invite', 
+        'You are invited to my birthday party.', 
+        'friend@appsus.com',
+         loggedInUser.email,
+         [ 'social',]
+      ),
+
+      _createMail('Newsletter', 
+        'Check out our latest products!',
+         'shop@appsus.com',
+         loggedInUser.email,
+          []
+        ),
+
+      _createMail(
+        'Project Update',
+        'The project meeting is scheduled for next Monday. Please prepare your reports.',
+        'manager@company.com',
+        loggedInUser.email,
+        []
+      ),
+
+      _createMail(
+        'Discount Offer!',
+        'Get 50% off on all items this weekend only! Use code SAVE50 at checkout.',
+        'deals@shopping.com',
+        loggedInUser.email,
+        []
+      ),
+
+      _createMail(
+        'Event Invitation',
+        'You are invited to our annual tech conference. Join us for exciting talks and networking!',
+        'events@techworld.com',
+        loggedInUser.email,
+        []
+      ),
     ]
     saveToStorage(MAIL_KEY, defaultMails)
     // console.log('Mails initialized and saved:', defaultMails)

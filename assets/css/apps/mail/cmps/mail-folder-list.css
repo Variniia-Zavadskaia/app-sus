@@ -1,19 +1,59 @@
-.mail-filter-container {
-    display: flex;
-    justify-content: space-between; /* Space out elements */
-    align-items: center; /* Vertically align items if needed */
-    margin-bottom: 20px; /* Space between the filter row and mail list */
-  }
+.mail-folder-list {
+
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  height: 855px;
+  max-width: 72px;
+  min-width: 72px;
+  background-color: #f5f5f5;
+  transition: max-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mail-folder-list:hover{
+  max-width: 256px;
+
+}
+
+.folder-icon {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   
-  .mail-folder-list, .mail-filter {
-    flex: 1; /* Both take equal space, adjust this for different sizes */
-    margin-right: 10px; /* Space between the two filters */
-  }
-  
-  .mail-folder-list {
-    flex-basis: 30%; /* Folder filter takes 30% of row width */
-  }
-  
-  .mail-filter {
-    flex-basis: 70%; /* Text and Read/Unread filter takes 70% of row width */
-  }
+}
+
+.folder-icon.active {
+  background-color: #f0f0f0; /* Style for active folder */
+}
+
+.folder-icon:hover {
+  background-color: #e0e0e0;
+}
+
+.folder-icon i {
+  font-size: 1.5rem;
+  margin-right: 5px; /* Space between icon and label */
+}
+
+.folder-label {
+  position: absolute;
+  left: 50px; /* Adjust based on your layout */
+  width: 0; /* Initially hidden */
+  transform: translateX(-10px); /* Start slightly off */
+  opacity: 0;
+  overflow: hidden; /* Ensure content stays hidden when width is 0 */
+  white-space: nowrap;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+.folder-icon:hover .folder-label {
+  transform: translateX(0); /* Moves it fully into view */
+  opacity: 1; /* Fades the label in */
+  min-width: 80px; /* A base width so the label has enough space */
+}

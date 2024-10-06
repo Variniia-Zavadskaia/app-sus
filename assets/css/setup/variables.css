@@ -1,5 +1,14 @@
 :root {
-    --main-bg-color: lightblue;
+  --main-bg-color: lightblue;
+  --clr1bg: #e8f0fe;
+  
+  /* Mail root color */
+  --primary-mail-bgc: #f6f8fc;
+  --readed-mail-color:#F2F6FC;
+  --active-color:#D3E3FD;
+  --hover-state-color:#EAEBEF;
+  --new-mail-color:#C2E7FF;
+  --mail-border-color: rgb(128, 128, 128);
 
-    --clr1bg:#e8f0fe;
+
 }

@@ -62,11 +62,19 @@ export function MailIndex() {
   if (!mails) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
-      <div className="mail-filter-container">
-        <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-        <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+      <section className="mail-header ">
+        <div className="mail-filter-container ">
+          <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+        </div>
+      </section>
+      <div className="mail-content-wrapper">
+        <aside className="mail-folder-list">
+          <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+        </aside>
+        <main className="mail-list-container">
+          <MailList mails={mails} updateMailStatus={updateMailStatus} onRemove={console.log} />
+        </main>
       </div>
-      <MailList mails={mails} updateMailStatus={updateMailStatus} onRemove={console.log} />
     </section>
   )
 }

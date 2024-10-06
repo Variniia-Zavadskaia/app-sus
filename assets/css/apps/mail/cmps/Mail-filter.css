@@ -1,28 +1,44 @@
 .mail-filter {
     display: flex;
-    flex-direction: column; /* Arrange items in a column */
-    align-items: flex-start; /* Align items to the start */
-    margin: 1em; /* Add margin around the filter */
-    padding: 1em; /* Add padding inside the filter */
-    border: 1px solid #ccc; /* Optional: Add a border */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    max-width: 400px; /* Set a maximum width */
-    background-color: #f9f9f9; /* Optional: Light background color */
+    flex-direction: column; 
+    align-items: flex-start; 
+    border-radius: 5px; 
+    background-color: transparent; 
+    z-index: 20;
+    position: relative;
+    margin-bottom: -18px;
+    padding: 8px;
+}
+
+.mail-filter-container {
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+
 }
 
 .mail-filter input[type="text"] {
-    width: 90%; /* Make the text input full width */
-    padding: 0.5em; /* Add padding for comfort */
-    margin-bottom: 1em; /* Space between input and checkbox */
-    border: 1px solid #ccc; /* Optional: Border for the input */
-    border-radius: 4px; /* Optional: Rounded corners */
+    width: 60%;
+    padding: 0.5em; 
+    margin-bottom: 1em; 
+    background-color: #EAF1FB;
+    border: 1px solid #ccc; 
+    border-radius: 16px; 
+    position: relative; 
+}
+
+.mail-filter .search-icon {
+    position: absolute; 
+    right: 10px;
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: #999;
+    pointer-events: none;
 }
 
 .mail-filter label {
-    display: flex; /* Use flexbox for checkbox alignment */
-    align-items: center; /* Center the checkbox and label */
+    display: flex; 
+    align-items: center;
 }
 
-.mail-filter input[type="checkbox"] {
-    margin-right: 0.5em; /* Space between checkbox and label */
-}

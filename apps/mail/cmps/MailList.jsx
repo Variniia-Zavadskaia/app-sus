@@ -5,7 +5,6 @@ import {MailPreview} from './MailPreview.jsx'
 export function MailList({mails, updateMailStatus, onRemove}) {
   const navigate = useNavigate()
 
-
   const handleMailClick = (mail) => {
     console.log(`Clicked mail ID: ${mail.id}`)
 
@@ -20,13 +19,12 @@ export function MailList({mails, updateMailStatus, onRemove}) {
   if (!mails.length) return <p>No mails to display</p>
 
   return (
-    <ul className="mail-list clean-list grid">
-      {mails.map((mail) => (
-        <li key={mail.id} className="mail-list-item" onClick={() => handleMailClick(mail)}>
-          <MailPreview mail={mail} />
-          <section className="mail-action-btn"></section>
-        </li>
-      ))}
-    </ul>
+    <table className="mail-list-table">
+      <tbody>
+        {mails.map((mail) => (
+          <MailPreview key={mail.id} mail={mail} onClick={() => handleMailClick(mail)} />
+        ))}
+      </tbody>
+    </table>
   )
 }
