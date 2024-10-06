@@ -14,28 +14,40 @@ export function NotePreview({ note, onRemoveNote }) {
     // const [isPinned, setIsPinned] = useState(false);
     // const handlePin = () => {
     //     setIsPinned(!isPinned);
-    //   };
+
+
+
+
+    const handleFocusOut = (event) => {
+        let relatedTarget = event.relatedTarget;
+        if (!relatedTarget) {
+            setShowTitle(false);
+        }
+    };
 
     function onChangeInfo(params) {
 
     }
+    // const height = Math.floor(100 + Math.random() * 500);
 
     return (
-        <article className="note-preview">
+        <article onBlur={handleFocusOut} className="note-preview note" >
+            {/* <div className="note-inner" style={{ height: `${height}px` }}> */}
 
-            <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
+                <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
 
-            {/* <section className="active-btn"> */}
-            {/* <NotePrevFooter /> */}
-            {/* </section> */}
+                {/* <section className="active-btn"> */}
+                {/* <NotePrevFooter /> */}
+                {/* </section> */}
 
-            <section className="active-btn">
-                <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
-                <button className="btn"><i className="fa-solid fa-palette"></i></button>
-                <button className="btn"><i className="fa-solid fa-envelope"></i></button>
-                <Link to={`/note/edit/${note.id}`}><button className="btn"><i className="fa-solid fa-pen-to-square"></i></button></Link>
-                <button className="btn" onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
-            </section>
+                <section className="active-btn" onFocus={() => setShowTitle(true)}>
+                    <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
+                    <button className="btn"><i className="fa-solid fa-palette"></i></button>
+                    <button className="btn"><i className="fa-solid fa-envelope"></i></button>
+                    <Link to={`/note/edit/${note.id}`}><button className="btn"><i className="fa-solid fa-pen-to-square"></i></button></Link>
+                    <button className="btn" onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
+                </section>
+            {/* </div> */}
         </article>
     )
 }

@@ -68,7 +68,7 @@ function getFilterFromSearchParams(searchParams) {
 }
 
 function _createNotes() {
-    const type = ['NoteTxt', 'NoteImg']
+    const type = ['NoteTxt', 'NoteImg', 'NoteTodos']
     let notes = loadFromStorage(NOTE_KEY) 
     if (!notes || !notes.length) {
         notes = [
@@ -106,8 +106,8 @@ function _createNote(type) {
             note.info = {
                 title: makeLorem(5),
                 todos: [
-                    { txt: makeLorem(20), doneAt: null },
-                    { txt: makeLorem(20), doneAt: getRandomDate(note.createdAt, new Date()) }
+                    { id: makeId(), txt: makeLorem(20), doneAt: null },
+                    { id: makeId(), txt: makeLorem(20), doneAt: getRandomDate(note.createdAt, new Date()) }
                 ]
             }
             break;

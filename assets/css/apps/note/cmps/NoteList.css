@@ -1,9 +1,9 @@
  /* note list */
- /* .note-list{
+ .note-list{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
- } */
+ }
 
  .note-list {
     list-style: none;
@@ -13,20 +13,19 @@
     gap: 10px;
 }
 
-/* .note-list li {
+.note-list li {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     background-color: var(--clr1bg);
     padding-block: 0.2em;
-} */
+}
 
 .note-list li {
     /* -moz-border-radius: 6px; */
     /* -webkit-border-radius: 6px; */
     background-color: #f0f7fb;
-    /* background-image: url(../Images/icons/Pencil-48.png); */
     background-position: 9px 0px;
     background-repeat: no-repeat;
     border: solid 1px #3498db;
@@ -35,3 +34,21 @@
     overflow: hidden;
     padding: 15px 15px;
 }
+
+.note-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center; /* Centers the notes horizontally */
+  }
+  
+  /* .note-list li {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  } */
+  
+ 
