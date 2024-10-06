@@ -6,35 +6,43 @@ export function AddNote() {
 
     const [showTitle, setShowTitle] = useState(false);
     const titleRef = useRef(null);
-  
+
     const handleFocusOut = (event) => {
-      let relatedTarget = event.relatedTarget;
-      if (!relatedTarget) {
-        setShowTitle(false);
-      }
+        let relatedTarget = event.relatedTarget;
+        if (!relatedTarget) {
+            setShowTitle(false);
+        }
     };
-  
+
     return (
         <div className="add-note">
+            <form className="note-form" onBlur={handleFocusOut}>
+                <div className="note-show" >
+                    <input
+                        id="title"
+                        ref={titleRef}
+                        style={{ display: showTitle ? '' : 'none' }}
+                        placeholder="Title"
+                    />
+                </div>
+                <div className="note-show" >
+                    <input
+                        id="content"
+                        onFocus={() => setShowTitle(true)}
+                        placeholder="Take a note..."
+                    />
+                    <div className="note-cmpn">
+                        <button className="btn-cmpn" ><i className="fa-regular fa-square-check"></i></button>
+                        <button className="btn-cmpn" ><i className="fa-solid fa-image"></i></button>
+                    </div>
 
-      <form  onBlur={handleFocusOut}>
-        <input
-          id="title"
-          ref={titleRef}
-          style={{ display: showTitle ? '' : 'none' }}
-          placeholder="Title"
-        />
-        <input
-          id="content"
-          onFocus={() => setShowTitle(true)}
-          placeholder="Take a note..."
-        />
-      </form>
+                </div>
+            </form>
         </div>
     );
     // const [form, setForm] = useState('')
 
-
+    <FontAwesomeIcon icon="fa-regular fa-square-check" />
     // useEffect(()=>{
     //     console.log(changeType);    
     // },[changeType])
@@ -63,7 +71,7 @@ export function AddNote() {
             {/* <input type="text" placeholder='note' onClick={() => setCangeType('NoteTxt')}/>
             <button className="btn" onClick={() => setCangeType('NoteImg')} ><i className="fa-solid fa-image"></i></button> */}
             {/* <Link to="/note/edit" ><button className="btn backdrop"><i className="fa-solid fa-image"></i></button></Link> */}
-                
+
         </section>
     )
 }

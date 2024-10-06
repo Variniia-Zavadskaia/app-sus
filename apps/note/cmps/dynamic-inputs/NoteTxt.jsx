@@ -19,13 +19,7 @@ export function NoteTxt(props) {
 export function EditNoteTxt(props) {
 
     function handleChange(value ) {
-        // const { name: field, type } = target
-        // console.log(target.name)
-
-        // let { value } = target
-
         props.onChangeInfo('txt', value)
-
     }
 
     return (

@@ -7,7 +7,7 @@ import { Home } from "./pages/Home.jsx"
 import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 import { MailDetails } from "./apps/mail/pages/MailDetails.jsx"
-import { NoteEdit } from "./apps/note/pages/NoteEdit.jsx"
+import { NoteEdit } from "./apps/note/cmps/NoteEdit.jsx"
 
 
 

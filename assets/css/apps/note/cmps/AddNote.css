@@ -8,13 +8,29 @@
     margin: 20px auto;
 }
 
-.add-note form input {
+.note-show {
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 0.5rem; */
+}
+
+.note-show input {
     background: transparent;
     border: none;
     padding: 1rem;
     color: white;
+    
 }
 
-.add-note form input:focus {
+.note-show input:focus {
     outline: none;
+}
+
+.note-cmpn{
+align-self: center;
+}
+
+.btn-cmpn{
+    border: #fff;
+    background-color: #fff;
 }

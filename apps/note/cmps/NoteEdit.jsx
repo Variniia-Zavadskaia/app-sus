@@ -1,15 +1,16 @@
 const { useParams, useNavigate } = ReactRouter
 const { useState, useEffect } = React
 
-import { AddNote } from "../cmps/AddNote.jsx"
-import { EditNoteTxt } from "../cmps/dynamic-inputs/NoteTxt.jsx";
-import { EditNoteImg } from "../cmps/dynamic-inputs/NoteImg.jsx";
-import { EditNoteTodos } from "../cmps/dynamic-inputs/NoteTodos.jsx";
+import { AddNote } from "./AddNote.jsx"
+import { EditNoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
+import { EditNoteImg } from "./dynamic-inputs/NoteImg.jsx";
+import { EditNoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { noteService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 
 export function NoteEdit({type = ''}) {
     const [note, setNote] = useState(noteService.getEmptyNote())
+    // const
 
     const params = useParams()
     const navigate = useNavigate()

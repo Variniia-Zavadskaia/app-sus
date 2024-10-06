@@ -3,7 +3,7 @@ import { TodoItem } from "./TodoItem.jsx"
 export function TodoList({ todos, onChangeTodo }) {
     console.log(todos);
     console.log(todos.length);
-    
+
 
     function toggleTodo(ev, index) {
         console.log('kkk');
@@ -23,25 +23,29 @@ export function TodoList({ todos, onChangeTodo }) {
 
     return (
         // <div className="todo-list">
-            <div className="todo-ul">
-                {todos && todos.length > 0 ? (
-                    todos.map((todo, index) => (
-                        <div key={index} className={todo.doneAt ? 'completed' : ''} >
-                            <input
-                                type="checkbox"
-                                checked={todo.doneAt !== null}
-                                onChange={(ev) => toggleTodo(ev, index)}
-                            />
-                            <span>{todo.txt}</span>
-                            <button className="btn-todo" onClick={() => deleteTodo(index)}>x</button>
-                        </div>
-                    ))
-                ) : (<p>Seems lonely in here, what are you up to?</p>)}
-            </div>
+        <div className="todo-ul">
+            {todos && todos.length > 0 ? (
+                todos.map((todo, index) => (
+                    <div key={index} className={todo.doneAt ? 'completed' : ''} >
+                        <input
+                            type="checkbox"
+                            checked={todo.doneAt !== null}
+                            onChange={(ev) => toggleTodo(ev, index)}
+                        />
+                        <span>{todo.txt}</span>
+                        {/* <div className="btn-todo"> */}
+
+                            <button className="btn-todo" onClick={() => deleteTodo(index)}><i className="fa-solid fa-xmark"></i></button>
+                        {/* </div> */}
+                    </div>
+                ))
+            ) : (<p>Seems lonely in here, what are you up to?</p>)}
+        </div>
         // </div>
     )
 
 }
+
 
 
 

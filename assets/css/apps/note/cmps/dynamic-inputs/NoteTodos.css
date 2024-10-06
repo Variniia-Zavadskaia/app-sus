@@ -1,5 +1,5 @@
 .todo-list{
-    max-width: 400px;
+    max-width: 500px;
     margin: 20px auto;
     background-color: #f4f4f4;
     padding: 20px;
@@ -66,6 +66,5 @@
   .btn-todo{
     border: #fff;
     background-color: #fff;
-    margin-inline-end: 2px;
   }
 
