@@ -26,6 +26,7 @@
 @import './apps/note/cmps/AddNote.css';
 @import './apps/note/cmps/dynamic-inputs/NoteTodos.css';
 @import './apps/note/cmps/dynamic-inputs/NoteTxt.css';
+@import './apps/note/cmps/dynamic-inputs/ColorInput.css';
 
 @import './apps/mail/cmps/mail-list.css';
 @import './apps/mail/cmps/mail-filter.css';
