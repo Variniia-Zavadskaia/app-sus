@@ -40,7 +40,7 @@ export function NotePreview({ note, onRemoveNote }) {
                 {/* <NotePrevFooter /> */}
                 {/* </section> */}
 
-                <section className="active-btn" onFocus={() => setShowTitle(true)}>
+                <section className="active-btn">
                     <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
                     <button className="btn"><i className="fa-solid fa-palette"></i></button>
                     <button className="btn"><i className="fa-solid fa-envelope"></i></button>

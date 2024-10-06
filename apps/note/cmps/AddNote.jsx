@@ -15,7 +15,9 @@ export function AddNote() {
     };
   
     return (
-      <form onBlur={handleFocusOut}>
+        <div className="add-note">
+
+      <form  onBlur={handleFocusOut}>
         <input
           id="title"
           ref={titleRef}
@@ -28,6 +30,7 @@ export function AddNote() {
           placeholder="Take a note..."
         />
       </form>
+        </div>
     );
     // const [form, setForm] = useState('')
 

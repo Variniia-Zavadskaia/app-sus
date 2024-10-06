@@ -1,27 +1,20 @@
-/* body {
-    margin: 0;
-    /* display: grid; */
-    /* place-items: center; */
-    /* height: 100vh; */
-/* } */ 
-
-form {
+.add-note form {
     display: flex;
     flex-flow: column;
     width: 540px;
     border-radius: 8px;
     border: solid 1px #5f6368;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
-    margin: auto;
+    margin: 20px auto;
 }
 
-form input {
+.add-note form input {
     background: transparent;
     border: none;
     padding: 1rem;
     color: white;
 }
 
-form input:focus {
+.add-note form input:focus {
     outline: none;
 }

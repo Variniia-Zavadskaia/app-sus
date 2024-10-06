@@ -1,17 +1,16 @@
-/* .note-preview{
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    background-color: #f0f7fb;
-    background-image: url(../Images/icons/Pencil-48.png);
-    background-position: 9px 0px;
-    background-repeat: no-repeat;
-    border: solid 1px #3498db;
-    border-radius: 6px;
-    line-height: 18px;
-    overflow: hidden;
-    padding: 15px 15px;
-} */
-
-/* .btn{
-    
-} */
+.note-preview {
+    padding: 15px;
+    background-color: #fefae0;
+    border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  }
+  
+  .note-preview img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .note-preview ul {
+    list-style-type: none;
+    padding: 0;
+  }
