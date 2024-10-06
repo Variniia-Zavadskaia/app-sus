@@ -21,7 +21,7 @@ export function TodoList({ todos, setTodos }) {
     }
 
     return (
-        <div className="todo-list">
+        // <div className="todo-list">
             <div className="todo-ul">
                 {todos && todos.length > 0 ? (
                     todos.map((todo, index) => (
@@ -32,12 +32,12 @@ export function TodoList({ todos, setTodos }) {
                                 onChange={(ev) => toggleTodo(ev, index)}
                             />
                             <span>{todo.txt}</span>
-                            {/* <button onClick={() => deleteTodo(index)}>Delete</button> */}
+                            <button className="btn-todo" onClick={() => deleteTodo(index)}>x</button>
                         </div>
                     ))
                 ) : (<p>Seems lonely in here, what are you up to?</p>)}
             </div>
-        </div>
+        // </div>
     )
 
 }

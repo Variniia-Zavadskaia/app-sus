@@ -10,6 +10,7 @@ export function NoteTodos(props) {
     return (
         <section>
             <h2>{props.info.title}</h2>
+            <TodoList todos={props.info.todos}/>
             {/* <ul className="todo-list">
             {props.info.todos.map(todo =>
                 <li key={todo.id}>

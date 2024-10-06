@@ -63,3 +63,9 @@
     }
   }
 
+  .btn-todo{
+    border: #fff;
+    background-color: #fff;
+    margin-inline-end: 2px;
+  }
+
