@@ -1,0 +1,65 @@
+.todo-list{
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-ul{
+    list-style-type: none;
+    padding: 0;
+}
+.todo-ul div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  .todo-ul div:hover {
+    background-color: #e8f0fe;
+  }
+
+  .todo-ul div input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  .todo-ul div label {
+    font-size: 1rem;
+    color: #555;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  input[type="checkbox"]:checked + label::before {
+    content: '✔';
+    display: inline-block;
+    color: green;
+    margin-right: 8px;
+  }
+
+  @media (max-width: 500px) {
+    .todo-list {
+      padding: 10px;
+    }
+  
+    .todo-list h2 {
+      font-size: 1.2rem;
+    }
+  
+    .todo-list li {
+      padding: 8px;
+    }
+  }
+

@@ -1,37 +1,18 @@
  /* note list */
- /* .note-list{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
- } */
-
- .note-list {
-    list-style: none;
-    padding: 15px 0 0;
+ .note-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
-}
-
-/* .note-list li {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--clr1bg);
-    padding-block: 0.2em;
-} */
-
-.note-list li {
-    /* -moz-border-radius: 6px; */
-    /* -webkit-border-radius: 6px; */
-    background-color: #f0f7fb;
-    /* background-image: url(../Images/icons/Pencil-48.png); */
-    background-position: 9px 0px;
-    background-repeat: no-repeat;
-    border: solid 1px #3498db;
-    border-radius: 6px;
-    line-height: 18px;
-    overflow: hidden;
-    padding: 15px 15px;
-}
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 15px;
+    padding: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* .note-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+  } */
+ 

@@ -3,7 +3,7 @@ const { useState, useEffect } = React
 export function NoteTxt(props) {
 
     return (
-        <h2>{props.info.txt}</h2>
+        <p>{props.info.txt}</p>
     )
 }
 

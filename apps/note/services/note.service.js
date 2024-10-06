@@ -10,7 +10,8 @@ export const noteService = {
     remove,
     save,
     getFilterFromSearchParams,
-    getEmptyNote
+    getEmptyNote,
+    getEmptyNoteTodo
 }
 
 function query(filterBy = {}) {
@@ -45,6 +46,11 @@ function save(note) {
     } else {
         return storageService.post(NOTE_KEY, note)
     }
+}
+
+function getEmptyNoteTodo()
+{
+    return  { txt: '', doneAt: null }
 }
 
 function getEmptyNote(type = '', backgroundColor = '#00d') {
@@ -106,8 +112,8 @@ function _createNote(type) {
             note.info = {
                 title: makeLorem(5),
                 todos: [
-                    { txt: makeLorem(20), doneAt: null },
-                    { txt: makeLorem(20), doneAt: getRandomDate(note.createdAt, new Date()) }
+                    { id: makeId(), txt: makeLorem(5), doneAt: null },
+                    { id: makeId(), txt: makeLorem(5), doneAt: getRandomDate(note.createdAt, new Date()) }
                 ]
             }
             break;
