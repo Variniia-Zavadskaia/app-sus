@@ -5,15 +5,18 @@ import { NoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
 import { NoteImg } from "./dynamic-inputs/NoteImg.jsx";
 import { NoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { ColorInput } from "../../note/cmps/dynamic-inputs/ColorInput.jsx"
+import { noteService } from "../services/note.service.js"
 
-export function NotePreview({ note, onRemoveNote, onUpdateNoteStyle }) {
+export function NotePreview({ note, onRemoveNote}) {
 
     const [noteStyle, setNoteStyle] = useState(note.style || { backgroundColor: '#e8f0fe' })
 
     function onSetNoteStyle(newStyle) {
         const updatedStyle = { ...noteStyle, ...newStyle };
         setNoteStyle(updatedStyle);
-        onUpdateNoteStyle(note.id, updatedStyle);
+        note.style = updatedStyle;
+        noteService.save(note)
+        // onUpdateNoteStyle(note.id, updatedStyle);
     }
     // const [isPinned, setIsPinned] = useState(false);
     // const handlePin = () => {

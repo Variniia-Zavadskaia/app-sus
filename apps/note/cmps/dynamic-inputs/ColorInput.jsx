@@ -1,6 +1,6 @@
 const { useState, useRef, useEffect } = React
 
-export function ColorInput({ name, onSetNoteStyle, backgroundColor }) {
+export function ColorInput({ onSetNoteStyle, backgroundColor }) {
     console.log('DDDFFDDFFDD');
 
     const [color, setColor] = useState('#e8f0fe');
@@ -56,45 +56,6 @@ export function ColorInput({ name, onSetNoteStyle, backgroundColor }) {
                     ))}
                 </div>
             )}
-        </div>
-    );
-
-    /*
-        const [showTitle, setShowTitle] = useState(false);
-        const titleRef = useRef(null);
-    
-        const handleFocusOut = (event) => {
-            let relatedTarget = event.relatedTarget;
-            if (!relatedTarget) {
-                setShowTitle(false);
-            }
-        };
-        */
-
-    return (
-        <div className="add-note">
-            <form className="note-form" onBlur={handleFocusOut}>
-                <div className="note-show" >
-                    <input
-                        id="title"
-                        ref={titleRef}
-                        style={{ display: showTitle ? '' : 'none' }}
-                        placeholder="Title"
-                    />
-                </div>
-                <div className="note-show" >
-                    <input
-                        id="content"
-                        onFocus={() => setShowTitle(true)}
-                        placeholder="Take a note..."
-                    />
-                    <div className="note-cmpn">
-                        <button className="btn-cmpn" ><i className="fa-regular fa-square-check"></i></button>
-                        <button className="btn-cmpn" ><i className="fa-solid fa-image"></i></button>
-                    </div>
-
-                </div>
-            </form>
         </div>
     );
 }
