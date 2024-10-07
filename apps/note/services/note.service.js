@@ -18,10 +18,10 @@ function query(filterBy = {}) {
     return storageService.query(NOTE_KEY)
         .then(notes => {
             console.log('All notes:', notes);
-            // if (filterBy.txt) {
-            //     const regExp = new RegExp(filterBy.txt, 'i')
-            //     notes = notes.filter(note => regExp.test(note.search))
-            // }
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                notes = notes.filter(note => regExp.test(note.info))
+            }
             if (filterBy.type) {
                 notes = notes.filter(note => note.type.includes(filterBy.type))
                 console.log('Filtered notes by type:', notes);
@@ -61,7 +61,7 @@ function getEmptyNoteTodo()
     return  { txt: '', doneAt: null }
 }
 
-function getEmptyNote(type = '', backgroundColor = '#00d') {
+function getEmptyNote(type = '', backgroundColor = '#e8f0fe') {
     return {
         type,
         isPinned: false,
@@ -107,21 +107,21 @@ function _createNote(type) {
     switch (type) {
         case 'NoteTxt':
             note.info = {
-                txt: makeLorem(20),
+                txt: 'The quick brown fox jumps over the lazy dog, seeking adventure in a world filled with endless possibilities.',
             }
             break;
         case 'NoteImg':
             note.info = {
-                title: makeLorem(5),
+                title: 'I am BATMAN',
                 url: 'assets/img/BATMAN.jpeg',
             }
             break;
         case 'NoteTodos':
             note.info = {
-                title: makeLorem(5),
+                title: 'Get my stuff together',
                 todos: [
-                    { id: makeId(), txt: makeLorem(5), doneAt: null },
-                    { id: makeId(), txt: makeLorem(5), doneAt: getRandomDate(note.createdAt, new Date()) }
+                    { id: makeId(), txt: 'Driving license', doneAt: null },
+                    { id: makeId(), txt:'Coding power', doneAt: getRandomDate(note.createdAt, new Date()) }
                 ]
             }
             break;

@@ -6,6 +6,7 @@
     /* max-width: 270px; */
     border-radius: 8px;
     justify-content: center;
+    align-items: center;
 }
 
 .note-preview img {
@@ -17,6 +18,7 @@
     list-style-type: none;
     padding: 0;
     align-content: start;
+    align-items: center;
 }
 
 .active-btn {

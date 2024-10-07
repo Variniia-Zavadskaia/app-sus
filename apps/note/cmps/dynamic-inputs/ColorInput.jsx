@@ -1,70 +1,75 @@
-const { useState, useRef } = React
+const { useState, useRef, useEffect } = React
 
 export function ColorInput({ name, onSetNoteStyle, backgroundColor }) {
- console.log('DDDFFDDFFDD');
- 
-    const [color, setColor] = useState('#fff');
+    console.log('DDDFFDDFFDD');
+
+    const [color, setColor] = useState('#e8f0fe');
     const [showPicker, setShowPicker] = useState(false);
     const pickerRef = useRef(null);
-  
+
     const colors = [
-        '#F44236',
-        '#9C27B0',
-        '#3F51B5',
+        '#e8f0fe',
+        '#f5deb3',
+        '#dda0dd',
+        '#40e0d0',
         '#2196F3',
         '#4caf50',
-        '#101010',
+        '#ffd700',
+        '#ff6347',
     ]
 
-    function onSetColor(color) {
-        const newStyle = { backgroundColor: color }
+    function onSetColor(selectedColor) {
+        const newStyle = { backgroundColor: selectedColor }
         onSetNoteStyle(newStyle)
+        setColor(selectedColor)
+        setShowPicker(false)
     }
-
-    function handleFocusOut(event) {
-        let relatedTarget = event.relatedTarget;
-        if (!relatedTarget) {
-            setShowPicker(false);
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+                setShowPicker(false);
+            }
         }
-    };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [pickerRef]);
 
-    const handleColorChange = (color) => {
-      setColor(color.hex);
-    };
-  
     function togglePicker() {
         console.log('PPPPPPPPPPP');
-        
-      setShowPicker(!showPicker);
+        setShowPicker(prevShowPicker => !prevShowPicker);
     };
-  
+
     return (
-      <div onBlur={handleFocusOut} >
-         <button className="btn" onClick={() => setShowPicker(true)}><i className="fa-solid fa-palette"></i></button>
-          <div className="color-container" ref={pickerRef} style={{ display: showPicker ? '' : 'none' }}>
-             {colors.map(color => (
-                    <div
-                        key={color}
-                        className={`item ${color === backgroundColor ? 'chosen' : ''}`}
-                        style={{ backgroundColor: color }}
-                        onClick={() => onSetColor(color)}
-                    ></div>
-                ))}
-          </div>
-      </div>
+        <div className="color-picker-wrapper">
+            <button className="btn" onClick={togglePicker}><i className="fa-solid fa-palette"></i></button>
+            {showPicker && (
+                <div className="color-container" ref={pickerRef}>
+                    {colors.map(c => (
+                        <div
+                            key={c}
+                            className={`item ${c === backgroundColor ? 'chosen' : ''}`}
+                            style={{ backgroundColor: c }}
+                            onClick={() => onSetColor(c)}
+                        ></div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 
-/*
-    const [showTitle, setShowTitle] = useState(false);
-    const titleRef = useRef(null);
-
-    const handleFocusOut = (event) => {
-        let relatedTarget = event.relatedTarget;
-        if (!relatedTarget) {
-            setShowTitle(false);
-        }
-    };
-    */
+    /*
+        const [showTitle, setShowTitle] = useState(false);
+        const titleRef = useRef(null);
+    
+        const handleFocusOut = (event) => {
+            let relatedTarget = event.relatedTarget;
+            if (!relatedTarget) {
+                setShowTitle(false);
+            }
+        };
+        */
 
     return (
         <div className="add-note">

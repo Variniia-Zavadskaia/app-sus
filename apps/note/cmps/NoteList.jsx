@@ -26,18 +26,18 @@ export function NoteList({ notes, onRemoveNote }) {
         // return <div className="notes"></div>;
     
     return (
-        <ul className="note-list note-layout" >
+        <div className="note-list note-layout" >
             {notes.map(note =>
-                <li key={note.id} className="note-item">
+                <div key={note.id} className="note-item">
                     <NotePreview note={note} onRemoveNote={onRemoveNote} />
                     <section>
                         {/* <button onClick={() => onRemoveNote(note.id)}>Remove</button> */}
                         {/* <button ><Link to={`/note/${note.id}`}>Details</Link></button> */}
                         {/* <button ><Link to={`/note/edit/${note.id}`}>Edit</Link></button> */}
                     </section>
-                </li>
+                </div>
             )}
-        </ul>
+        </div>
     )
 
 }

@@ -1,35 +1,23 @@
+const { useState } = React
+const { Link } = ReactRouterDOM
+
 import { NoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
 import { NoteImg } from "./dynamic-inputs/NoteImg.jsx";
 import { NoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { ColorInput } from "../../note/cmps/dynamic-inputs/ColorInput.jsx"
-// import { NotePrevFooter } from "./NotePrevFooter.jsx";
 
-const { useRef, useState } = React
-const { Outlet, NavLink } = ReactRouterDOM
-const { Link } = ReactRouterDOM
+export function NotePreview({ note, onRemoveNote, onUpdateNoteStyle }) {
 
-export function NotePreview({ note, onRemoveNote }) {
+    const [noteStyle, setNoteStyle] = useState(note.style || { backgroundColor: '#e8f0fe' })
 
-    const [noteStyle, setNoteStyle] = useState({
-        backgroundColor: '#101010',
-    })
-
-    function onSetNoteStyle(newStyle) { // { backgroundColor: 'royalblue }
-        setNoteStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
+    function onSetNoteStyle(newStyle) {
+        const updatedStyle = { ...noteStyle, ...newStyle };
+        setNoteStyle(updatedStyle);
+        onUpdateNoteStyle(note.id, updatedStyle);
     }
     // const [isPinned, setIsPinned] = useState(false);
     // const handlePin = () => {
     //     setIsPinned(!isPinned);
-
-
-
-
-    // const handleFocusOut = (event) => {
-    //     let relatedTarget = event.relatedTarget;
-    //     if (!relatedTarget) {
-    //         setShowTitle(false);
-    //     }
-    // };
 
     function onChangeInfo(params) {
 
@@ -37,7 +25,7 @@ export function NotePreview({ note, onRemoveNote }) {
     // const height = Math.floor(100 + Math.random() * 500);
 
     return (
-        <article className="note-preview note" >
+        <article className="note-preview note" style={{ backgroundColor: noteStyle.backgroundColor }}>
             {/* <div className="note-inner" style={{ height: `${height}px` }}> */}
 
             <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
@@ -48,7 +36,7 @@ export function NotePreview({ note, onRemoveNote }) {
 
             <section className="active-btn">
                 <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
-                <ColorInput  {...noteStyle} name="Lala" onSetNoteStyle={onSetNoteStyle}/>
+                <ColorInput onSetNoteStyle={onSetNoteStyle} name="Lala" currentColor={noteStyle.backgroundColor} />
                 <button className="btn"><i className="fa-solid fa-envelope"></i></button>
                 <Link to={`/note/edit/${note.id}`}><button className="btn"><i className="fa-solid fa-pen-to-square"></i></button></Link>
                 <button className="btn" onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
@@ -58,17 +46,19 @@ export function NotePreview({ note, onRemoveNote }) {
     )
 }
 
-function DynamicCmp(props) {
+function DynamicCmp({ cmpType, info, onChangeInfo }) {
     // console.log('props:', props)
-    switch (props.cmpType) {
+    switch (cmpType) {
         case 'NoteTxt':
             // return <Hello name={props.name} age={props.age} handleClick={props.handleClick} />
-            return <NoteTxt {...props} />
+            return <NoteTxt info={info} onChangeInfo={onChangeInfo} />
         case 'NoteImg':
-            return <NoteImg {...props} />
+            return <NoteImg info={info} onChangeInfo={onChangeInfo} />;
 
         case 'NoteTodos':
-            return <NoteTodos {...props} />
+            return <NoteTodos info={info} onChangeInfo={onChangeInfo} />;
+        default:
+            return <div>Unknown note type</div>;
     }
 
 }

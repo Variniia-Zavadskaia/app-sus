@@ -8,27 +8,26 @@ import { EditNoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { noteService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 
-export function NoteEdit({type = ''}) {
+export function NoteEdit({ type = '' }) {
     const [note, setNote] = useState(noteService.getEmptyNote())
-    // const
-
-    const params = useParams()
+   
+    const { noteId } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!params.noteId) return
-        noteService.get(params.noteId).then(setNote)
+        if (noteId) loadNote()
+
     }, [])
 
-    // useEffect(() => {
-    //     if (!params.noteId) {
-    //         setNote(prevNote => ({
-    //             ...prevNote, type }),
-    //         }))
-    //         return
-    //     }
-    //     noteService.get(params.noteId).then(setNote)
-    // }, [])
+    function loadNote() {
+        noteService.get(noteId)
+            .then(setNote)
+            .catch(err => {
+                console.log('Problem getting note', err)
+                showErrorMsg('Problem getting note')
+                navigate('/note')
+            })
+    }
 
     function onSave(ev) {
         ev.preventDefault()
@@ -47,7 +46,7 @@ export function NoteEdit({type = ''}) {
 
     return (
         <section className="note-edit backdrop">
-            <AddNote/>
+            <AddNote />
             <form onSubmit={onSave}>
                 <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
                 <button>Save</button>
