@@ -41,26 +41,6 @@ export function MailDetails() {
       })
   }
   
-
-  function onRemoveMail(mailId) {
-    console.log(state ,'remove mail');
-    state.onRemove('Tezka')
-    const mailsFiltered = mail.filter((mail) => mail.id !== mailId)
-    mailService
-      .remove(mailId)
-      .then(() => {
-        setMails(mailsFiltered)
-        showSuccessMsg(`Mail removed successfully!`)
-      })
-      .catch((err) => {
-        console.log('Problems removing mail:', err)
-        showErrorMsg(`Problems removing mail (${mailId})`)
-      })
-  }
-
-
-
-
   function onBack() {
     navigate('/mail')
   }

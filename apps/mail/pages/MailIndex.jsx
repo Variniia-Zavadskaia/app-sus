@@ -43,6 +43,23 @@ export function MailIndex() {
   function onSetFilterBy(filterBy) {
     setFilterBy((preFilter) => ({...preFilter, ...filterBy}))
   }
+
+  function onRemoveMail(mailId) {
+    console.log(state, 'remove mail')
+    state.onRemove('Tezka')
+    const mailsFiltered = mail.filter((mail) => mail.id !== mailId)
+    mailService
+      .remove(mailId)
+      .then(() => {
+        setMails(mailsFiltered)
+        showSuccessMsg(`Mail removed successfully!`)
+      })
+      .catch((err) => {
+        console.log('Problems removing mail:', err)
+        showErrorMsg(`Problems removing mail (${mailId})`)
+      })
+  }
+
   // Update mail status without reloading all mails
   function updateMailStatus(id, updatedMail) {
     const updatedMails = mails.map((mail) => (mail.id === id ? updatedMail : mail))
@@ -63,6 +80,13 @@ export function MailIndex() {
   return (
     <section className="mail-index">
       <section className="mail-header ">
+        <button className="menu-icon-btn" data-menu-icon-btn onClick={openMenu}>
+          <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" className="menu-icon">
+            <g>
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+            </g>
+          </svg>
+        </button>
         <div className="mail-filter-container ">
           <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         </div>
@@ -72,7 +96,7 @@ export function MailIndex() {
           <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         </aside>
         <main className="mail-list-container">
-          <MailList mails={mails} updateMailStatus={updateMailStatus} onRemove={console.log} />
+          <MailList mails={mails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
         </main>
       </div>
     </section>

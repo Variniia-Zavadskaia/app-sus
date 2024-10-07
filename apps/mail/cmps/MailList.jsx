@@ -2,7 +2,7 @@ const {useNavigate} = ReactRouter
 
 import {MailPreview} from './MailPreview.jsx'
 
-export function MailList({mails, updateMailStatus, onRemove}) {
+export function MailList({mails, updateMailStatus, onRemoveMail}) {
   const navigate = useNavigate()
 
   const handleMailClick = (mail) => {
@@ -13,7 +13,7 @@ export function MailList({mails, updateMailStatus, onRemove}) {
     updateMailStatus(mail.id, updatedMail)
 
     // Navigate to mail details
-    navigate(`/mail/${mail.id}`, {state: onRemove})
+    navigate(`/mail/${mail.id}`, {state: onRemoveMail})
   }
 
   if (!mails.length) return <p>No mails to display</p>

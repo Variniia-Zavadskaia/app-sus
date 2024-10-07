@@ -1,10 +1,11 @@
 
-export function MailPreview({mail}) {
+export function MailPreview({mail, onClick}) {
   const {subject, body, from, to, sentAt, isRead, labels} = mail
   const truncatedBody = body.length > 10 ? `${body.substring(0, 50)}...` : body
 
   return (
-    <tr className="mail-review">
+    <tr className={`mail-review ${isRead ? 'read' : 'unread'} `}
+     onClick={onClick}>
       <td className="star-col">
         <span className="star">
           <i className="fa-regular fa-star"></i>

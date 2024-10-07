@@ -148,6 +148,85 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
+      _createMail(
+        'Meeting Reminder',
+        'This is a reminder for the meeting scheduled tomorrow at 2 PM. Please be on time.',
+        'hr@company.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Invoice Due',
+        'Your invoice for the month of September is due. Please make the payment by October 15th.',
+        'billing@services.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'New Course Available',
+        'Enroll in our latest course on Full Stack Development and enhance your skills.',
+        'courses@onlinelearning.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'System Maintenance',
+        'Our systems will undergo maintenance on Sunday from 1 AM to 5 AM. Expect downtime during this period.',
+        'support@techsolutions.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Password Change Request',
+        'A request to change your password was made. If this wasn’t you, please contact support immediately.',
+        'security@company.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Flight Confirmation',
+        'Your flight to New York is confirmed. Check-in opens 24 hours before departure.',
+        'booking@airline.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Job Application Received',
+        'We have received your application for the Software Engineer position. We will get back to you soon.',
+        'careers@company.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Holiday Sale',
+        'Enjoy up to 70% off on our exclusive holiday collection! Don’t miss out on these deals.',
+        'sales@fashionstore.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Appointment Confirmation',
+        'Your appointment with Dr. Smith is confirmed for October 10th at 3 PM.',
+        'appointments@healthcare.com',
+        loggedInUser.email,
+        []
+      ),
+      
+      _createMail(
+        'Welcome to the Newsletter',
+        'Thank you for subscribing to our newsletter! You will now receive the latest updates and offers.',
+        'newsletter@brand.com',
+        loggedInUser.email,
+        []
+      )
     ]
     saveToStorage(MAIL_KEY, defaultMails)
     // console.log('Mails initialized and saved:', defaultMails)

@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -13,7 +19,25 @@ body {
 }
 
 .mail-header {
-  display: block;
+  position: sticky;
+  top: 0;
+  padding: 0.25em 0.5rem;
+  background-color: var(--primary-mail-bgc);
+}
+
+.menu-icon-btn {
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.menu-icon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.menu-icon:hover {
+  background-color: var(--hover-state-color);
 }
 
 .mail-content-wrapper {
@@ -25,6 +49,8 @@ body {
 .mail-list-container {
   flex: 1;
   overflow-y: scroll;
-  padding: 20px;
-  height: calc(100vh - 60px); /* Makes sure the table container takes up all the remaining space below the filter */
+  padding: 2px;
+  height: calc(100vh - 60px); 
+  transition: margin-left 0.5s; 
 }
+
