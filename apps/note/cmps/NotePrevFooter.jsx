@@ -5,15 +5,6 @@ const { useState } = React
 export function NotePrevFooter() {
     const [cmpType, setCmpType] = useState('color')
 
-    const [footerStyle, setFooterStyle] = useState({
-        backgroundColor: '#101010',
-        // fontSize: '16px'
-    })
-
-    function onSetFooterStyle(newStyle) { // { backgroundColor: 'royalblue }
-        setFooterStyle(prevStyle => ({ ...prevStyle, ...newStyle }))
-    }
-
     return (
         <footer style={footerStyle} className="app-footer full main-layout">
             <section >

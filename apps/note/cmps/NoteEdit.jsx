@@ -8,37 +8,33 @@ import { EditNoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { noteService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 
-export function NoteEdit({ type = '' }) {
-    const [note, setNote] = useState(noteService.getEmptyNote())
-   
-    const { noteId } = useParams()
-    const navigate = useNavigate()
+export function NoteEdit({ note,  onSaveNote }) {
+    // const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+    const [noteToEdit, setNoteToEdit] = useState(note)
+    // const { noteId } = useParams()
+    // const navigate = useNavigate()
 
-    useEffect(() => {
-        if (noteId) loadNote()
+    // useEffect(() => {
+    //     setNoteToEdit(note)
+    // }, [])
 
-    }, [])
-
-    function loadNote() {
-        noteService.get(noteId)
-            .then(setNote)
-            .catch(err => {
-                console.log('Problem getting note', err)
-                showErrorMsg('Problem getting note')
-                navigate('/note')
-            })
-    }
+    // function loadNote() {
+    //     noteService.get(noteId)
+    //         .then(setNote)
+    //         .catch(err => {
+    //             console.log('Problem getting note', err)
+    //             showErrorMsg('Problem getting note')
+    //             navigate('/note')
+    //         })
+    // }
 
     function onSave(ev) {
         ev.preventDefault()
-        noteService.save(note)
-            .then(() => showSuccessMsg('note has successfully saved!'))
-            .catch(() => showErrorMsg(`couldn't save note`))
-            .finally(() => navigate('/note'))
-    }
+        onSaveNote(noteToEdit);
+    };
 
     function onChangeInfo(field, val) {
-        setNote(prevNote => ({
+        setNoteToEdit(prevNote => ({
             ...prevNote,
             info: { ...prevNote.info, [field]: val },
         }))
@@ -46,9 +42,9 @@ export function NoteEdit({ type = '' }) {
 
     return (
         <section className="note-edit backdrop">
-            <AddNote />
+            {/* <AddNote /> */}
             <form onSubmit={onSave}>
-                <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
+                <DynamicCmp cmpType={noteToEdit.type} info={noteToEdit.info} onChangeInfo={onChangeInfo} />
                 <button>Save</button>
             </form>
         </section>

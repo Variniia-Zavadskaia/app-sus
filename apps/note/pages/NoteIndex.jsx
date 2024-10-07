@@ -1,22 +1,26 @@
 const { useEffect, useState } = React
 const { Link, useSearchParams } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouter
 
-import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
+import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
+import { NoteDetails } from "../cmps/NoteDetails.jsx"
+import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../../../services/util.service.js"
-import { AddNote } from "../cmps/AddNote.jsx"
 
 export function NoteIndex() {
-
     const [notes, setNotes] = useState(null)
     const [searchPrms, setSearchPrms] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedNote, setSelectedNote] = useState(null);
+    const navigate = useNavigate()
 
-    useEffect(()=>{
+    useEffect(() => {
         loadNotes()
         setSearchPrms(getTruthyValues(filterBy))
-    },[filterBy])
+    }, [filterBy])
 
     function loadNotes() {
         noteService.query(filterBy)
@@ -38,19 +42,55 @@ export function NoteIndex() {
             })
     }
 
+    function openEditModal(note) {
+        console.log('openEditModal');
+        
+        setSelectedNote(note);
+        setIsModalOpen(true);
+    };
+
+    function closeEditModal() {
+        setIsModalOpen(false);
+        setSelectedNote(null);
+    };
+
+    // const handleSave = (updatedNote) => {
+    //     setNotes(notes.map(note => note.id === updatedNote.id ? updatedNote : note));
+    //     closeModal();
+    // };
+
+    function onSaveNote(note) {
+        console.log('ffff');
+        closeEditModal()
+        noteService.save(note)
+            .then(() => showSuccessMsg('note has successfully saved!'))
+            .then(loadNotes)
+            .catch(() => showErrorMsg(`couldn't save note`))
+            // .finally(() => navigate('/note'))
+        // loadNotes()
+    }
+
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }
+
     if (!notes) return <h1>Loading...</h1>
     return (
         <section className="note-index">
             {/* <CarFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} /> */}
-            <AddNote/>
+            <AddNote />
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
+                onEditNote={openEditModal}
             />
-
+            {isModalOpen && (
+                <NoteDetails
+                    note={selectedNote}
+                    onClose={closeEditModal}
+                    onSaveNote={onSaveNote}
+                />
+            )}
         </section>
     )
 }

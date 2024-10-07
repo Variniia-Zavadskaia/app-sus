@@ -27,6 +27,7 @@ export function EditNoteTxt(props) {
             {/* <label className='bold-txt note-txt' htmlFor="txt"></label>
             <input onChange={handleChange} value={props.info.txt}
                 id='txt' type="text" name='txt' /> */}
+            <h2>text edit</h2>
             <textarea
                 name='txt'
                 cols='30'

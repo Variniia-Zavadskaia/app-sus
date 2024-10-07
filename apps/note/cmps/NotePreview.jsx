@@ -7,7 +7,7 @@ import { NoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { ColorInput } from "../../note/cmps/dynamic-inputs/ColorInput.jsx"
 import { noteService } from "../services/note.service.js"
 
-export function NotePreview({ note, onRemoveNote}) {
+export function NotePreview({ note, onRemoveNote, onEditNote}) {
 
     const [noteStyle, setNoteStyle] = useState(note.style || { backgroundColor: '#e8f0fe' })
 
@@ -39,11 +39,12 @@ export function NotePreview({ note, onRemoveNote}) {
 
             <section className="active-btn">
                 <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
-                <ColorInput onSetNoteStyle={onSetNoteStyle} name="Lala" currentColor={noteStyle.backgroundColor} />
+                <ColorInput onSetNoteStyle={onSetNoteStyle}  currentColor={noteStyle.backgroundColor} />
                 <button className="btn"><i className="fa-solid fa-envelope"></i></button>
-                <Link to={`/note/edit/${note.id}`}><button className="btn"><i className="fa-solid fa-pen-to-square"></i></button></Link>
+                {/* <Link to={`/note/edit/${note.id}`}><button className="btn"><i className="fa-solid fa-pen-to-square"></i></button></Link> */}
+                <button className="btn" onClick={() => onEditNote(note)}><i className="fa-solid fa-pen-to-square"></i></button>
                 <button className="btn" onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
-            </section>
+            </section> 
             {/* </div> */}
         </article>
     )

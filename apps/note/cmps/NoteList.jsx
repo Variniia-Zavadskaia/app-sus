@@ -3,7 +3,7 @@ const { useEffect, useRef } = React
 import { NotePreview } from "./NotePreview.jsx";
 
 
-export function NoteList({ notes, onRemoveNote }) {
+export function NoteList({ notes, onRemoveNote, onEditNote }) {
    
     // const notesRef = useRef(null)
     // useEffect(() => {
@@ -29,7 +29,7 @@ export function NoteList({ notes, onRemoveNote }) {
         <div className="note-list note-layout" >
             {notes.map(note =>
                 <div key={note.id} className="note-item">
-                    <NotePreview note={note} onRemoveNote={onRemoveNote} />
+                    <NotePreview note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} />
                     <section>
                         {/* <button onClick={() => onRemoveNote(note.id)}>Remove</button> */}
                         {/* <button ><Link to={`/note/${note.id}`}>Details</Link></button> */}
