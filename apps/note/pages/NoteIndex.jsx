@@ -8,6 +8,7 @@ import { NoteDetails } from "../cmps/NoteDetails.jsx"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../services/util.service.js"
+import { makeId } from '../../../services/util.service.js'
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
@@ -61,7 +62,6 @@ export function NoteIndex() {
     // };
 
     function onSaveNote(noteToSave) {
-        console.log('ffff');
         setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
         closeEditModal()
         noteService.save(noteToSave)
@@ -75,10 +75,12 @@ export function NoteIndex() {
     }
 
     function onAddNote(noteToAdd) {
-        setNotes(prevNotes => [...prevNotes, noteToAdd]);
-        noteService.save(noteToSave)
+        // noteToAdd.id = makeId()
+        // setNotes(prevNotes => [...prevNotes, noteToAdd]);
+        noteService.save(noteToAdd)
             .then(() => {                
                 showSuccessMsg('note has successfully added!')
+                loadNotes()
             })
             .catch(() => {
                 console.error('Could not add note:', err)

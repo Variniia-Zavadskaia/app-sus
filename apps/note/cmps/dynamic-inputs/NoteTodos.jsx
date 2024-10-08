@@ -32,26 +32,27 @@ export function EditNoteTodos(props) {
     }
 
     function onRemoveTodo(index) {
-        props.info.todos.splice(index)
+        props.info.todos.splice(index, 1)
         props.onChangeInfo('todos', props.info.todos)
     }
 
     function onAddTodo() {
         let todo = noteService.getEmptyNoteTodo()
+        if (!props.info.todos) props.info.todos = [];
         props.info.todos.push(todo)
         props.onChangeInfo('todos', props.info.todos)
     }
 
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     // reset the form
-    //     event.target.reset();
-    // };
+    function handleTitleChange(event) {
+        event.preventDefault();
+        
+        props.onChangeInfo('title', event.target.value);
+    };
 
     return (
         <div className="todo-list">
-            {/* <label className='bold-txt' htmlFor="title"></label>
-            <input onChange={handleChange} value={props.info.title || ''} id='title' type="text" name='title' /> */}
+            <label className='bold-txt' htmlFor="title">Title: </label>
+            <input onChange={handleTitleChange} value={props.info.title || ''} id='title' type="text" name='title' />
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo} />
             <button className="btn" onClick={onAddTodo}>+</button>
             <span onClick={onAddTodo}>New Todo</span>

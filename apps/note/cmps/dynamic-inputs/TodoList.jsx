@@ -2,7 +2,7 @@ import { TodoItem } from "./TodoItem.jsx"
 
 export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
     console.log(todos);
-    console.log(todos.length);
+    // console.log(todos.length);
 
 
     function toggleTodo(ev, index) {
@@ -42,9 +42,7 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
                                 <input onChange={(ev) => handleTodoChange(ev, index)} value={todo.txt || ''}
                                     id='todo-text' type="text" name='todo-text' />
                             </div>
-                        ) : (<span>{todo.txt}</span>)
-                        }
-                        {/* <div className="btn-todo"> */}
+                        ) : (<span>{todo.txt}</span>)}
 
                         <button className="btn btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
                         {/* </div> */}

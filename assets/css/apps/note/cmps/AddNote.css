@@ -1,4 +1,4 @@
-.add-note form {
+.note-form {
     display: flex;
     flex-flow: column;
     width: 540px;
