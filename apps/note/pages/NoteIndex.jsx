@@ -73,6 +73,18 @@ export function NoteIndex() {
                 showErrorMsg(`Couldn't save note`)
             })
     }
+
+    function onAddNote(noteToAdd) {
+        setNotes(prevNotes => [...prevNotes, noteToAdd]);
+        noteService.save(noteToSave)
+            .then(() => {                
+                showSuccessMsg('note has successfully added!')
+            })
+            .catch(() => {
+                console.error('Could not add note:', err)
+                showErrorMsg(`Couldn't add note`)
+            })
+    }
     
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
@@ -82,7 +94,7 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             {/* <CarFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} /> */}
-            <AddNote />
+            <AddNote onAddNote={onAddNote}/>
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}

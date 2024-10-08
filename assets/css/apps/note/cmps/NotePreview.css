@@ -29,6 +29,7 @@
 }
 
 .btn {
-    border: var(--clr1bg);
-    background-color: var(--clr1bg);
+   align-self: center;
 }
+
+

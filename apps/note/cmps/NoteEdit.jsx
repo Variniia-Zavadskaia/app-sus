@@ -31,6 +31,7 @@ export function NoteEdit({ note,  onSaveNote }) {
     function onSave(ev) {
         ev.preventDefault()
         onSaveNote(noteToEdit);
+        showSuccessMsg('Note saved successfully!');
     };
 
     function onChangeInfo(field, val) {
@@ -41,28 +42,26 @@ export function NoteEdit({ note,  onSaveNote }) {
     }
 
     return (
-        <section className="note-edit backdrop">
+        <section className="note-edit">
             {/* <AddNote /> */}
             <form onSubmit={onSave}>
                 <DynamicCmp cmpType={noteToEdit.type} info={noteToEdit.info} onChangeInfo={onChangeInfo} />
-                <button>Save</button>
+                <button type="submit">Save</button>
             </form>
         </section>
     )
 
 }
 
-function DynamicCmp(props) {
-    // console.log('props:', props)
-    switch (props.cmpType) {
+function DynamicCmp({ cmpType, info, onChangeInfo }) {
+    switch (cmpType) {
         case 'NoteTxt':
-            // return <Hello name={props.name} age={props.age} handleClick={props.handleClick} />
-            return <EditNoteTxt {...props} />
+            return <EditNoteTxt info={info} onChangeInfo={onChangeInfo} />
         case 'NoteImg':
-            return <EditNoteImg {...props} />
-
+            return <EditNoteImg info={info} onChangeInfo={onChangeInfo} />
         case 'NoteTodos':
-            return <EditNoteTodos {...props} />
+            return <EditNoteTodos info={info} onChangeInfo={onChangeInfo} />
+        default:
+            return <div>Unknown note type</div>; 
     }
-
 }
