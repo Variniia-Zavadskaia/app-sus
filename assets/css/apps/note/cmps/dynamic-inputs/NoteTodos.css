@@ -1,10 +1,10 @@
 .todo-list{
     max-width: 500px;
-    margin: 20px auto;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+    /* background-color: #f4f4f4; */
+    /* padding: 20px; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .todo-ul{
@@ -14,20 +14,25 @@
 .todo-ul div {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin-bottom: 10px; */
+    /* background-color: #fff; */
+    /* padding: 10px; */
+    /* border-radius: 6px; */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     transition: background-color 0.3s ease;
   }
 
-  .todo-ul div:hover {
+  /* .todo-ul div:hover {
     background-color: #e8f0fe;
-  }
+  } */
 
   .todo-ul div input[type="checkbox"] {
     margin-right: 10px;
+  }
+  .btn-todo{
+    border: #fff;
+    background-color: #fff;
+    margin-left: 10px;
   }
 
   .todo-ul div label {
@@ -45,7 +50,7 @@
   input[type="checkbox"]:checked + label::before {
     content: '✔';
     display: inline-block;
-    color: green;
+    /* color: green; */
     margin-right: 8px;
   }
 
@@ -63,8 +68,5 @@
     }
   }
 
-  .btn-todo{
-    border: #fff;
-    background-color: #fff;
-  }
+ 
 

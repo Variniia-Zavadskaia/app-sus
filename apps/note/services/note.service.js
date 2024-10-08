@@ -107,6 +107,7 @@ function _createNote(type) {
     switch (type) {
         case 'NoteTxt':
             note.info = {
+                title: 'Title txt',
                 txt: 'The quick brown fox jumps over the lazy dog, seeking adventure in a world filled with endless possibilities.',
             }
             break;

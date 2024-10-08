@@ -1,22 +1,49 @@
-const { useEffect, useState, useRef } = React
+const { useState, useRef } = React
 
-export function AddNote() {
+import { EditNoteTxt } from './dynamic-inputs/NoteTxt.jsx';
+import { EditNoteImg } from './dynamic-inputs/NoteImg.jsx';
+import { EditNoteTodos } from './dynamic-inputs/NoteTodos.jsx';
+import { NoteEdit } from './NoteEdit.jsx';
+import { noteService } from '../services/note.service.js';
 
-    const [changeType, setCangeType] = useState('');
-
+export function AddNote({onAddNote}) {
+    const [noteChanged, setNoteChanged] = useState(false)
+    const [noteToAdd, setNoteToAdd] = useState(null)
+    const [noteType, setNoteType] = useState('');
     const [showTitle, setShowTitle] = useState(false);
     const titleRef = useRef(null);
+    const [noteContent, setNoteContent] = useState({ title: '', content: '' });
 
-    const handleFocusOut = (event) => {
+    function handleFocusOut(event) {
         let relatedTarget = event.relatedTarget;
         if (!relatedTarget) {
             setShowTitle(false);
         }
     };
 
+    function handleSubmit(ev) {
+        ev.preventDefault();
+        // Add the logic to save the note
+        console.log(noteContent);
+    }
+
+    function onChangeInfo(field, val) {
+        setNoteContent(prevNote => ({
+            ...prevNote,
+            info: { ...prevNote.info, [field]: val },
+        }))
+    }
+
+    function createNewNote(type) {
+        setNoteChanged(false)
+        console.log(type);
+
+        setNoteToAdd(noteService.getEmptyNote(type))
+    }
+
     return (
         <div className="add-note">
-            <form className="note-form" onBlur={handleFocusOut}>
+            <form className="note-form" onBlur={handleFocusOut} onSubmit={handleSubmit}>
                 <div className="note-show" >
                     <input
                         id="title"
@@ -28,112 +55,36 @@ export function AddNote() {
                 <div className="note-show" >
                     <input
                         id="content"
-                        onFocus={() => setShowTitle(true)}
+                        onFocus={() => {setShowTitle(true); createNewNote('NoteTxt')}}
                         placeholder="Take a note..."
+                        value={noteContent.content}
+                        onChange={(e) => handleChange('content', e.target.value)}
                     />
                     <div className="note-cmpn">
-                        <button className="btn-cmpn" ><i className="fa-regular fa-square-check"></i></button>
-                        <button className="btn-cmpn" ><i className="fa-solid fa-image"></i></button>
+                        <button className="btn" onClick={() => createNewNote('NoteTodos')}><i className="fa-regular fa-square-check"></i></button>
+                        <button className="btn" onClick={() => createNewNote('NoteImg')}><i className="fa-solid fa-image"></i></button>
+                        {/* <button className="btn" ><i className="fa-solid fa-image"></i></button> */}
                     </div>
 
                 </div>
             </form>
         </div>
     );
-    // const [form, setForm] = useState('')
-
-    <FontAwesomeIcon icon="fa-regular fa-square-check" />
-    // useEffect(()=>{
-    //     console.log(changeType);    
-    // },[changeType])
-
-    // function loadForm() {
-
-    // }
-
-    // switch (changeType) {
-    //     case'NoteImg' :
-
-    //         break;
-    //     case'NoteTodos' :
-
-    //         break;
-    // }
-
-    // function handleChange() {
-    //     const type = xxx;
-    //     //....
-    //     setCangeType(type)
-    // }
-
-    return (
-        <section>
-            {/* <input type="text" placeholder='note' onClick={() => setCangeType('NoteTxt')}/>
-            <button className="btn" onClick={() => setCangeType('NoteImg')} ><i className="fa-solid fa-image"></i></button> */}
-            {/* <Link to="/note/edit" ><button className="btn backdrop"><i className="fa-solid fa-image"></i></button></Link> */}
-
-        </section>
-    )
 }
 
-// function DynamicCmp(props) {
-//     // console.log('props:', props)
-//     switch (props.cmpType) {
-//         case '' :
-//             return (
-//                 <section>
-//                     <input type="text" placeholder='note' onClick={() => setCangeType('NoteTxt')}/>
-//                     <button className="btn" onClick={() => setCangeType('NoteImg')} ><i className="fa-solid fa-image"></i></button>
-//                     {/* <Link to="/note/edit" ><button className="btn backdrop"><i className="fa-solid fa-image"></i></button></Link> */}
-//                 </section>
-//             )
-//         case 'NoteTxt':
-//         case 'NoteImg':
-//         case 'NoteTodos':
-//             return <NoteEdit />
-//     }
-// }
 
-function DynamicCmp(props) {
-    // console.log('props:', props)
-    switch (props.cmpType) {
+// <FontAwesomeIcon icon="fa-regular fa-square-check" />
+
+function DynamicCmp({ cmpType, info, onChangeInfo }) {
+    switch (cmpType) {
         case 'NoteTxt':
-            // return <Hello name={props.name} age={props.age} handleClick={props.handleClick} />
-            return <NoteTxt {...props} />
+            return <EditNoteTxt info={info} onChangeInfo={onChangeInfo} />
         case 'NoteImg':
-            return <NoteImg {...props} />
-
+            return <EditNoteImg info={info} onChangeInfo={onChangeInfo} />
         case 'NoteTodos':
-            return <NoteTodos {...props} />
+            return <EditNoteTodos info={info} onChangeInfo={onChangeInfo} />
+        default:
+            return <div>Unknown note type</div>;
     }
-
 }
-
-// function MyForm() {
-//   const [showTitle, setShowTitle] = useState(false);
-//   const titleRef = useRef(null);
-
-//   const handleFocusOut = (event) => {
-//     let relatedTarget = event.relatedTarget;
-//     if (!relatedTarget) {
-//       setShowTitle(false);
-//     }
-//   };
-
-//   return (
-//     <form onBlur={handleFocusOut}>
-//       <input
-//         id="title"
-//         ref={titleRef}
-//         style={{ display: showTitle ? '' : 'none' }}
-//         placeholder="Title"
-//       />
-//       <input
-//         id="content"
-//         onFocus={() => setShowTitle(true)}
-//         placeholder="Take a note..."
-//       />
-//     </form>
-//   );
-// }
 

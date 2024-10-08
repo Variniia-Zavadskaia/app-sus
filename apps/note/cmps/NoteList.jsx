@@ -1,43 +1,33 @@
-const { Link } = ReactRouterDOM
-const { useEffect, useRef } = React
 import { NotePreview } from "./NotePreview.jsx";
 
 
-export function NoteList({ notes, onRemoveNote }) {
-   
-    // const notesRef = useRef(null)
-    // useEffect(() => {
-    //     const notesContainer = notesRef.current;
-          
-    //      // Add notes to the container
-    // for (let x = 0; x <= 10; x++) {
-    //     const note = makeNote();
-    //     // Append the JSX element as a DOM node using React's render
-    //     notesContainer.appendChild(note);
-    //   }
-  
-    //   // Initialize Isotope
-    //   new Isotope(notesContainer, {
-    //     itemSelector: '.note',
-    //     layoutMode: 'masonry',
-    //   });
-    // }, []);
-      
-        // return <div className="notes"></div>;
-    
+export function NoteList({ notes, onRemoveNote, onEditNote, onSaveNote }) {
     return (
-        <div className="note-list note-layout" >
-            {notes.map(note =>
-                <div key={note.id} className="note-item">
-                    <NotePreview note={note} onRemoveNote={onRemoveNote} />
-                    <section>
-                        {/* <button onClick={() => onRemoveNote(note.id)}>Remove</button> */}
-                        {/* <button ><Link to={`/note/${note.id}`}>Details</Link></button> */}
-                        {/* <button ><Link to={`/note/edit/${note.id}`}>Edit</Link></button> */}
-                    </section>
+        <div className="note-container  " >
+            {/* <div className="note-list note-layout"> */}
+
+                <div className="pinned " >
+                    <h4> Pinned </h4>
+                    <div className="note-layout" >
+                        {notes.filter(note => note.isPinned).map(note =>
+                            <div key={note.id} className="note-item note-pinned">
+                                <NotePreview note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote} />
+                            </div>
+                        )}
+                    </div>
                 </div>
-            )}
-        </div>
+                <div className="unpinned" >
+                    <h4> Others</h4>
+                    <div className="note-layout" >
+                        {notes.filter(note => !note.isPinned).map(note =>
+                            <div key={note.id} className="note-item note-unpinned">
+                                <NotePreview note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote} />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        // </div>
     )
 
 }

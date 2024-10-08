@@ -1,39 +1,34 @@
-const { useState, useEffect } = React
+// const { useState, useEffect } = React;
 
 export function NoteTxt(props) {
-
     return (
-        <p>{props.info.txt}</p>
-    )
+        <section>
+            <h3>{props.info.title}</h3>
+            <p>{props.info.txt}</p>
+        </section>
+    );
 }
 
-// export function AddNoteTxt(props) {
-//     return (
-//         <section>
-//             <h2>{props.info.title} Nahui</h2>
-//             <img src={props.info.url} alt="" />
-//         </section>
-//     )
-// }
-
 export function EditNoteTxt(props) {
-
-    function handleChange(value ) {
-        props.onChangeInfo('txt', value)
+    function handleChange(value) {
+        props.onChangeInfo('txt', value);
     }
 
     return (
         <div>
-            {/* <label className='bold-txt note-txt' htmlFor="txt"></label>
-            <input onChange={handleChange} value={props.info.txt}
-                id='txt' type="text" name='txt' /> */}
+            <label className='bold-txt' htmlFor="title"></label>
+            <input onChange={handleChange} value={props.info.title || ''}
+                id='title' type="text" name='title' />
+            <label className='bold-txt' htmlFor="txt"></label>
             <textarea
+                id='txt'
                 name='txt'
                 cols='30'
                 rows='10'
                 value={props.info.txt}
                 onChange={(ev) => handleChange(ev.target.value)}
-            ></textarea>
+            />
         </div>
-    )
+    );
 }
+
