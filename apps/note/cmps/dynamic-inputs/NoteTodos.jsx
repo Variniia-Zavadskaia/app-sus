@@ -1,24 +1,17 @@
-const { useState, useEffect, useRef } = React
-const { useParams } = ReactRouterDOM
-
-// import { TodoItem } from "./TodoItem.jsx";
 import { TodoList } from "./TodoList.jsx";
 import { noteService } from "../../services/note.service.js"
 
 export function NoteTodos(props) {
     console.log('GFTGHHG');
     function onChangeTodo(index, field, value) {
-        // console.log('ffsdfdffd'); 
         props.info.todos[index][field] = value
         props.onChangeInfo('todos', props.info.todos)
     }
 
     return (
         <section>
-            {/* <div className="todo-list"> */}
             <h3>{props.info.title}</h3>
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={false} />
-            {/* </div> */}
         </section>
     )
 }
@@ -26,7 +19,6 @@ export function NoteTodos(props) {
 export function EditNoteTodos(props) {
 
     function onChangeTodo(index, field, value) {
-        // console.log('ffsdfdffd'); 
         props.info.todos[index][field] = value
         props.onChangeInfo('todos', props.info.todos)
     }

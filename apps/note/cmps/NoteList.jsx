@@ -4,8 +4,6 @@ import { NotePreview } from "./NotePreview.jsx";
 export function NoteList({ notes, onRemoveNote, onEditNote, onSaveNote }) {
     return (
         <div className="note-container  " >
-            {/* <div className="note-list note-layout"> */}
-
                 <div className="pinned " >
                     <h4> Pinned </h4>
                     <div className="note-layout" >
@@ -27,7 +25,6 @@ export function NoteList({ notes, onRemoveNote, onEditNote, onSaveNote }) {
                     </div>
                 </div>
             </div>
-        // </div>
     )
 
 }

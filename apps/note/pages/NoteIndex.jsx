@@ -1,6 +1,5 @@
 const { useEffect, useState } = React
-const { Link, useSearchParams } = ReactRouterDOM
-const { useParams, useNavigate } = ReactRouter
+const { useSearchParams } = ReactRouterDOM
 
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
@@ -8,7 +7,6 @@ import { NoteDetails } from "../cmps/NoteDetails.jsx"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../services/util.service.js"
-import { makeId } from '../../../services/util.service.js'
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
@@ -16,7 +14,6 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
-    // const navigate = useNavigate()
 
     useEffect(() => {
         loadNotes()
@@ -33,9 +30,9 @@ export function NoteIndex() {
     }
 
     function onRemoveNote(noteId) {
+        setNotes(notes => notes.filter(note => note.id !== noteId))
         noteService.remove(noteId)
             .then(() => {
-                setNotes(notes => notes.filter(note => note.id !== noteId))
                 showSuccessMsg('Note removed successfully!')
             })
             .catch(err => {
@@ -56,11 +53,6 @@ export function NoteIndex() {
         setSelectedNote(null);
     };
 
-    // const handleSave = (updatedNote) => {
-    //     setNotes(notes.map(note => note.id === updatedNote.id ? updatedNote : note));
-    //     closeModal();
-    // };
-
     function onSaveNote(noteToSave) {
         setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
         closeEditModal()
@@ -75,7 +67,6 @@ export function NoteIndex() {
     }
 
     function onAddNote(noteToAdd) {
-        // noteToAdd.id = makeId()
         // setNotes(prevNotes => [...prevNotes, noteToAdd]);
         noteService.save(noteToAdd)
             .then(() => {                

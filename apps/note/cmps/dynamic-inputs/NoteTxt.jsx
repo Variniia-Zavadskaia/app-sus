@@ -1,4 +1,3 @@
-// const { useState, useEffect } = React;
 
 export function NoteTxt(props) {
     return (
@@ -29,7 +28,6 @@ export function EditNoteTxt(props) {
                 rows='10'
                 value={props.info.txt}
                 onChange={(ev) => handleChange(ev.target)}
-                // onChange={(ev) => handleChange(ev.target.value)}
             />
         </div>
     );

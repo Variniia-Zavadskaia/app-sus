@@ -1,24 +1,17 @@
 import { TodoItem } from "./TodoItem.jsx"
 
 export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
-    console.log(todos);
-    // console.log(todos.length);
-
 
     function toggleTodo(ev, index) {
-        console.log('kkk');
         let doneAt = todos[index].doneAt
 
         if (doneAt === null) {
             doneAt = new Date(Date.now());
-            // ev.target.checked = true
         }
         else {
             doneAt = null
-            // ev.target.checked = false
         }
         onChangeTodo(index, 'doneAt', doneAt);
-        // console.log(todos);
     }
 
     function handleTodoChange(ev, index) {
@@ -26,7 +19,6 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
     }
 
     return (
-        // <div className="todo-list">
         <div className="todo-ul">
             {todos && todos.length > 0 ? (
                 todos.map((todo, index) => (
@@ -45,13 +37,10 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
                         ) : (<span>{todo.txt}</span>)}
 
                         <button className="btn btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
-                        {/* </div> */}
-
                     </div>
                 ))
             ) : (<p></p>)}
         </div>
-        // </div>
     )
 
 }
