@@ -1,6 +1,6 @@
 const {useState, useEffect} = React
 
-export function MailFolderList({filterBy, onSetFilterBy}) {
+export function MailFolderList({filterBy= {}, onSetFilterBy, isMenuOpen}) {
   const [selectedFolder, setSelectedFolder] = useState(filterBy.folder || 'inbox')
 
   useEffect(() => {
@@ -20,7 +20,8 @@ export function MailFolderList({filterBy, onSetFilterBy}) {
   ]
 
   return (
-    <div className="label-folder-list ">
+    <div className={`label-folder-list ${isMenuOpen ? 'open' : 'close'}`}>
+      {' '}
       {folders.map((folder) => (
         <ul key={folder.value}>
           <label className={`folder-icon ${selectedFolder === folder.name ? 'active' : ''}`}>
@@ -33,9 +34,8 @@ export function MailFolderList({filterBy, onSetFilterBy}) {
                 onChange={() => handleFolderChange(folder.value)}
                 hidden
               />
-              <div className={`icon ${folder.icon}`}>
-              </div>
-                <p className="folder-label">{folder.name}</p>
+              <div className={`icon ${folder.icon}`}></div>
+              <p className="folder-label">{folder.name}</p>
             </li>
           </label>
         </ul>

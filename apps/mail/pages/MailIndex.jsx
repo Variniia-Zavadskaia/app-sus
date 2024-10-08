@@ -3,8 +3,8 @@ const {Link, useSearchParams} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
-import {MailFilter} from '../cmps/MailFilter.jsx'
 import {MailFolderList} from '../cmps/MailFolderList.jsx'
+import { MailHeader } from '../cmps/MailHeader.jsx'
 import {MailList} from '../cmps/MailList.jsx'
 import {mailService} from '../services/mail.service.js'
 
@@ -12,6 +12,7 @@ export function MailIndex() {
   const [mails, setMails] = useState([])
   const [searchPrms, setSearchPrms] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const mailsRef = useRef([]) //to track the curr state
   const initialMailsRef = useRef([]) // to store the initial state
@@ -30,7 +31,7 @@ export function MailIndex() {
           initialMailsRef.current = loadedMails
         }
         mailsRef.current = loadedMails // Track latest mails
-        console.log('loadmails ', loadedMails)
+        // console.log('loadmails ', loadedMails)
 
         setMails(loadedMails) // Set state
       })
@@ -76,20 +77,17 @@ export function MailIndex() {
       })
   }
 
+  const openMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   if (!mails) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
-      <section className="mail-header ">
-        <button className="menu-icon-btn" data-menu-icon-btn onClick={openMenu}>
-          <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" className="menu-icon">
-            <g>
-              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-            </g>
-          </svg>
-        </button>
-        <div className="mail-filter-container ">
-          <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-        </div>
+      <section className="mail-header-section ">
+       <MailHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} openMenu={openMenu}/>
+        <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} />
+       
       </section>
       <div className="mail-content-wrapper">
         <aside className="mail-folder-list">

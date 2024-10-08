@@ -1,12 +1,15 @@
+import { formatTimeAgo } from "../../../services/util.service.js"
 
 export function MailPreview({mail, onClick}) {
-  const {subject, body, from, to, sentAt, isRead, labels} = mail
+  const {subject, body, from, sentAt, isRead} = mail
   const truncatedBody = body.length > 10 ? `${body.substring(0, 50)}...` : body
+  const timeAgo = formatTimeAgo(sentAt)
 
   return (
     <tr className={`mail-review ${isRead ? 'read' : 'unread'} `}
-     onClick={onClick}>
-      <td className="star-col">
+    onClick={onClick}>
+    <td className="select"><input type="checkbox" /></td>
+      <td className="star-col ">
         <span className="star">
           <i className="fa-regular fa-star"></i>
         </span>
@@ -14,7 +17,7 @@ export function MailPreview({mail, onClick}) {
       <td className="mail-sender">{from}</td>
       <td className="mail-subject">{subject} - </td>
       <td className="mail-body">{truncatedBody}</td>
-      <td className="mail-sent"> {new Date(sentAt).toLocaleString()}</td>
+      <td className="mail-sent"> {timeAgo}</td>
       <td className="action-hover"></td>
     </tr>
   )

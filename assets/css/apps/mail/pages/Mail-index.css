@@ -9,7 +9,7 @@ body {
   height: 100%;
   margin: 0;
   background-color: var(--primary-mail-bgc);
-  overflow: hidden; /* Prevents scrolling on the entire page */
+  overflow: hidden; 
 }
 
 .mail-index {
@@ -43,14 +43,15 @@ body {
 .mail-content-wrapper {
   display: flex;
   flex: 1;
-  height: 100%; /* Ensures that the content takes up the full height */
+  height: 100%; 
 }
 
 .mail-list-container {
-  flex: 1;
   overflow-y: scroll;
   padding: 2px;
   height: calc(100vh - 60px); 
   transition: margin-left 0.5s; 
+  display: flex;
+  margin-left: 60px;
 }
 

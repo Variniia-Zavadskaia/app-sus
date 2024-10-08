@@ -1,0 +1,62 @@
+.mail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-nav-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menu-btn {
+  margin-right: 1rem;
+}
+
+.menu-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: clamp(14px, 4vw, 20px);
+}
+
+.logo {
+    width: clamp(150px, 15vw, 200px); 
+    height: auto;
+    font-size: clamp(20px, 5vw, 36px);
+}
+
+.empty-place {
+  flex: 1; 
+}
+
+.user-action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-img-container {
+  width: clamp(30px, 5vw, 50px); 
+  height: clamp(30px, 5vw, 50px);
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.user-img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.fa-circle-question,
+.fa-gear {
+  font-size: clamp(16px, 2vw, 20px); 
+  cursor: pointer;
+}
+
+.fa-grip {
+  font-size: clamp(16px, 2vw, 20px); 
+}

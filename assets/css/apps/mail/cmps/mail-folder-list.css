@@ -1,6 +1,6 @@
 .label-folder-list {
   position: fixed;
-  top: 115px;
+  top: 110px;
   left: 0;
   width: 60px;
   height: 100%;
@@ -48,7 +48,7 @@ ul li p {
   margin-right: 10px;
 }
 
-.label-folder-list:hover ul li p {
+.label-folder-list:hover ul li p  {
   display: block;
 }
 
