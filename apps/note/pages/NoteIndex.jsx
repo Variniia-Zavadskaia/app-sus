@@ -7,7 +7,7 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteDetails } from "../cmps/NoteDetails.jsx"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-import { getTruthyValues } from "../../../services/util.service.js"
+import { getTruthyValues } from "../services/util.service.js"
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
@@ -99,6 +99,7 @@ export function NoteIndex() {
                 notes={notes}
                 onRemoveNote={onRemoveNote}
                 onEditNote={openEditModal}
+                onSaveNote={onSaveNote}
             />
             {isModalOpen && (
                 <NoteDetails

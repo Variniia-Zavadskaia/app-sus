@@ -2,7 +2,10 @@
 
 export function NoteTxt(props) {
     return (
-        <p>{props.info.txt}</p>
+        <section>
+            <h3>{props.info.title}</h3>
+            <p>{props.info.txt}</p>
+        </section>
     );
 }
 
@@ -13,7 +16,10 @@ export function EditNoteTxt(props) {
 
     return (
         <div>
-            {/* <label className='bold-txt note-txt' htmlFor="txt">Edit Note Text</label> */}
+            <label className='bold-txt' htmlFor="title"></label>
+            <input onChange={handleChange} value={props.info.title || ''}
+                id='title' type="text" name='title' />
+            <label className='bold-txt' htmlFor="txt"></label>
             <textarea
                 id='txt'
                 name='txt'

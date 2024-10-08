@@ -16,8 +16,8 @@ export function NoteTodos(props) {
     return (
         <section>
             {/* <div className="todo-list"> */}
-                <h2>{props.info.title}</h2>
-                <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={false}/>
+            <h3>{props.info.title}</h3>
+            <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={false} />
             {/* </div> */}
         </section>
     )
@@ -50,7 +50,9 @@ export function EditNoteTodos(props) {
 
     return (
         <div className="todo-list">
-            <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo}/>
+            {/* <label className='bold-txt' htmlFor="title"></label>
+            <input onChange={handleChange} value={props.info.title || ''} id='title' type="text" name='title' /> */}
+            <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo} />
             <button className="btn" onClick={onAddTodo}>+</button>
             <span onClick={onAddTodo}>New Todo</span>
         </div>

@@ -46,12 +46,12 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
                         }
                         {/* <div className="btn-todo"> */}
 
-                        <button className="btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
+                        <button className="btn btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
                         {/* </div> */}
 
                     </div>
                 ))
-            ) : (<p>Seems lonely in here, what are you up to?</p>)}
+            ) : (<p></p>)}
         </div>
         // </div>
     )
