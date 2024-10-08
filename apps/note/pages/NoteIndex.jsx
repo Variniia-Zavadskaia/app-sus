@@ -15,7 +15,7 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     useEffect(() => {
         loadNotes()
@@ -27,6 +27,7 @@ export function NoteIndex() {
             .then(setNotes)
             .catch(err => {
                 console.log('Problems getting notes:', err)
+                showErrorMsg('Could not load notes')
             })
     }
 
@@ -34,7 +35,7 @@ export function NoteIndex() {
         noteService.remove(noteId)
             .then(() => {
                 setNotes(notes => notes.filter(note => note.id !== noteId))
-                showSuccessMsg(`Note removed successfully!`)
+                showSuccessMsg('Note removed successfully!')
             })
             .catch(err => {
                 console.log('Problems removing note:', err)
@@ -59,17 +60,20 @@ export function NoteIndex() {
     //     closeModal();
     // };
 
-    function onSaveNote(note) {
+    function onSaveNote(noteToSave) {
         console.log('ffff');
+        setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
         closeEditModal()
-        noteService.save(note)
-            .then(() => showSuccessMsg('note has successfully saved!'))
-            .then(loadNotes)
-            .catch(() => showErrorMsg(`couldn't save note`))
-            // .finally(() => navigate('/note'))
-        // loadNotes()
+        noteService.save(noteToSave)
+            .then(() => {                
+                showSuccessMsg('note has successfully saved!')
+            })
+            .catch(() => {
+                console.error('Could not save note:', err)
+                showErrorMsg(`Couldn't save note`)
+            })
     }
-
+    
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }

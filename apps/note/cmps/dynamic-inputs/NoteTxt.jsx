@@ -1,7 +1,8 @@
 const { useState, useEffect } = React
 
 export function NoteTxt(props) {
-
+    console.log(props.info.txt);
+    
     return (
         <p>{props.info.txt}</p>
     )

@@ -45,9 +45,9 @@ export function EditNoteImg(props) {
 
     return (
         <div className="note-img-input">
-            {/* <label className='bold-txt' htmlFor="title">Title: </label>
+            <label className='bold-txt' htmlFor="title">Title: </label>
             <input onChange={handleChange} value={props.info.title || ''}
-                id='title' type="text" name='title' /> */}
+                id='title' type="text" name='title' />
             <button
                 id="fileSelect"
                 onClick={(e) => {

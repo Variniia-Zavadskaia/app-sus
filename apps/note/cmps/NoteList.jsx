@@ -24,7 +24,10 @@ export function NoteList({ notes, onRemoveNote, onEditNote }) {
     // }, []);
       
         // return <div className="notes"></div>;
+
+    console.log(notes);
     
+
     return (
         <div className="note-list note-layout" >
             {notes.map(note =>

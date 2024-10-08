@@ -1,6 +1,6 @@
 import { TodoItem } from "./TodoItem.jsx"
 
-export function TodoList({ todos, onChangeTodo }) {
+export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
     console.log(todos);
     console.log(todos.length);
 
@@ -21,6 +21,10 @@ export function TodoList({ todos, onChangeTodo }) {
         // console.log(todos);
     }
 
+    function handleTodoChange(ev, index) {
+        onChangeTodo(index, 'txt', ev.target.value);
+    }
+
     return (
         // <div className="todo-list">
         <div className="todo-ul">
@@ -32,11 +36,19 @@ export function TodoList({ todos, onChangeTodo }) {
                             checked={todo.doneAt !== null}
                             onChange={(ev) => toggleTodo(ev, index)}
                         />
-                        <span>{todo.txt}</span>
+                        {edit ? (
+                            <div>
+                                <label className='bold-txt' htmlFor="todo-text"></label>
+                                <input onChange={(ev) => handleTodoChange(ev, index)} value={todo.txt || ''}
+                                    id='todo-text' type="text" name='todo-text' />
+                            </div>
+                        ) : (<span>{todo.txt}</span>)
+                        }
                         {/* <div className="btn-todo"> */}
 
-                            <button className="btn-todo" onClick={() => deleteTodo(index)}><i className="fa-solid fa-xmark"></i></button>
+                        <button className="btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
                         {/* </div> */}
+
                     </div>
                 ))
             ) : (<p>Seems lonely in here, what are you up to?</p>)}
