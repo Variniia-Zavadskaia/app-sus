@@ -1,7 +1,6 @@
 const { useParams, useNavigate } = ReactRouter
 const { useState, useEffect } = React
 
-import { AddNote } from "./AddNote.jsx"
 import { EditNoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
 import { EditNoteImg } from "./dynamic-inputs/NoteImg.jsx";
 import { EditNoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
