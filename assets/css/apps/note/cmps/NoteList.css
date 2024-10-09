@@ -2,8 +2,8 @@
  .note-layout {
      display: grid;
      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-     grid-gap: 15px;
-     padding: 20px;
+     /* grid-gap: 15px; */
+     /* padding: 20px; */
      list-style-type: none;
      margin: 0;
      /* padding: 0; */
@@ -13,8 +13,8 @@
  }
 
  .note-item {
-    margin: 0.5em 0;
-    padding: 1em;
+    /* margin: 0.5em 0; */
+    padding: 0.5em;
     /* border: 1px solid steelblue; */
     border-radius: 2px;
  }

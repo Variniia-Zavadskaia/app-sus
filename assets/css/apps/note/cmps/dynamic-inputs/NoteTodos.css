@@ -22,9 +22,9 @@
     transition: background-color 0.3s ease;
   }
 
-  /* .todo-ul div:hover {
-    background-color: #e8f0fe;
-  } */
+  .todo-ul div:hover {
+    background-color: #d9dbdd;
+  }
 
   .todo-ul div input[type="checkbox"] {
     margin-right: 10px;

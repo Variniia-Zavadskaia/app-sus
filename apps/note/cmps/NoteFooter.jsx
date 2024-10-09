@@ -1,12 +1,8 @@
-import{ColorInput} from "./dynamic-inputs/ColorInput.jsx"
-
-const { useState } = React
-
 export function NotePrevFooter() {
-    const [cmpType, setCmpType] = useState('color')
+   
 
     return (
-        <footer style={footerStyle} className="app-footer full main-layout">
+        <footer className="app-footer full main-layout">
             <section className="active-btn">
                 <button className="btn"><i className="fa-solid fa-thumbtack"></i></button>
                 <ColorInput onSetNoteStyle={onSetNoteStyle}  currentColor={noteStyle.backgroundColor} />

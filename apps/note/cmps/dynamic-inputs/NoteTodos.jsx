@@ -9,7 +9,7 @@ export function NoteTodos(props) {
     }
 
     return (
-        <section>
+        <section className="todo-list">
             <h3>{props.info.title}</h3>
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={false} />
         </section>
@@ -42,12 +42,12 @@ export function EditNoteTodos(props) {
     };
 
     return (
-        <div className="todo-list">
+        <section className="todo-list">
             <label className='bold-txt' htmlFor="title">Title: </label>
             <input onChange={handleTitleChange} value={props.info.title || ''} id='title' type="text" name='title' />
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo} />
             <button className="btn" onClick={onAddTodo}>+</button>
             <span onClick={onAddTodo}>New Todo</span>
-        </div>
+        </section>
     );
 }
