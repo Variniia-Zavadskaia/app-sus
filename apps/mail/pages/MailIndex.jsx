@@ -47,7 +47,6 @@ export function MailIndex() {
 
   function onRemoveMail(mailId) {
     console.log(state, 'remove mail')
-    state.onRemove('Tezka')
     const mailsFiltered = mail.filter((mail) => mail.id !== mailId)
     mailService
       .remove(mailId)
