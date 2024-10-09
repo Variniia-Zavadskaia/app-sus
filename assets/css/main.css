@@ -10,11 +10,11 @@
 @import './basics/layout.css';
 
 /* Pages */
-@import './pages/home.css';
+@import './pages/Home.css';  
 
 @import './apps/note/pages/NoteIndex.css';
 
-@import './apps/mail/pages/mail-index.css';
+@import './apps/mail/pages/Mail-index.css'; 
 
 /* Cmps */
 
@@ -31,7 +31,7 @@
 @import './apps/note/cmps/dynamic-inputs/ColorInput.css';
 
 @import './apps/mail/cmps/mail-header.css';
-@import './apps/mail/cmps/mail-list.css';
-@import './apps/mail/cmps/mail-filter.css';
+@import './apps/mail/cmps/Mail-list.css'; 
+@import './apps/mail/cmps/Mail-filter.css'; 
 @import './apps/mail/cmps/mail-folder-list.css';
 @import './apps/mail/cmps/mail-details.css';

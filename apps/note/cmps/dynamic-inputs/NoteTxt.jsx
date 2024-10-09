@@ -16,7 +16,7 @@ export function EditNoteTxt(props) {
     }
 
     return (
-        <div>
+        <div className="note-show" >
             <label className='bold-txt' htmlFor="title">Title: </label>
             <input onChange={(ev) => handleChange(ev.target)} value={props.info.title || ''}
                 id='title' type="text" name='title' />

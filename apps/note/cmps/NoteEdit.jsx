@@ -24,7 +24,7 @@ export function NoteEdit({ note,  onSaveNote }) {
 
     return (
         <section className="note-edit">
-            <form onSubmit={onSave} className="note-show ">
+            <form onSubmit={onSave} className="note-form ">
                 <DynamicCmp cmpType={noteToEdit.type} info={noteToEdit.info} onChangeInfo={onChangeInfo} />
                 <button type="submit">Save</button>
             </form>
