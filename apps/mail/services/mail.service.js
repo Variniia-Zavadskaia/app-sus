@@ -2,10 +2,6 @@ import {loadFromStorage, makeId, saveToStorage} from '../../../services/util.ser
 import {storageService} from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
-const loggedInUser = {
-  email: 'user@appsus.com',
-  fullName: 'Mahatma Appsus',
-}
 
 _createMails()
 
@@ -14,23 +10,51 @@ export const mailService = {
   get,
   remove,
   save,
+  safeSave,
   update,
   getEmptyMail,
+  getUserLogged,
   getDefaultFilter,
   getFilterFromSearchParams,
   debounce,
 }
 
 function query(filterBy = {}) {
+  const loggedInUser = getUserLogged()
+
   return storageService.query(MAIL_KEY).then((mails) => {
     // console.log('Fetched mails:', mails)
     if (filterBy.txt) {
       const regExp = new RegExp(filterBy.txt, 'i')
       mails = mails.filter((mail) => regExp.test(mail.subject) || regExp.test(mail.body))
     }
+
+    if (filterBy.folder) {
+      switch (filterBy.folder) {
+        case 'inbox':
+          mails = mails.filter((mail) => !mail.removedAt && mail.to === loggedInUser.email)
+          break
+        case 'star':
+          mails = mails.filter((mail) => mail.isStared)
+          break
+        case 'sent':
+          mails = mails.filter((mail) => mail.from === loggedInUser.email)
+          break
+        case 'draft':
+          mails = mails.filter((mail) => !mail.to)
+          break
+        case 'bin':
+          mails = mails.filter((mail) => mail.removedAt)
+          break
+        default:
+          break
+      }
+    }
+
     if (filterBy.isRead !== undefined && filterBy.isRead !== null) {
       mails = mails.filter((mail) => mail.isRead === filterBy.isRead)
     }
+
     return mails
   })
 }
@@ -57,7 +81,32 @@ function save(mail) {
   }
 }
 
-function getEmptyMail(subject = '', body = '', from = loggedInUser.email, to = '') {
+function safeSave(mail) {
+  
+  // Check if mail has a valid ID before attempting to update
+  if (mail.id && !isValidMailId(mail.id)) {
+    return Promise.reject(new Error(`Invalid mail ID: ${mail.id}`))
+  }
+  
+  console.log('mail', mail)
+  return save(mail)
+}
+
+// Helper function to check if the mail ID is valid
+function isValidMailId(id) {
+  return storageService.query(MAIL_KEY).then((entities) => {
+    return entities.some((entity) => entity.id === id)
+  })
+}
+
+function getUserLogged() {
+  return {
+    email: 'user@appsus.com',
+    fullName: 'Mahatma Appsus',
+  }
+}
+
+function getEmptyMail(subject = '', body = '', from = getUserLogged().email, to = '') {
   return {
     id: makeId(),
     subject,
@@ -75,7 +124,7 @@ function getEmptyMail(subject = '', body = '', from = loggedInUser.email, to = '
 
 function getDefaultFilter() {
   return {
-    status: 'inbox',
+    folder: 'inbox',
     txt: '',
     isRead: null,
     isStared: null,
@@ -94,14 +143,10 @@ function getFilterFromSearchParams(searchParams) {
 
 function _createMails() {
   const mails = loadFromStorage(MAIL_KEY)
+  const loggedInUser = getUserLogged()
   if (!mails || !mails.length) {
     const defaultMails = [
-      _createMail('Miss you!',
-         'Would love to catch up sometimes',
-         'momo@momo.com',
-          loggedInUser.email, 
-        ['romantic']
-      ),
+      _createMail('Miss you!', 'Would love to catch up sometimes', 'momo@momo.com', loggedInUser.email, ['romantic']),
 
       _createMail(
         'Project meeting',
@@ -111,19 +156,11 @@ function _createMails() {
         ['important']
       ),
 
-      _createMail('Party Invite', 
-        'You are invited to my birthday party.', 
-        'friend@appsus.com',
-         loggedInUser.email,
-         [ 'social',]
-      ),
+      _createMail('Party Invite', 'You are invited to my birthday party.', 'friend@appsus.com', loggedInUser.email, [
+        'social',
+      ]),
 
-      _createMail('Newsletter', 
-        'Check out our latest products!',
-         'shop@appsus.com',
-         loggedInUser.email,
-          []
-        ),
+      _createMail('Newsletter', 'Check out our latest products!', 'shop@appsus.com', loggedInUser.email, []),
 
       _createMail(
         'Project Update',
@@ -155,7 +192,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Invoice Due',
         'Your invoice for the month of September is due. Please make the payment by October 15th.',
@@ -163,7 +200,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'New Course Available',
         'Enroll in our latest course on Full Stack Development and enhance your skills.',
@@ -171,7 +208,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'System Maintenance',
         'Our systems will undergo maintenance on Sunday from 1 AM to 5 AM. Expect downtime during this period.',
@@ -179,7 +216,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Password Change Request',
         'A request to change your password was made. If this wasn’t you, please contact support immediately.',
@@ -187,7 +224,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Flight Confirmation',
         'Your flight to New York is confirmed. Check-in opens 24 hours before departure.',
@@ -195,7 +232,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Job Application Received',
         'We have received your application for the Software Engineer position. We will get back to you soon.',
@@ -203,7 +240,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Holiday Sale',
         'Enjoy up to 70% off on our exclusive holiday collection! Don’t miss out on these deals.',
@@ -211,7 +248,7 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Appointment Confirmation',
         'Your appointment with Dr. Smith is confirmed for October 10th at 3 PM.',
@@ -219,14 +256,14 @@ function _createMails() {
         loggedInUser.email,
         []
       ),
-      
+
       _createMail(
         'Welcome to the Newsletter',
         'Thank you for subscribing to our newsletter! You will now receive the latest updates and offers.',
         'newsletter@brand.com',
         loggedInUser.email,
         []
-      )
+      ),
     ]
     saveToStorage(MAIL_KEY, defaultMails)
     // console.log('Mails initialized and saved:', defaultMails)

@@ -79,3 +79,14 @@
 .read {
   background-color: var(--readed-mail-color);
 }
+
+.delete-btn{
+  display: none;
+}
+
+.mail-review:hover .mail-sent {
+ display: none;
+}
+.mail-review:hover .delete-btn {
+ display: block;
+}

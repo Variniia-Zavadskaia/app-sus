@@ -1,10 +1,11 @@
 const {useEffect, useState, useRef} = React
-const {Link, useSearchParams} = ReactRouterDOM
+const {Link, useSearchParams, Outlet} = ReactRouterDOM
 
-import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
+import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
+import {AddMail} from '../cmps/AddMail.jsx'
 import {MailFolderList} from '../cmps/MailFolderList.jsx'
-import { MailHeader } from '../cmps/MailHeader.jsx'
+import {MailHeader} from '../cmps/MailHeader.jsx'
 import {MailList} from '../cmps/MailList.jsx'
 import {mailService} from '../services/mail.service.js'
 
@@ -12,7 +13,10 @@ export function MailIndex() {
   const [mails, setMails] = useState([])
   const [searchPrms, setSearchPrms] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false) //menu-asideBar state
+  const [filteredMails, setFilteredMails] = useState([]) // folderList state
+  const [unreadCount, setUnreadCount] = useState(0) //  unreadCount state
+  const [isComposeOpen, setIsComposeOpen] = useState(false) // addMail form state
 
   const mailsRef = useRef([]) //to track the curr state
   const initialMailsRef = useRef([]) // to store the initial state
@@ -34,6 +38,8 @@ export function MailIndex() {
         // console.log('loadmails ', loadedMails)
 
         setMails(loadedMails) // Set state
+        filterMails(loadedMails) //filter the mails by  folder value
+        setUnreadCount(countUnreadMails(loadedMails))
       })
       .catch((err) => {
         console.log('Problems getting mails:', err)
@@ -41,17 +47,56 @@ export function MailIndex() {
       })
   }
 
+  // Function to filter mails based on folder and isRead
+  function filterMails(mails) {
+    let filtered = [...mails]
+    const loggedInUser = mailService.getUserLogged()
+
+    if (filterBy.folder) {
+      switch (filterBy.folder) {
+        case 'inbox':
+          filtered = filtered.filter((mail) => !mail.removedAt && mail.to === loggedInUser.email)
+          break
+        case 'star':
+          filtered = filtered.filter((mail) => mail.isStared)
+          break
+        case 'sent':
+          filtered = filtered.filter((mail) => mail.from === loggedInUser.email)
+          break
+        case 'draft':
+          filtered = filtered.filter((mail) => !mail.to)
+          break
+        case 'bin':
+          filtered = filtered.filter((mail) => mail.removedAt)
+          break
+        default:
+          break
+      }
+    }
+
+    if (filterBy.isRead !== undefined && filterBy.isRead !== null) {
+      filtered = filtered.filter((mail) => mail.isRead === filterBy.isRead)
+    }
+
+    setFilteredMails(filtered)
+  }
+
   function onSetFilterBy(filterBy) {
     setFilterBy((preFilter) => ({...preFilter, ...filterBy}))
   }
 
+  function toggleCompose() {
+    setIsComposeOpen((prev) => !prev) // Toggle the compose form visibility
+  }
+
   function onRemoveMail(mailId) {
-    console.log(state, 'remove mail')
-    const mailsFiltered = mail.filter((mail) => mail.id !== mailId)
+    console.log(mailId, 'remove mail')
+
+    const updatedMails = mails.map((mail) => (mail.id === mailId ? {...mail, removedAt: true} : mail))
     mailService
       .remove(mailId)
       .then(() => {
-        setMails(mailsFiltered)
+        setMails(updatedMails)
         showSuccessMsg(`Mail removed successfully!`)
       })
       .catch((err) => {
@@ -80,22 +125,31 @@ export function MailIndex() {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  if (!mails) return <h1>Loading...</h1>
+  function countUnreadMails(mails) {
+    return mails.filter((mail) => mail.isRead === false).length
+  }
+
+  if (!mails.length) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
-      <section className="mail-header-section ">
-       <MailHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} openMenu={openMenu}/>
-        <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} />
-       
-      </section>
-      <div className="mail-content-wrapper">
+      <header className="mail-header-section ">
+        <MailHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} openMenu={openMenu} />
+      </header>
+      <section className="mail-content-wrapper">
         <aside className="mail-folder-list">
-          <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+          <MailFolderList
+            filterBy={filterBy}
+            onSetFilterBy={onSetFilterBy}
+            isMenuOpen={isMenuOpen}
+            unreadMailCount={unreadCount}
+            onComposeClick={toggleCompose}
+          />{' '}
         </aside>
         <main className="mail-list-container">
           <MailList mails={mails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
+          {isComposeOpen && <AddMail onClose={toggleCompose} />}
         </main>
-      </div>
+      </section>
     </section>
   )
 }
