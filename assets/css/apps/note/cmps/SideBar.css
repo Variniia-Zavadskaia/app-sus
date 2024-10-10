@@ -1,0 +1,36 @@
+/* SIDEBAR */
+  .sidebar-notes {
+    /* position: fixed; */
+    left: 0;
+    /* top: 64px; */
+    display: flex;
+    flex-direction: column;
+    color: #5f6368;
+    width: 80px;
+    /* overflow-x: hidden; */
+    align-items: center;
+  }
+  .sidebar-notes-item.active {
+    background-color: #fef0c3;
+    border-radius: 50%;
+    color: black;
+  }
+  .sidebar-notes-item.active:hover {
+    background-color: #fef0c3;
+  }
+  .sidebar-notes-item{
+    margin-left: 10px;
+    padding: 15px 0px;
+    display: flex;
+    align-items: center;
+  }
+  .tooltip-text {
+    color: black;
+    font-size: 0.9rem;
+    margin-left: 20px;
+    width: 250px;
+  }
+  .sidebar-notes-item:nth-child(1) {
+    margin-top: 5px;
+  }
+

@@ -5,6 +5,7 @@ import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteDetails } from "../cmps/NoteDetails.jsx"
 import { NoteHeader } from "../cmps/NoteHeader.jsx"
+import { SideBar } from "../cmps/SideBar.jsx"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../services/util.service.js"
@@ -90,20 +91,25 @@ export function NoteIndex() {
             <section className="note-header">
                 <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             </section>
-            <AddNote onAddNote={onAddNote} />
-            <NoteList
-                notes={notes}
-                onRemoveNote={onRemoveNote}
-                onEditNote={openEditModal}
-                onSaveNote={onSaveNote}
-            />
-            {isModalOpen && (
-                <NoteDetails
-                    note={selectedNote}
-                    onClose={closeEditModal}
-                    onSaveNote={onSaveNote}
-                />
-            )}
+            <div className="note-body">
+                <SideBar />
+                <div className="note-content">
+                    <AddNote onAddNote={onAddNote} />
+                    <NoteList
+                        notes={notes}
+                        onRemoveNote={onRemoveNote}
+                        onEditNote={openEditModal}
+                        onSaveNote={onSaveNote}
+                    />
+                    {isModalOpen && (
+                        <NoteDetails
+                            note={selectedNote}
+                            onClose={closeEditModal}
+                            onSaveNote={onSaveNote}
+                        />
+                    )}
+                </div>
+            </div>
         </section>
     )
 }

@@ -19,7 +19,7 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote}) {
    
     return (
         <footer className="note-footer">
-            <section className="active-btn">
+            {/* <section className="active-btn"> */}
                 <div className="icons">
                     <div className="tooltip">
                         <button className="icon-button" onClick={onTogglePin} aria-label={`${note.isPinned ? 'Unpin' : 'Pin'} `}>
@@ -53,7 +53,7 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote}) {
                 {/* <button className="close-btn" type="button">
                     Close
                 </button> */}
-            </section>
+            {/* </section> */}
         </footer>
     )
 

@@ -8,9 +8,9 @@
 }
 
 .note-show {
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
-    flex-flow: column;
+    align-items: center;
     /* margin-top: 0.5rem; */
 }
 
@@ -32,11 +32,11 @@
 }
 
 .note-cmpn{
-align-self: center;
+    display: flex;
+/* align-self: center; */
 }
 
-/* .btn-cmpn{
-    border: #fff;
-    background-color: #fff;
-} */
+.note-show button{
+    align-self: center; 
+}
 
