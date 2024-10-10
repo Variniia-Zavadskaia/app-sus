@@ -1,8 +1,5 @@
 const { useState, useRef, useEffect } = React
 
-import { EditNoteTxt } from './dynamic-inputs/NoteTxt.jsx';
-import { EditNoteImg } from './dynamic-inputs/NoteImg.jsx';
-import { EditNoteTodos } from './dynamic-inputs/NoteTodos.jsx';
 import { NoteEdit } from './NoteEdit.jsx';
 import { noteService } from '../services/note.service.js';
 

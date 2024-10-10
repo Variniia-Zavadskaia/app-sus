@@ -1,1 +1,29 @@
  /* note index */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: "Roboto", sans-serif;
+ }
+
+ html,
+ body {
+     height: 100%;
+     margin: 0;
+     overflow: auto;
+ }
+
+ .note-index {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .note-header {
+    position: sticky;
+    top: 0;
+    padding: 0.25em 0.5rem;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  }

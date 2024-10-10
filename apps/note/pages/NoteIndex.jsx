@@ -4,6 +4,7 @@ const { useSearchParams } = ReactRouterDOM
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteDetails } from "../cmps/NoteDetails.jsx"
+import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../services/util.service.js"
@@ -43,7 +44,7 @@ export function NoteIndex() {
 
     function openEditModal(note) {
         console.log('openEditModal');
-        
+
         setSelectedNote(note);
         setIsModalOpen(true);
     };
@@ -57,7 +58,7 @@ export function NoteIndex() {
         setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
         closeEditModal()
         noteService.save(noteToSave)
-            .then(() => {                
+            .then(() => {
                 showSuccessMsg('note has successfully saved!')
             })
             .catch(() => {
@@ -69,7 +70,7 @@ export function NoteIndex() {
     function onAddNote(noteToAdd) {
         // setNotes(prevNotes => [...prevNotes, noteToAdd]);
         noteService.save(noteToAdd)
-            .then(() => {                
+            .then(() => {
                 showSuccessMsg('note has successfully added!')
                 loadNotes()
             })
@@ -78,7 +79,7 @@ export function NoteIndex() {
                 showErrorMsg(`Couldn't add note`)
             })
     }
-    
+
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }
@@ -86,8 +87,10 @@ export function NoteIndex() {
     if (!notes) return <h1>Loading...</h1>
     return (
         <section className="note-index">
-            {/* <CarFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} /> */}
-            <AddNote onAddNote={onAddNote}/>
+            <section className="note-header">
+                <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            </section>
+            <AddNote onAddNote={onAddNote} />
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
