@@ -11,7 +11,7 @@ export function NoteEdit({ note, onRemoveNote, onSaveNote }) {
     const [noteToEdit, setNoteToEdit] = useState(note)
 
     function onSave(ev) {
-        ev.preventDefault()
+        ev.preventDefault()        
         onSaveNote(noteToEdit);
         showSuccessMsg('Note saved successfully!');
     };
@@ -23,24 +23,27 @@ export function NoteEdit({ note, onRemoveNote, onSaveNote }) {
         }))
     }
 
+    function onChangeNote(note) {
+        setNoteToEdit({...note})        
+    }
+    
+
     return (
-        <section className="note-edit">
-            <form onSubmit={onSave} className="note-form ">
+        <section className="note-edit" style={{ backgroundColor: noteToEdit.style.backgroundColor }}>
+            <div className="note-form ">
                 <DynamicCmp
                     cmpType={noteToEdit.type}
                     info={noteToEdit.info}
                     onChangeInfo={onChangeInfo} />
                 <section className="form-actions">
                     <NoteFooter
-                        note={note}
+                        note={noteToEdit}
                         onRemoveNote={onRemoveNote}
-                        onEditNote={(note) => { console.log('nahui');}}
-                        onSaveNote={onSaveNote} />
-                    <button className="close-btn" type="submit">
-                        Save
-                    </button>
+                        onEditNote={(note) => { console.log('i am lazy i dont work');}}
+                        onSaveNote={onChangeNote} />
+                    <button className="close-btn" type="submit" onClick={onSave}> Save </button>
                 </section>
-            </form>
+            </div>
         </section>
     )
 
