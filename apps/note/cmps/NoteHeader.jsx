@@ -1,12 +1,21 @@
+const { useState } = React
 
+import { SideBar } from "./SideBar.jsx";
 export function NoteHeader({ filterBy, onSetFilterBy }) {
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen); // Toggle sidebar open/close
+    };
+
     return (
         // <div className="note-header">
         <nav className="note-header-nav">
             <div className="logo-area">
                 <div className="tooltip">
-                    <button className="menu-button" aria-label="Main Menu">
+                    <button className="menu-button" aria-label="Main Menu" onClick={toggleSidebar}>
                         <i className="fa-solid fa-bars"></i>
+                        
                     </button>
                     <span className="tooltip-text">Main Menu</span>
                 </div>
@@ -30,7 +39,7 @@ export function NoteHeader({ filterBy, onSetFilterBy }) {
                     <button className="icon-button" aria-label="Search">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <span className="tooltip-text">Search</span> 
+                    <span className="tooltip-text">Search</span>
                 </div>
                 <input type="text" className="search-input" placeholder="Search" />
             </div>

@@ -11,7 +11,7 @@ export function AddNote({ onAddNote }) {
 
     useEffect(() => {
         function handleClickOutside(event) {
-            if (formRef.current && !formRef.current.contains(event.target) && noteType) {
+            if (formRef.current && !formRef.current.contains(event.target)) {
                 console.log('Clicked outside of div!');
                 setNoteType('');
             }

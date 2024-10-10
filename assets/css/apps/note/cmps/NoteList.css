@@ -9,6 +9,7 @@
      align-content: start;
      justify-content: start;
      grid-auto-flow: dense;
+     background-color: #fff;
  }
 
  /* .note-item {

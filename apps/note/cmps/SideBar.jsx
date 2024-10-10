@@ -1,12 +1,12 @@
 const { useState } = React
-export function SideBar(params) {
+export function SideBar({ isOpen }) {
 
     const [activeItem, setActiveItem] = useState("Notes");
     const handleItemClick = (item) => {
         setActiveItem(item); // Update the active item
     };
     return (
-        <div className="sidebar-notes">
+        <div className={`sidebar-notes ${isOpen ? 'open' : 'closed'}`}>
             <div
                 className={`sidebar-notes-item ${activeItem === "Notes" ? "active" : ""}`}
                 onClick={() => handleItemClick("Notes")}
@@ -15,6 +15,7 @@ export function SideBar(params) {
                     <i className="fa-regular fa-lightbulb"></i>
                 </button>
                 <span className="tooltip-text">Notes</span>
+
             </div>
             <div
                 className={`sidebar-notes-item ${activeItem === "Reminders" ? "active" : ""}`}
