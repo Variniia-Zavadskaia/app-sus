@@ -1,0 +1,95 @@
+.add-mail {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  font-size: 0.875rem;
+  width: 450px;
+  height: 426px;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+.add-mail-header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  background-color: #f2f6fc;
+  padding: 10px 16px;
+  align-items: center;
+}
+
+.add-mail-header h2 {
+  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+}
+
+.add-mail-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.add-mail-form {
+  padding: 16px;
+}
+
+.add-mail-form-to,
+.add-mail-form-subject {
+  margin-bottom: 25px;
+}
+
+.add-mail-form-subject {
+  color: #a5a6a5;
+}
+
+.add-mail-input-to,
+.add-mail-input-subject {
+  border-width: 0 0 2px 0;
+  width: 400px;
+  padding-top: 10px;
+}
+
+.add-mail-textarea {
+  display: block;
+  width: 400px;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16px;
+}
+
+button.form-send-btn {
+  background-color: #1b61d1;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 16px;
+  width: 70px;
+  align-items: center;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: none; /* Remove inner border */
+  box-sizing: border-box; /* Ensures padding is included in width */
+  resize: none; /* Prevent resizing */
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+label span {
+  display: block;
+  font-weight: bold;
+  position: absolute;
+}

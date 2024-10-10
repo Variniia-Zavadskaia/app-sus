@@ -1,12 +1,10 @@
 const {useState, useEffect} = React
 
-export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unreadMailCount}) {
-  console.log('unreadMailCount from folderList', unreadMailCount)
+export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unreadMailCount, onComposeClick }) {
 
   const [selectedFolder, setSelectedFolder] = useState(filterBy.folder || 'inbox')
 
   const folders = [
-    // {name: 'Compose', value: 'compose', icon: 'fa-solid fa-pencil'},
     {name: 'Inbox', value: 'inbox', icon: 'fa-solid fa-inbox'},
     {name: 'Star', value: 'star', icon: 'fa-regular fa-star'},
     {name: 'Do later', value: 'clock', icon: 'fa-regular fa-clock'},
@@ -26,7 +24,7 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unread
   return (
     <div className={`label-folder-list ${isMenuOpen ? 'open' : 'close'}`}>
       <div className="new-mail-btn">
-        <button className="compose-btn">
+        <button className="compose-btn" onClick={onComposeClick}>
           <i className="fa-solid fa-pencil"></i>
           <span className="compose-label">Compose</span>
         </button>

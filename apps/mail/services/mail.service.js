@@ -3,7 +3,6 @@ import {storageService} from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
 
-
 _createMails()
 
 export const mailService = {
@@ -11,13 +10,13 @@ export const mailService = {
   get,
   remove,
   save,
+  safeSave,
   update,
   getEmptyMail,
   getUserLogged,
   getDefaultFilter,
   getFilterFromSearchParams,
   debounce,
-
 }
 
 function query(filterBy = {}) {
@@ -82,7 +81,25 @@ function save(mail) {
   }
 }
 
-function getUserLogged(){
+function safeSave(mail) {
+  
+  // Check if mail has a valid ID before attempting to update
+  if (mail.id && !isValidMailId(mail.id)) {
+    return Promise.reject(new Error(`Invalid mail ID: ${mail.id}`))
+  }
+  
+  console.log('mail', mail)
+  return save(mail)
+}
+
+// Helper function to check if the mail ID is valid
+function isValidMailId(id) {
+  return storageService.query(MAIL_KEY).then((entities) => {
+    return entities.some((entity) => entity.id === id)
+  })
+}
+
+function getUserLogged() {
   return {
     email: 'user@appsus.com',
     fullName: 'Mahatma Appsus',
@@ -90,7 +107,6 @@ function getUserLogged(){
 }
 
 function getEmptyMail(subject = '', body = '', from = getUserLogged().email, to = '') {
-
   return {
     id: makeId(),
     subject,
@@ -127,6 +143,7 @@ function getFilterFromSearchParams(searchParams) {
 
 function _createMails() {
   const mails = loadFromStorage(MAIL_KEY)
+  const loggedInUser = getUserLogged()
   if (!mails || !mails.length) {
     const defaultMails = [
       _createMail('Miss you!', 'Would love to catch up sometimes', 'momo@momo.com', loggedInUser.email, ['romantic']),
