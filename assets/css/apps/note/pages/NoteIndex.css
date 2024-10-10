@@ -9,7 +9,7 @@
  html,
  body {
      height: 100%;
-     margin: 0;
+     /* margin: 0; */
      /* overflow: auto; */
  }
 
@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: #fff;
   }
 
   .note-header {

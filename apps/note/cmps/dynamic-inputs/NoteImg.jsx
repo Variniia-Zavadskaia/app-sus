@@ -7,7 +7,6 @@ export function NoteImg(props) {
             <img src={props.info.url} alt="" />
         </section>
     )
-
 }
 
 export function EditNoteImg(props) {
@@ -23,7 +22,6 @@ export function EditNoteImg(props) {
         };
     }, [fileUrl]);
 
-
     const handleFile = (ev) => {
         const selectedFile = ev.target.files[0];
         if (selectedFile) {
@@ -33,30 +31,36 @@ export function EditNoteImg(props) {
             props.onChangeInfo('url', url)
         }
     };
+    function handleChange(ev) {
+        props.onChangeInfo(ev.target.name, ev.target.value); // Pass title change to parent
+    };
+
+    function loadImageFromInput(ev) {
+        const reader = new FileReader()
+    
+        function onImageReady(img) {
+            props.onChangeInfo('url', img.src);
+        }
+
+        reader.onload = ev => {
+            let img = new Image()
+            img.src = ev.target.result
+            img.onload = () => onImageReady(img)
+        }
+        reader.readAsDataURL(ev.target.files[0])
+    }
 
     return (
         <div className="note-img-input">
-            <label className='bold-txt' htmlFor="title">Title: </label>
             <input onChange={handleChange} value={props.info.title || ''}
                 id='title' type="text" name='title' />
-            <button
-                id="fileSelect"
-                onClick={(e) => {
-                    document.getElementById("fileElem").click();
-                    e.preventDefault();
-                }}
-            >
-                Select File
-            </button>
-            <input
-                id="fileElem"
-                type="file"
-                style={{ display: "none" }}
-                onChange={handleFile}
-            />
+            <div className="upload-img-btn">
+                <input type="file" className="file" name="image"
+                    onChange={loadImageFromInput} accept="image/*" />
+            </div>
             <div id="fileList">
                 {!file ? (
-                    <p>No file selected!</p>
+                    <img src={props.info.url} alt="" />
                 ) : (
                     <div>
                         <img
@@ -71,3 +75,39 @@ export function EditNoteImg(props) {
         </div>
     );
 }
+
+// return (
+//     <div className="note-img-input">
+//         <div className="tooltip">
+//             <button className="icon-button" onClick={(e) => {
+//                 document.getElementById("fileElem").click();
+//                 e.preventDefault();
+//             }} aria-label="Choose Image">
+//                 <i className="fa-solid fa-image"></i>
+//             </button>
+//             <span className="tooltip-text">Choose New Image</span>
+//         </div>
+//         <input onChange={handleChange} value={props.info.title || ''}
+//             id='title' type="text" name='title' />
+//         <input
+//             id="fileElem"
+//             type="file"
+//             style={{ display: "none" }}
+//             onChange={handleFile}
+//         />
+//         <div id="fileList">
+//             {!file ? (
+//                 <img src={props.info.url} alt="" />
+//             ) : (
+//                 <div>
+//                     <img
+//                         src={props.info.url}
+//                         alt={file ? file.name : "Selected file"}
+//                         height={60}
+//                     />
+//                     <span>{`${file.name}: ${file.size} bytes`}</span>
+//                 </div>
+//             )}
+//         </div>
+//     </div>
+// );

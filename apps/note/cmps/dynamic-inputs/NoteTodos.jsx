@@ -10,7 +10,7 @@ export function NoteTodos(props) {
 
     return (
         <section className="todo-list">
-            <h3>{props.info.title}</h3>
+            <h2>{props.info.title}</h2>
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={false} />
         </section>
     )
@@ -37,17 +37,23 @@ export function EditNoteTodos(props) {
 
     function handleTitleChange(event) {
         event.preventDefault();
-        
+
         props.onChangeInfo('title', event.target.value);
     };
 
     return (
-        <section className="todo-list">
-            <label className='bold-txt' htmlFor="title">Title: </label>
-            <input onChange={handleTitleChange} value={props.info.title || ''} id='title' type="text" name='title' />
+        <section className="todo-list note-show">
+            <input className="todo-title" onChange={handleTitleChange} value={props.info.title || ''} id='title' type="text" name='title' placeholder="Title" />
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo} />
-            <button className="btn" onClick={onAddTodo}>+</button>
+            <button className="btn-todo" onClick={onAddTodo}> <i className="fa-solid fa-plus"></i></button>
             <span onClick={onAddTodo}>New Todo</span>
         </section>
     );
 }
+
+{/* <div className="tooltip">
+    <button className="icon-button" onClick={onAddTodo} aria-label="Send">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+    <span className="tooltip-text">New Todo</span>
+</div> */}

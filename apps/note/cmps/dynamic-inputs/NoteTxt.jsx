@@ -27,7 +27,6 @@ export function EditNoteTxt(props) {
                 placeholder="Title"
             />
             <div>
-
                 <textarea
                     id='txt'
                     name='txt'

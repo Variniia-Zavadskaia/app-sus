@@ -7,6 +7,6 @@
     align-items: center;
     justify-content: space-between; /* Ensure that elements spread evenly */
     padding-top: 10px;
-    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    flex-wrap: nowrap; 
     width: 100%; 
 }

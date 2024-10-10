@@ -8,7 +8,8 @@ import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { SideBar } from "../cmps/SideBar.jsx"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
-import { getTruthyValues } from "../services/util.service.js"
+import { getTruthyValues } from "../../../services/util.service.js"
+
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
@@ -101,14 +102,15 @@ export function NoteIndex() {
                         onEditNote={openEditModal}
                         onSaveNote={onSaveNote}
                     />
+                </div>
                     {isModalOpen && (
                         <NoteDetails
                             note={selectedNote}
                             onClose={closeEditModal}
                             onSaveNote={onSaveNote}
+                            onRemoveNote={onRemoveNote}
                         />
                     )}
-                </div>
             </div>
         </section>
     )

@@ -1,4 +1,3 @@
-import { TodoItem } from "./TodoItem.jsx"
 
 export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
 
@@ -19,7 +18,7 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
     }
 
     return (
-        <div className="todo-ul">
+        <div className="todo-ul ">
             {todos && todos.length > 0 ? (
                 todos.map((todo, index) => (
                     <div key={index} className={todo.doneAt ? 'completed' : ''} >
@@ -29,14 +28,19 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
                             onChange={(ev) => toggleTodo(ev, index)}
                         />
                         {edit ? (
-                            <div>
-                                <label className='bold-txt' htmlFor="todo-text"></label>
-                                <input onChange={(ev) => handleTodoChange(ev, index)} value={todo.txt || ''}
-                                    id='todo-text' type="text" name='todo-text' />
+                            <div className="todo-show">
+                                <input
+                                    id='todo-text'
+                                    name='todo-text'
+                                    type="text"
+                                    onChange={(ev) => handleTodoChange(ev, index)}
+                                    value={todo.txt || ''}
+                                />
                             </div>
                         ) : (<span>{todo.txt}</span>)}
-
-                        <button className="btn btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
+                        <div className="tooltip">
+                            <button className="icon-button btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
+                        </div>
                     </div>
                 ))
             ) : (<p></p>)}
@@ -45,13 +49,4 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
 
 }
 
-
-
-
-//   {todos && todos.length > 0 ? (
-//     // todos.map((todo, index) => (<TodoItem key={index} todo={todo} setTodos={setTodos} />))
-//     todos.map((todo, index) => (<TodoItem todo={todo} />))
-// ) : (
-//     <p>Seems lonely in here, what are you up to?</p>
-// )}
 
