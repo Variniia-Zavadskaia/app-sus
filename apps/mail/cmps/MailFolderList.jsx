@@ -2,7 +2,7 @@ import {MailIndex} from '../pages/MailIndex'
 
 const {useState, useEffect} = React
 
-export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen}) {
+export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen }) {
   const [selectedFolder, setSelectedFolder] = useState(filterBy.folder || 'inbox')
 
   const folders = [
@@ -11,6 +11,8 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen}) {
     {name: 'Do later', value: 'clock', icon: 'fa-regular fa-clock'},
     {name: 'Sent', value: 'sent', icon: 'fa-regular fa-paper-plane'},
     {name: 'Draft ', value: 'draft ', icon: 'fa-regular fa-file'},
+    {name: 'Bin ', value: 'bin ', icon: 'fa-solid fa-trash'},
+ 
   ]
 
   useEffect(() => {
@@ -21,32 +23,7 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen}) {
     setSelectedFolder(folder)
   }
 
-  // Function to filter mails based on the selected folder
-  function filterMails() {
-    let filtered = []
-    switch (selectedFolder) {
-      case 'inbox':
-        filtered = mails.filter((mail) => !mail.removedAt && mail.to === loggedInUser.email)
-        break
-      case 'star':
-        filtered = mails.filter((mail) => mail.isStared)
-        break
-      case 'clock':
-        // For example, assume "Do Later" is just unread mails
-        filtered = mails.filter((mail) => !mail.isRead)
-        break
-      case 'sent':
-        filtered = mails.filter((mail) => mail.from === loggedInUser.email)
-        break
-      case 'draft':
-        // Assume drafts are mails with no 'to' address yet
-        filtered = mails.filter((mail) => !mail.to)
-        break
-      default:
-        filtered = mails
-    }
-    setFilteredMails(filtered)
-  }
+
 
   return (
     <div className={`label-folder-list ${isMenuOpen ? 'open' : 'close'}`}>

@@ -1,6 +1,7 @@
 import {formatTimeAgo} from '../../../services/util.service.js'
 
-export function MailPreview({mail, onClick, onRemoveMail}) {
+export function MailPreview({mail, onClick, onRemoveMail = () => {}}) {
+  
   const {subject, body, from, sentAt, isRead} = mail
   const truncatedBody = body.length > 10 ? `${body.substring(0, 50)}...` : body
   const timeAgo = formatTimeAgo(sentAt)

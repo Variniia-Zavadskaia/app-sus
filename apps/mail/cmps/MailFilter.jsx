@@ -34,6 +34,13 @@ export function MailFilter({filterBy, onSetFilterBy}) {
       }))
     }
   }
+  function handleFolderChange({target}) {
+    const {value} = target
+    setFilterByToEdit((prev) => ({
+      ...prev,
+      folder: value, // Update folder filter
+    }))
+  }
 
   function onSubmit(ev) {
     ev.preventDefault()
