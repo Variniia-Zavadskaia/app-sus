@@ -25,7 +25,7 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote}) {
                         <button className="icon-button" onClick={onTogglePin} aria-label={`${note.isPinned ? 'Unpin' : 'Pin'} `}>
                             <i className={`fa-solid ${note.isPinned ? 'fa-thumbtack-slash' : 'fa-thumbtack'} `}></i>
                         </button>
-                        <span className="tooltip-text">Pin</span>
+                        <span className="tooltip-text">{`${note.isPinned ? 'Unpin' : 'Pin'} `}</span>
                     </div>
                     <div className="tooltip">
                         <ColorInput className="icon-button" onSetNoteStyle={onSetNoteStyle} currentColor={noteStyle.backgroundColor} aria-label="Background" />
