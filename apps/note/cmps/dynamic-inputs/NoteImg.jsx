@@ -10,15 +10,6 @@ export function NoteImg(props) {
 
 }
 
-// export function AddNoteImg(props) {
-//     return (
-//         <section>
-//             <h2>{props.info.title} Nahui</h2>
-//             <img src={props.info.url} alt="" />
-//         </section>
-//     )
-// }
-
 export function EditNoteImg(props) {
     const [file, setFile] = useState(null);
     const [fileUrl, setFileUrl] = useState("");

@@ -5,6 +5,7 @@
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
+    padding: 5px;
 }
 
 .note-show {
@@ -38,5 +39,53 @@
 
 .note-show button{
     align-self: center; 
+}
+
+/* Media Query for Smaller Devices */
+@media (max-width: 768px) {
+    .note-form {
+        width: 100%;
+        margin: 10px;
+        padding: 5px;
+        /* box-shadow: none; */
+        border-radius: 8px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        margin: 20px auto;
+    }
+
+    .note-show {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .note-show input, textarea {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .note-show button {
+        align-self: flex-end; /* Align button to the end */
+        margin-top: 10px;
+    }
+
+    .note-cmpn {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Media Query for Very Small Devices */
+@media (max-width: 480px) {
+    .note-form {
+        padding: 5px;
+    }
+
+    .note-show input, textarea {
+        padding: 0.3rem;
+    }
+
+    .note-show button {
+        margin-top: 5px;
+    }
 }
 
