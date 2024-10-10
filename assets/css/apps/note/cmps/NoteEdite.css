@@ -1,27 +1,8 @@
-
-form {
+.note-edite .note-form {
     display: flex;
     flex-flow: column;
-    /* width: 540px; */
+    width: 540px;
     border-radius: 8px;
-    /* border: solid 1px #5f6368; */
-    /* box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
-}
-.note-show {
-    display: flex;
-    
-    justify-content: space-between;
-    /* margin-top: 0.5rem; */
-}
-.note-show input {
-    background: transparent;
-    border: none;
-    padding: 1rem;
-    color: rgb(0, 0, 0);
-    
-}
-
-.note-show input:focus {
-    outline: none;
 }

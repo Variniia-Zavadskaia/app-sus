@@ -3,7 +3,6 @@
     flex-flow: column;
     width: 540px;
     border-radius: 8px;
-    /* border: solid 1px #5f6368; */
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
 }
@@ -11,19 +10,25 @@
 .note-show {
     display: flex;
     justify-content: space-between;
+    flex-flow: column;
     /* margin-top: 0.5rem; */
 }
 
-.note-show input {
+.note-show input, textarea {
     background: transparent;
     border: none;
     padding: 1rem;
-    color: white;
+    color: rgb(0, 0, 0);
     
 }
 
-.note-show input:focus {
+.note-show input, textarea:focus {
     outline: none;
+}
+
+.note-show textarea{
+    resize: none;
+    height: max-content;
 }
 
 .note-cmpn{

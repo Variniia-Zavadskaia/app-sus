@@ -10,25 +10,33 @@ export function NoteTxt(props) {
 
 export function EditNoteTxt(props) {
     function handleChange(target) {
-       let field = target.name
+        let field = target.name
 
         props.onChangeInfo(target.name, target.value);
     }
 
     return (
         <div className="note-show" >
-            <label className='bold-txt' htmlFor="title">Title: </label>
-            <input onChange={(ev) => handleChange(ev.target)} value={props.info.title || ''}
-                id='title' type="text" name='title' />
-            <label className='bold-txt' htmlFor="txt"></label>
+            <input
+                id='title'
+                name='title'
+                type="text"
+                className="note-title"
+                onChange={(ev) => handleChange(ev.target)}
+                value={props.info.title || ''}
+             placeholder="Title" 
+            />
             <textarea
                 id='txt'
                 name='txt'
+                type="text"
                 cols='30'
                 rows='10'
                 value={props.info.txt}
                 onChange={(ev) => handleChange(ev.target)}
-            />
+                className="note-text"
+                placeholder="Take a note..." 
+                />
         </div>
     );
 }

@@ -1,0 +1,12 @@
+
+.active-btn{
+    display: flex;
+}
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure that elements spread evenly */
+    padding: 10px;
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    width: 100%; 
+}
