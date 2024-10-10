@@ -1,18 +1,18 @@
-import {MailIndex} from '../pages/MailIndex'
-
 const {useState, useEffect} = React
 
-export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen }) {
+export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unreadMailCount}) {
+  console.log('unreadMailCount from folderList', unreadMailCount)
+
   const [selectedFolder, setSelectedFolder] = useState(filterBy.folder || 'inbox')
 
   const folders = [
+    // {name: 'Compose', value: 'compose', icon: 'fa-solid fa-pencil'},
     {name: 'Inbox', value: 'inbox', icon: 'fa-solid fa-inbox'},
     {name: 'Star', value: 'star', icon: 'fa-regular fa-star'},
     {name: 'Do later', value: 'clock', icon: 'fa-regular fa-clock'},
     {name: 'Sent', value: 'sent', icon: 'fa-regular fa-paper-plane'},
     {name: 'Draft ', value: 'draft ', icon: 'fa-regular fa-file'},
     {name: 'Bin ', value: 'bin ', icon: 'fa-solid fa-trash'},
- 
   ]
 
   useEffect(() => {
@@ -23,10 +23,15 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen }) {
     setSelectedFolder(folder)
   }
 
-
-
   return (
     <div className={`label-folder-list ${isMenuOpen ? 'open' : 'close'}`}>
+      <div className="new-mail-btn">
+        <button className="compose-btn">
+          <i className="fa-solid fa-pencil"></i>
+          <span className="compose-label">Compose</span>
+        </button>
+      </div>
+
       {folders.map((folder) => (
         <ul key={folder.value}>
           <label className={`folder-icon ${selectedFolder === folder.value ? 'active' : ''}`}>
@@ -40,7 +45,12 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen }) {
                 hidden
               />
               <div className={`icon ${folder.icon}`}></div>
-              <p className="folder-label">{folder.name}</p>
+              <p className="folder-label">
+                {folder.name}
+                {folder.value === 'inbox' && unreadMailCount > 0 && (
+                  <span className="unread-count"> {unreadMailCount}</span>
+                )}
+              </p>
             </li>
           </label>
         </ul>

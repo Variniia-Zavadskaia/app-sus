@@ -38,10 +38,13 @@
 
 .prev-next-btn {
   display: flex;
+
 }
 
 .prev-next-btn button {
   margin-left: 10px;
+  border: none;
+  background-color: transparent;
 }
 
 .mail-details-delete-btn::after {

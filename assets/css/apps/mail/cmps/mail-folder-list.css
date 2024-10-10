@@ -11,6 +11,41 @@
   overflow: hidden;
 }
 
+.compose-btn {
+  background-color: #c2e7ff;
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 56px;
+  margin-left: 0;
+  min-width: 56px;
+  width: 56px;
+  box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
+}
+.compose-label {
+  display: none;
+  margin-left: 10px;
+}
+
+.compose-btn:hover .compose-label {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  left: 50px; /* Adjust this to control the label position */
+}
+
+.new-mail-btn:hover {
+  background-color: #c2e7ff;
+  border-radius: 16px;
+
+}
 ul {
   list-style: none;
   padding: 0 6px;
@@ -48,7 +83,7 @@ ul li p {
   margin-right: 10px;
 }
 
-.label-folder-list:hover ul li p  {
+.label-folder-list:hover ul li p {
   display: block;
 }
 
@@ -63,4 +98,14 @@ ul li:hover {
 ul li:hover .folder-icon,
 ul li:hover p {
   background-color: inherit;
+}
+
+.unread-count {
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.2em 1em;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  min-width: 20px;
+  text-align: center;
 }

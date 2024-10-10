@@ -8,13 +8,13 @@ import {MailHeader} from '../cmps/MailHeader.jsx'
 import {MailList} from '../cmps/MailList.jsx'
 import {mailService} from '../services/mail.service.js'
 
-
 export function MailIndex() {
   const [mails, setMails] = useState([])
   const [searchPrms, setSearchPrms] = useSearchParams()
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
   const [filteredMails, setFilteredMails] = useState([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0) // Add unreadCount state
 
   const mailsRef = useRef([]) //to track the curr state
   const initialMailsRef = useRef([]) // to store the initial state
@@ -33,10 +33,11 @@ export function MailIndex() {
           initialMailsRef.current = loadedMails
         }
         mailsRef.current = loadedMails // Track latest mails
-        // console.log('loadmails ', loadedMails)
+        console.log('loadmails ', loadedMails)
 
         setMails(loadedMails) // Set state
         filterMails(loadedMails) //filter the mails by  folder value
+        setUnreadCount(countUnreadMails(loadedMails))
       })
       .catch((err) => {
         console.log('Problems getting mails:', err)
@@ -118,21 +119,30 @@ export function MailIndex() {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  if (!mails) return <h1>Loading...</h1>
+  function countUnreadMails(mails) {
+    return mails.filter((mail) => mail.isRead === false).length
+  }
+  console.log('unreadCount', unreadCount)
+
+  if (!mails.length) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
-      <section className="mail-header-section ">
+      <header className="mail-header-section ">
         <MailHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} openMenu={openMenu} />
-        <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} />
-      </section>
-      <div className="mail-content-wrapper">
+        
+      </header>
+      <section className="mail-content-wrapper">
         <aside className="mail-folder-list">
-          <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-        </aside>
+        <MailFolderList
+          filterBy={filterBy}
+          onSetFilterBy={onSetFilterBy}
+          isMenuOpen={isMenuOpen}
+          unreadMailCount={unreadCount} // Make sure the prop name matches
+        />        </aside>
         <main className="mail-list-container">
           <MailList mails={mails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
         </main>
-      </div>
+      </section>
     </section>
   )
 }
