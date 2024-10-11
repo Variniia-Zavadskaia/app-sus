@@ -17,21 +17,26 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     useEffect(() => {
         loadNotes()
         setSearchPrms(getTruthyValues(filterBy))
     }, [filterBy])
-
+    
     function loadNotes() {
         noteService.query(filterBy)
-            .then(setNotes)
-            .catch(err => {
-                console.log('Problems getting notes:', err)
-                showErrorMsg('Could not load notes')
-            })
+        .then(setNotes)
+        .catch(err => {
+            console.log('Problems getting notes:', err)
+            showErrorMsg('Could not load notes')
+        })
     }
 
+    const onToggleSidebar = () => {
+        setIsSidebarOpen(prevState => !prevState); // Toggle sidebar open/close
+    };
+    
     function onRemoveNote(noteId) {
         setNotes(notes => notes.filter(note => note.id !== noteId))
         noteService.remove(noteId)
@@ -90,10 +95,10 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <section className="note-header">
-                <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+                <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} onMenuClick={onToggleSidebar}/>
             </section>
             <div className="note-body">
-                <SideBar />
+                <SideBar  isOpen={isSidebarOpen}/>
                 <div className="note-content">
                     <AddNote onAddNote={onAddNote} />
                     <NoteList

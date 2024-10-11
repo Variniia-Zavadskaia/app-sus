@@ -6,7 +6,7 @@
     height: calc(100vh - 120px);
     padding-top: 10px;
     position: fixed;
-    top: 120px;
+    top: 130px;
     left: 0;
     transition: transform 0.3s ease-in-out;
     z-index: 999;
