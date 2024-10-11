@@ -17,7 +17,7 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchPrms))
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     useEffect(() => {
         loadNotes()
