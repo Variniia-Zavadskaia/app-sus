@@ -14,7 +14,7 @@ export function SideBar({ isOpen }) {
                 <button className="icon-button" aria-label="Notes">
                     <i className="fa-regular fa-lightbulb"></i>
                 </button>
-                <span className="tooltip-text">Notes</span>
+                <span className="side-text">Notes</span>
 
             </div>
             <div
@@ -24,16 +24,7 @@ export function SideBar({ isOpen }) {
                 <button className="icon-button" aria-label="Reminders">
                     <i className="fa-solid fa-bell"></i>
                 </button>
-                <span className="tooltip-text">Reminders</span>
-            </div>
-            <div
-                className={`sidebar-notes-item ${activeItem === "Edit Labels" ? "active" : ""}`}
-                onClick={() => handleItemClick("Edit Labels")}
-            >
-                <button className="icon-button" aria-label="Edit Labels">
-                    <i className="fa-solid fa-pen"></i>
-                </button>
-                <span className="tooltip-text">Edit Labels</span>
+                <span className="side-text">Reminders</span>
             </div>
             <div
                 className={`sidebar-notes-item ${activeItem === "Archive" ? "active" : ""}`}
@@ -42,7 +33,7 @@ export function SideBar({ isOpen }) {
                 <button className="icon-button" aria-label="Archive">
                     <i className="fa-solid fa-box-archive"></i>
                 </button>
-                <span className="tooltip-text">Archive</span>
+                <span className="side-text">Archive</span>
             </div>
             <div
                 className={`sidebar-notes-item ${activeItem === "Trash" ? "active" : ""}`}
@@ -51,7 +42,7 @@ export function SideBar({ isOpen }) {
                 <button className="icon-button" aria-label="Trash">
                     <i className="fa-solid fa-trash-can"></i>
                 </button>
-                <span className="tooltip-text">Trash</span>
+                <span className="side-text">Trash</span>
             </div>
         </div>
     );
