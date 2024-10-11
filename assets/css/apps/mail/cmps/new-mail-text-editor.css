@@ -1,0 +1,83 @@
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 2px;
+  margin: 0;
+  align-items: center;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  transition: opacity 0.3s ease-in-out;
+  display: none;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.form-actions.visible {
+  display: inline-block;
+  position: absolute;
+  line-height: 20px;
+  border-radius: 4px;
+  width: 420px;
+  right: 2px;
+  bottom: 50px;
+}
+
+.additional-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.additional-controls > div,
+.additional-controls > button,
+.additional-controls > select {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.additional-controls button,
+.toggle-emoji-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+select {
+  padding: 5px;
+}
+
+.additional-controls select {
+  border-radius: 2px;
+  padding: 0;
+  height: 20px;
+  list-style: none;
+  font-weight: 500;
+  vertical-align: middle;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 20px;
+  width: 100px;
+}
+
+.color-picker {
+  position: relative;
+  display: flex;
+}
+.add-mail-color-label-icon {
+  position: absolute;
+  color: rgba(235, 235, 235, 0.658);
+  left: 1px;
+  bottom: 6px;
+}
+
+input#color {
+  width: 35px;
+  height: 30px;
+  border: none;
+  margin: 0;
+  background-color: transparent;
+}

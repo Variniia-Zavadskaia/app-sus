@@ -1,0 +1,158 @@
+const {useState} = React
+
+import '../../../assets/css/apps/mail/cmps/new-mail-text-editor.css'
+import {EmojiPicker} from './Emoji.jsx'
+import {FontSelector} from './Font.jsx'
+
+export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onChange, onChangeStyle, onClick}) {
+  const [isBold, setIsBold] = useState(false)
+  const [isItalic, setIsItalic] = useState(false)
+  const [isUnderlined, setIsUnderlined] = useState(false)
+  const [footerVisible, setFooterVisible] = useState(false)
+  const [activeButton, setActiveButton] = useState(null)
+
+  const getTextStyle = () => ({
+    color: textColor,
+    fontFamily: fontFamily,
+    fontSize: `${fontSize}px`,
+    textAlign: textAlign,
+    fontWeight: isBold ? 'bold' : 'normal',
+    fontStyle: isItalic ? 'italic' : 'normal',
+    textDecoration: isUnderlined ? 'underline' : 'none',
+  })
+
+  function toggleBold() {
+    setIsBold((prev) => !prev)
+  }
+
+  function toggleItalic() {
+    setIsItalic((prev) => !prev)
+  }
+
+  function toggleUnderline() {
+    setIsUnderlined((prev) => !prev)
+  }
+
+  function addEmojiToBody(emoji) {
+    onChange(body + emoji)
+  }
+
+  function handleTextChange(event) {
+    onChange(event.target.value)
+  }
+
+  function toggleFooter(ev) {
+    ev.preventDefault()
+    setFooterVisible((prev) => !prev)
+  }
+
+  function toggleEmojiPicker(event) {
+    event.preventDefault()
+    setEmojiPickerVisible((prev) => !prev)
+  }
+
+  function handleButtonClick(button) {
+    setActiveButton(button)
+  }
+
+  return (
+    <div className="form-body-and-action">
+      <div className="add-mail-form-body">
+        <label htmlFor="body"></label>
+        <textarea
+          name="body"
+          className="add-mail-textarea"
+          value={body}
+          onChange={handleTextChange}
+          style={getTextStyle()}
+          rows={10}
+          cols={30}
+        />
+      </div>
+      <div className="txt-editor">
+      <button type="submit" className="form-send-btn" onClick={onClick}>
+        Send
+      </button>
+        <button type="button" className="editor-footer-tool" onClick={toggleFooter}>
+          <span className="editor-icon">
+            <i className="fa-solid fa-a"></i>
+          </span>
+        </button>
+        <footer className={`form-actions ${footerVisible ? 'visible' : ''}`}>
+          <div className="additional-controls">
+            {/* Text color input */}
+            <div className="color-picker">
+              <label htmlFor="color" className="add-mail-color-label">
+                <span className="add-mail-color-label-icon">
+                  <i className="fa-solid fa-fill-drip"></i>
+                </span>
+              </label>
+              <input
+                type="color"
+                id="color"
+                value={textColor}
+                onChange={(e) => onChangeStyle('textColor', e.target.value)}
+              />
+            </div>
+
+            {/* Font Family Selector */}
+            <FontSelector onChangeFontFamily={(value) => onChangeStyle('fontFamily', value)} />
+
+            {/* Font Size Selector */}
+            <select
+              value={fontSize}
+              onChange={(e) => onChangeStyle('fontSize', parseInt(e.target.value))} // Ensure the value is parsed as an integer
+            >
+              <option value={16}>Small</option>
+              <option value={20}>Medium</option>
+              <option value={24}>Large</option>
+            </select>
+
+            {/* Font Style Buttons */}
+            <button type="button" onClick={toggleBold} style={{fontWeight: isBold ? 'bold' : 'normal'}}>
+              <span className="bold-icon">
+                <i className="fa-solid fa-bold"></i>
+              </span>
+            </button>
+            <button type="button" onClick={toggleItalic} style={{fontStyle: isItalic ? 'italic' : 'normal'}}>
+              <span className="italic-icon">
+                <i className="fa-solid fa-italic"></i>
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={toggleUnderline}
+              style={{textDecoration: isUnderlined ? 'underline' : 'none'}}
+            >
+              <span className="underline-icon">
+                <i className="fa-solid fa-underline"></i>
+              </span>
+            </button>
+            {/* Text Alignment Buttons */}
+            <button type="button" onClick={() => onChangeStyle('textAlign', 'left')}>
+              <span className="txt-aling-left">
+                <i className="fa-solid fa-aling-left"></i>
+              </span>
+            </button>
+            <button type="button" onClick={() => onChangeStyle('textAlign', 'center')}>
+              <span className="txt-aling-center">
+                <i className="fa-solid fa-aling-center"></i>
+              </span>
+            </button>
+            <button type="button" onClick={() => onChangeStyle('textAlign', 'right')}>
+              <span className="txt-aling-right">
+                <i className="fa-solid fa-aling-right"></i>
+              </span>
+            </button>
+            <button type="button" onClick={() => onChangeStyle('textAlign', 'justify')}>
+              <span className="txt-aling-justify">
+                <i className="fa-solid fa-aling-justify"></i>
+              </span>
+            </button>
+          </div>
+        </footer>
+          <EmojiPicker addEmoji={addEmojiToBody} />
+      </div>
+    </div>
+  )
+}

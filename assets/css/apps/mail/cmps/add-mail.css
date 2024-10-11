@@ -5,11 +5,11 @@
   right: 5%;
   font-size: 0.875rem;
   width: 450px;
-  height: 426px;
   flex-direction: column;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  z-index: 60;
 }
 
 .add-mail-header {
@@ -49,7 +49,8 @@
 .add-mail-input-subject {
   border-width: 0 0 2px 0;
   width: 400px;
-  padding-top: 10px;
+  padding: 0;
+  padding-inline-start: 10px;
 }
 
 .add-mail-textarea {
@@ -57,11 +58,12 @@
   width: 400px;
 }
 
-.form-actions {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 16px;
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  box-sizing: border-box;
+  resize: none;
 }
 
 button.form-send-btn {
@@ -75,21 +77,77 @@ button.form-send-btn {
   cursor: pointer;
 }
 
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: none; /* Remove inner border */
-  box-sizing: border-box; /* Ensures padding is included in width */
-  resize: none; /* Prevent resizing */
-}
-
 input:focus,
 textarea:focus {
   outline: none;
+  transition: opacity 0.218s;
+  background: #fff;
 }
 
-label span {
-  display: block;
-  font-weight: bold;
+.txt-editor {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 10px;
+}
+
+.editor-footer-tool {
+  width: 20px;
+  height: 20px;
+}
+.editor-footer-tool span {
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.emoji-container {
+  position: relative;
+  padding: 0;
+  font-size: 20px;
+  
+}
+
+.toggle-emoji-btn {
+  width: 20px;
+  height: 20px;
+}
+
+.emoji-picker {
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
+  align-content: center;
+  justify-content: space-between;
+  overflow-y: auto;
+  width: 320px;
+  height: 266px;
+  gap: 6px;
+  top: -265px;
+  border: 1px groove rgba(0, 0, 0, 0.047) ;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background-color:#FFFFFF ;
+  padding-block-start: 30px;
+}
+
+
+.emoji-picker::-webkit-scrollbar {
+  width: 3px;
+  height:5px ;
+}
+
+
+.emoji-picker::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+
+.emoji-picker::-webkit-scrollbar-thumb {
+  background: #868788; 
+  border-radius: 4px;
+}
+
+
+.emoji-picker::-webkit-scrollbar-thumb:hover {
+  background: #868788; 
 }
