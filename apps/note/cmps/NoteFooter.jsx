@@ -37,18 +37,20 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote}) {
                         </button>
                         <span className="tooltip-text">Send</span>
                     </div>
+                    {onEditNote !== null && 
                     <div className="tooltip">
                         <button className="icon-button" onClick={() => onEditNote(note)} aria-label="Edit">
                             <i className="fa-solid fa-pen-to-square"></i>
                         </button>
                         <span className="tooltip-text">Edit</span>
-                    </div>
+                    </div>}
+                    {onRemoveNote !== null &&
                     <div className="tooltip">
                         <button className="icon-button" onClick={() => onRemoveNote(note.id)} aria-label="Remove">
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
                         <span className="tooltip-text">Remove</span>
-                    </div>
+                    </div>}
                 </div>
                 {/* <button className="close-btn" type="button">
                     Close

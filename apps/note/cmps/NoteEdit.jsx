@@ -7,7 +7,7 @@ import { EditNoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
 import { NoteFooter } from "./NoteFooter.jsx";
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 
-export function NoteEdit({ note, onRemoveNote, onSaveNote }) {
+export function NoteEdit({ note, onRemoveNote = null, onSaveNote }) {
     const [noteToEdit, setNoteToEdit] = useState(note)
 
     function onSave(ev) {
@@ -39,7 +39,7 @@ export function NoteEdit({ note, onRemoveNote, onSaveNote }) {
                     <NoteFooter
                         note={noteToEdit}
                         onRemoveNote={onRemoveNote}
-                        onEditNote={(note) => { console.log('i am lazy i dont work');}}
+                        onEditNote={null}
                         onSaveNote={onChangeNote} />
                     <button className="close-btn" type="submit" onClick={onSave}> Save </button>
                 </section>
