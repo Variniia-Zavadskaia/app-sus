@@ -38,13 +38,13 @@
   display: inline-block;
   white-space: nowrap;
   position: absolute;
-  left: 50px; /* Adjust this to control the label position */
+  left: 25px; /* Adjust this to control the label position */
 }
 
 .new-mail-btn:hover {
   background-color: #c2e7ff;
   border-radius: 16px;
-
+  width: 110px;
 }
 ul {
   list-style: none;

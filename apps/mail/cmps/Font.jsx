@@ -14,8 +14,14 @@ export function FontSelector({onChangeFontFamily}) {
     'Garamond',
     'Segoe UI',
   ]
+
+  const handleFontChange = (event) => {
+    const selectedFont = event.target.value
+    onChangeFontFamily(selectedFont)
+  }
+
   return (
-    <select onChange={(e) => onChangeFontFamily(e.target.value)}>
+    <select onChange={handleFontChange} className="font-selector">
       {fonts.map((font) => (
         <option key={font} value={font}>
           {font}

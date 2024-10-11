@@ -1,11 +1,8 @@
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {mailService} from '../services/mail.service.js'
-import { EmojiPicker } from './Emoji.jsx'
-import { FontSelector } from './Font.jsx'
-import { FontSizeButtons } from './FontSize.jsx'
-import { TextAlignButtons } from './TextAlingBtn.jsx'
+import {EmojiPicker} from './Emoji.jsx'
+import {TxtEditor} from './TxtEditor.jsx'
 const {useState} = React
-const {useNavigate} = ReactRouterDOM
 
 export function AddMail({onClose}) {
   const [mailToSave, setMailToSave] = useState(mailService.getEmptyMail())
@@ -13,9 +10,6 @@ export function AddMail({onClose}) {
   const [fontFamily, setFontFamily] = useState('Arial') // Default font
   const [fontSize, setFontSize] = useState(16) // Default font size
   const [textAlign, setTextAlign] = useState('left') // Default text alignment
-  const [subject, setSubject] = useState('')
-  const [body, setBody] = useState('')
-  const navigate = useNavigate()
 
   function handleChange({target}) {
     const {name, value} = target
@@ -24,37 +18,53 @@ export function AddMail({onClose}) {
 
   function onSaveMail(ev) {
     ev.preventDefault()
-    const mailToSave = {
-      id: '', // Leave ID empty for new entries
-      subject: subject,
-      body: body,
-      isRead: false,
+    const newMail = {
+      ...mailToSave,
+      id: '',
       sentAt: Date.now(),
-      from: 'user@appsus.com', // Add the appropriate sender email
-      to: 'boss@company.com', // Add the recipient email
-      createdAt: Date.now(), // If you need this field
-      isStared: false, // If needed
-      labels: [], // Initialize labels as needed
+      createdAt: Date.now(),
+      from: 'user@appsus.com',
+      isStared: false,
     }
 
-    console.log('Mail to save:', mailToSave)
     mailService
-      .safeSave(mailToSave)
-      .then((mail) => {
-        console.log('Mail saved successfully:', mail)
-        setSubject('') // Clear the input fields after save
-        setBody('')
+      .safeSave(newMail)
+      .then((savedMail) => {
+        console.log('Mail saved successfully:', savedMail)
+        setMailToSave(mailService.getEmptyMail())
+        showSuccessMsg('Sent mail')
+        onClose()
       })
       .catch((err) => {
-        console.log('Error:', err)
+        console.error('Error:', err)
         showErrorMsg('An unexpected error occurred: ', err.message)
       })
-
       .finally(() => {
         showSuccessMsg('Sent mail')
-        // onClose()
+        onClose()
       })
   }
+
+  function handleStyleChange(style, value) {
+    switch (style) {
+      case 'textColor':
+        setTextColor(value)
+        break
+      case 'fontFamily':
+        setFontFamily(value)
+        break
+      case 'fontSize':
+        setFontSize(value)
+        break
+      case 'textAlign':
+        setTextAlign(value)
+        break
+      default:
+        break
+    }
+  }
+
+  // const fontSizeValue = fontSize === 'Small' ? 16 : fontSize === 'Medium' ? 20 : 24 // Map to numeric values
 
   return (
     <section className="add-mail">
@@ -100,40 +110,17 @@ export function AddMail({onClose}) {
           />
         </div>
 
-        {/* Body Input */}
-        <div className="add-mail-form-body">
-          <label htmlFor="body"></label>
-          <textarea
-            name="body"
-            className="add-mail-textarea"
-            value={mailToSave.body}
-            onChange={handleChange}
-            style={{ color: textColor, fontFamily: fontFamily, fontSize: `${fontSize}px`, textAlign: textAlign }} // Styled for user input
-
-          ></textarea>
-        </div>
-
-        {/* Footer */}
-        <footer className="form-actions">
-          <button type="submit" className="form-send-btn" onClick={onSaveMail}>
-            Send
-          </button>
-          <div className="color-picker">
-            
-            {/* <label htmlFor="color" className="add-mail-color-label">
-              <i className="fa-light fa-fill-drip"></i>
-            </label>
-            <input type="color" id="color" value={textColor} onChange={(e) => setTextColor(e.target.value)} /> */}
-          </div>
-          <div className="additional-controls">
-          {/* <FontSelector onChangeFontFamily={setFontFamily} />
-          <FontSizeButtons onUpdateLineSize={(diff) => setFontSize(prevSize => prevSize + diff)} />
-          <TextAlignButtons onChangeTxtAlign={setTextAlign} />
-          <EmojiPicker addEmoji={(emoji) => setBody(prevBody => prevBody + emoji)} /> */}
-        </div>
-          
-          
-        </footer>
+       
+        <TxtEditor
+          textColor={textColor}
+          fontFamily={fontFamily}
+          fontSize={fontSize}
+          textAlign={textAlign}
+          body={mailToSave.body}
+          onChange={(value) => setMailToSave((prev) => ({...prev, body: value}))}
+          onChangeStyle={handleStyleChange}
+          onClick={onSaveMail}
+        />
       </form>
     </section>
   )

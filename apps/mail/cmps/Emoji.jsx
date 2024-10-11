@@ -1,4 +1,9 @@
+const {useState} = React
+
 export function EmojiPicker({addEmoji}) {
+  const [showEmojis, setShowEmojis] = useState(false)
+
+  // DONT OPEN REALLY LONG 
   const emojis = [
     '😀',
     '😁',
@@ -48,14 +53,158 @@ export function EmojiPicker({addEmoji}) {
     '💩',
     '🤡',
     '👹',
+    '👺',
+    '👻',
+    '👽',
+    '👾',
+    '🤖',
+    '💋',
+    '💌',
+    '💘',
+    '💝',
+    '💖',
+    '💗',
+    '💓',
+    '💞',
+    '💕',
+    '💟',
+    '💔',
+    '❤️',
+    '💙',
+    '💜',
+    '🤍',
+    '💯',
+    '🔥',
+    '☀️',
+    '🌈',
+    '❄️',
+    '⛄️',
+    '💧',
+    '🌊',
+    '🌪️',
+    '🌙',
+    '⭐️',
+    '⚡️',
+    '🍎',
+    '🍔',
+    '🍕',
+    '🍦',
+    '🍩',
+    '🍪',
+    '🎂',
+    '🍻',
+    '🍷',
+    '🍸',
+    '🍺',
+    '🥂',
+    '🎉',
+    '🎊',
+    '🎁',
+    '🎈',
+    '⚽️',
+    '🏀',
+    '🏈',
+    '🎾',
+    '🎱',
+    '🥊',
+    '🎯',
+    '🎮',
+    '🎸',
+    '🎤',
+    '🎧',
+    '🎬',
+    '📸',
+    '📱',
+    '💻',
+    '💡',
+    '🕹️',
+    '📚',
+    '📝',
+    '✏️',
+    '📅',
+    '📌',
+    '🔒',
+    '🔑',
+    '💼',
+    '🛏️',
+    '🚽',
+    '🛒',
+    '🚗',
+    '🚕',
+    '🚙',
+    '✈️',
+    '🛳️',
+    '🚀',
+    '🛸',
+    '⚓️',
+    '🚂',
+    '🚲',
+    '🏍️',
+    '🏎️',
+    '🏆',
+    '🥇',
+    '🥈',
+    '🥉',
+    '🏅',
+    '🏵️',
+    '🎖️',
+    '🏵️',
+    '🏋️',
+    '🤸',
+    '🏊',
+    '🏄',
+    '🚴',
+    '🧘',
+    '🏇',
+    '🐶',
+    '🐱',
+    '🐭',
+    '🐹',
+    '🐰',
+    '🦊',
+    '🐻',
+    '🐼',
+    '🐨',
+    '🐯',
+    '🦁',
+    '🐮',
+    '🐷',
+    '🐸',
+    '🐵',
+    '🐔',
+    '🐧',
+    '🐦',
+    '🦉',
+    '🐝',
+    '🐍',
+    '🐢',
+    '🐙',
+    '🦑',
+    '🦋',
+ 
   ]
+  function handleEmojiClick(emoji) {
+    addEmoji(emoji)
+    setShowEmojis(false)
+  }
+
   return (
-    <div>
-      {emojis.map((emoji) => (
-        <button key={emoji} onClick={() => addEmoji(emoji)}>
-          {emoji}
-        </button>
-      ))}
+    <div className="emoji-picker-container">
+      <button type="button" className="toggle-emoji-btn" onClick={() => setShowEmojis(!showEmojis)}>
+        <span className="emoji-container">
+          <i className="fa-regular fa-face-smile"></i>
+        </span>
+      </button>
+
+      {showEmojis && (
+        <div className="emoji-picker">
+          {emojis.map((emoji) => (
+            <button key={emoji} type="button" className="emoji-btn" onClick={() => handleEmojiClick(emoji)}>
+              {emoji}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
