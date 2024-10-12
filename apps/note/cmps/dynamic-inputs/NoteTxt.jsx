@@ -16,8 +16,8 @@ export function EditNoteTxt(props) {
     }
 
     return (
-        <div className="note-show" >
-            <div>
+        <div className="note-show-txt" >
+            {/* <div> */}
                 <input
                     id='title'
                     name='title'
@@ -40,7 +40,7 @@ export function EditNoteTxt(props) {
                         placeholder="Take a note..."
                     />
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     );
 }

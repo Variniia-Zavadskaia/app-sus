@@ -31,23 +31,26 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
     return (
         <footer className="note-footer">
             {/* <section className="active-btn"> */}
-            <div className="icons">
+            <div className="note-icons">
                 <div className="tooltip">
                     <button className="icon-button" onClick={onTogglePin} aria-label={`${note.isPinned ? 'Unpin' : 'Pin'} `}>
                         <i className={`fa-solid ${note.isPinned ? 'fa-thumbtack-slash' : 'fa-thumbtack'} `}></i>
                     </button>
                     <span className="tooltip-text">{`${note.isPinned ? 'Unpin' : 'Pin'} `}</span>
                 </div>
+
                 <div className="tooltip">
                     <ColorInput className="icon-button" onSetNoteStyle={onSetNoteStyle} currentColor={noteStyle.backgroundColor} aria-label="Background" />
                     <span className="tooltip-text">Background Color</span>
                 </div>
+
                 <div className="tooltip">
                     <button className="icon-button"  onClick={handleSendToMail} aria-label="Send">
                         <i className="fa-solid fa-envelope"></i>
                     </button>
                     <span className="tooltip-text">Send to Mail</span>
                 </div>
+
                 {onEditNote !== null &&
                     <div className="tooltip">
                         <button className="icon-button" onClick={() => onEditNote(note)} aria-label="Edit">
@@ -55,6 +58,7 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                         </button>
                         <span className="tooltip-text">Edit</span>
                     </div>}
+                    
                 {onRemoveNote !== null &&
                     <div className="tooltip">
                         <button className="icon-button" onClick={() => onRemoveNote(note.id)} aria-label="Remove">

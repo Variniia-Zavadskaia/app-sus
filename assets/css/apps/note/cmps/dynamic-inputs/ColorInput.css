@@ -26,23 +26,6 @@
     border: 2px solid #000;
 }
 
-.btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn i {
-    color: #000;
-    font-size: 18px;
-    transition: color 0.2s;
-}
-
-.btn:hover i {
-    color: #747272;
-}
-
 .color-picker-wrapper {
     position: relative;
     display: inline-block;

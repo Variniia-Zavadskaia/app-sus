@@ -1,12 +1,8 @@
-
-/* .active-btn{
-    display: flex;
-} */
-.icons{
+.note-icons {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Ensure that elements spread evenly */
+    justify-content: space-between;
     padding-top: 10px;
-    flex-wrap: nowrap; 
-    width: 100%; 
+    flex-wrap: nowrap;
+    width: 100%;
 }

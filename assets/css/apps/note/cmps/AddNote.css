@@ -1,93 +1,61 @@
 .add-note {
-    /* position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); */
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.note-form {
-    display: flex;
-    flex-flow: column;
-    width: 540px;
-    border-radius: 8px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    margin: 20px auto;
-    padding: 5px;
-    /* background-color: var(--clr2bg); */
+    align-items: center;  
 }
 
 .note-show {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: 0.5rem; */
 }
 
-.note-show input{
+.note-show input {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1.2rem;
-    /* margin-bottom: 15px; */
-}
-
-.note-show input, textarea {
     background: transparent;
-    border: none;
+    align-self: stretch;
     padding: 1rem;
-    color: rgb(0, 0, 0);  
+    color: rgb(0, 0, 0);
+    border: none;
 }
 
-.note-show input, textarea:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.note-show textarea{
-    resize: none;
-    height: max-content;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.note-cmpn{
+.note-cmpn {
     display: flex;
-/* align-self: center; */
+    /* align-self: center; */
 }
 
-.note-show button{
-    align-self: center; 
+.note-show button {
+    align-self: center;
 }
 
 /* Media Query for Smaller Devices */
 @media (max-width: 768px) {
-    .note-form {
+    /* .note-form {
         width: 65%;
         padding: 5px;
-        /* box-shadow: none; */
+        box-shadow: none;
         border-radius: 8px;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         margin: 20px auto;
-       
-    }
+
+    } */
 
     .note-show {
         /* flex-direction: column; */
         align-items: stretch;
     }
 
-    .note-show input, textarea {
+    .note-show input,
+    textarea {
         width: 100%;
         padding: 0.5rem;
     }
 
     .note-show button {
-        align-self: flex-end; /* Align button to the end */
+        align-self: flex-end;
+        /* Align button to the end */
         margin-top: 10px;
     }
 
@@ -104,7 +72,8 @@
         margin: 20px auto;
     }
 
-    .note-show input, textarea {
+    .note-show input,
+    textarea {
         padding: 0.3rem;
     }
 
@@ -112,4 +81,3 @@
         margin-top: 5px;
     }
 }
-

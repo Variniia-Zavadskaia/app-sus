@@ -1,8 +1,42 @@
-.note-txt h3{
+.note-txt h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
-.note-txt p{
+
+.note-txt p {
     font-size: 1rem;
     line-height: 1.5;
+}
+
+.note-show-txt {
+    display: flex;
+    flex-flow: column;
+}
+
+.note-show-txt input {
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    /* margin-bottom: 15px; */
+}
+
+.note-show-txt input,
+textarea {
+    align-self: stretch;
+    background: transparent;
+    padding: 1rem;
+    color: rgb(0, 0, 0);
+}
+
+.note-show-txtinput,
+textarea:focus {
+    outline: none;
+}
+
+.note-show-txt textarea {
+    resize: none;
+    height: max-content;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
 }

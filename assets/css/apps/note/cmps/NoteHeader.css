@@ -5,21 +5,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Ensure that elements spread evenly */
-    /* padding: 0 20px; */
     z-index: 1000;
-    /* Prevent items from wrapping to the next line */
-    /* width: 100%; */
+    width: 100%;
 }
 
 .tooltip {
-    position: relative;
+    /* position: relative; */
     display: inline-block;
 }
 
 .tooltip-text {
     position: absolute;
-    /* left: 0; */
     top: 100%;
     left: 50%;
     margin-left: -20px;

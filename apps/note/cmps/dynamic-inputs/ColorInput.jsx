@@ -42,7 +42,7 @@ export function ColorInput({ onSetNoteStyle, backgroundColor }) {
     };
 
     return (
-        <div className="color-picker-wrapper">
+        <div className="color-picker-wrapper" >
             <button className="icon-button" onClick={togglePicker}><i className="fa-solid fa-palette"></i></button>
             {showPicker && (
                 <div className="color-container" ref={pickerRef}>
