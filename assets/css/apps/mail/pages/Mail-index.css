@@ -21,7 +21,7 @@ body {
 .mail-header {
   position: sticky;
   top: 0;
-  padding: 0.25em 0.5rem;
+  padding: clamp(0.25em, 2vw, 1em) clamp(0.5rem, 4vw, 1rem); /* Responsive padding */
   background-color: var(--primary-mail-bgc);
 }
 
@@ -32,10 +32,11 @@ body {
 }
 
 .menu-icon {
-  width: 25px;
-  height: 25px;
+  width: clamp(20px, 2vw, 25px); /* Responsive icon size */
+  height: clamp(20px, 2vw, 25px); /* Responsive icon size */
   cursor: pointer;
 }
+
 .menu-icon:hover {
   background-color: var(--hover-state-color);
 }
@@ -52,6 +53,5 @@ body {
   height: calc(100vh - 60px); 
   transition: margin-left 0.5s; 
   display: flex;
-  margin-left: 60px;
+  margin-left: clamp(40px, 5vw, 60px); /* Responsive margin */
 }
-

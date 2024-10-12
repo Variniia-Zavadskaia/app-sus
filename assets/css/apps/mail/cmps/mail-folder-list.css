@@ -2,7 +2,8 @@
   position: fixed;
   top: 110px;
   left: 0;
-  width: 60px;
+  padding-block-start: 10px;
+  width: clamp(50px, 8vw, 60px); /* Responsive width */
   height: 100%;
   background-color: var(--primary-mail-bgc);
   transition-duration: 0.3s;
@@ -25,8 +26,8 @@
   position: relative;
   height: 56px;
   margin-left: 0;
-  min-width: 56px;
-  width: 56px;
+  min-width: 35px;
+  max-width: 56px;
   box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
 }
 .compose-label {
@@ -48,7 +49,7 @@
 }
 ul {
   list-style: none;
-  padding: 0 6px;
+  padding: 5px 6px;
 }
 
 ul li {
@@ -63,6 +64,8 @@ ul li {
 ul li .folder-icon {
   width: 30px;
   margin-right: 0;
+  margin-top: 10px;
+
 }
 
 ul li p {
@@ -108,4 +111,15 @@ ul li:hover p {
   font-size: 0.8rem;
   min-width: 20px;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .label-folder-list {
+    width: 40px; /* Set a minimum width for mobile */
+    padding-top: 10px; /* Reduce top padding on smaller screens */
+  }
+  .compose-btn {
+    max-width: 30px;
+    border-radius: 6px;
+  }
 }

@@ -2,31 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: clamp(0.3rem, 4vw, 2rem); 
 }
 
 .header-nav-logo {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem); 
 }
 
 .menu-btn {
-  margin-right: 1rem;
+  margin-right: clamp(0.5rem, 2vw, 1rem); 
 }
 
 .menu-icon-btn {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: clamp(14px, 4vw, 20px);
+  font-size: clamp(14px, 2vw, 20px); 
 }
 
 .logo {
-    width: clamp(150px, 15vw, 200px); 
-    height: auto;
-    font-size: clamp(20px, 5vw, 36px);
+  width: clamp(25px, 15vw, 200px); 
+  height: auto;
+  font-size: clamp(16px, 5vw, 36px); 
 }
 
 .empty-place {
@@ -36,12 +36,12 @@
 .user-action {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 2vw, 1rem); 
 }
 
 .user-img-container {
-  width: clamp(30px, 5vw, 50px); 
-  height: clamp(30px, 5vw, 50px);
+  width: clamp(25px, 5vw, 50px); 
+  height: clamp(25px, 5vw, 50px); 
   overflow: hidden;
   border-radius: 50%;
 }

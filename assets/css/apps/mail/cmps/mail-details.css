@@ -4,8 +4,9 @@
   align-items: center; /* Center horizontally */
   width: 100%; /* Full width */
   height: calc(100vh - 80px); /* Adjust height based on header size */
-  overflow: auto; /* Enable scrolling if content overflows */
+  overflow-y: auto; /* Enable scrolling if content overflows */
   background-color: white;
+  padding: 0 10px;
 }
 
 .mail-header-section {
@@ -20,6 +21,7 @@
   width: 90%;
   margin-block-end: 20px;
   color: var(--btn-color);
+  flex-wrap: wrap;
 }
 
 .action-btn-mail {
@@ -36,13 +38,13 @@
   margin-right: 15px;
 }
 
-.prev-next-btn {
+.prev-next-btn  {
   display: flex;
 
 }
 
 .prev-next-btn button {
-  margin-left: 10px;
+  margin-left: 15px;
   border: none;
   background-color: transparent;
 }
@@ -56,7 +58,7 @@
 
 .mail-info {
   flex: 1;
-  padding-inline-start: 60px;
+  padding-inline-start: 25px;
   background-color: white;
   width: 90%;
   max-width: 1000px;
@@ -72,13 +74,13 @@
 
 .to-details {
   position: absolute;
-  bottom: -5px;
+  bottom: -10px;
   left: 55px;
 }
 
 .from {
   position: absolute;
-  bottom: 9px;
+  bottom: 20px;
   left: 55px;
 }
 
@@ -92,7 +94,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 20px;
   
 }
 
@@ -108,18 +110,27 @@
   border-radius: 50%;
   margin-right: 0.5rem;
 }
+
 .mail-details-actions {
   display: flex;
   justify-content: space-between;
-  width: 150px;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 100px;
   color: var(--btn-color);
 }
 
+p.sent {
+font-size: 1em;
+
+}
 .mail-details {
-  margin-top: 10px; 
+  margin-top: 2rem; 
 }
 
 .to,
 .sent {
   margin: 5px 0; 
 }
+

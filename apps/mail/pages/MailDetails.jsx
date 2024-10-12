@@ -1,5 +1,5 @@
 const {useEffect, useState} = React
-const {useParams, useNavigate, useLocation} = ReactRouter
+const {useParams, useNavigate} = ReactRouter
 const {Link, useSearchParams} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
@@ -17,7 +17,6 @@ export function MailDetails() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   //   console.log(mailId, 'mailid from params')
 
-  const {state} = useLocation()
 
   const navigate = useNavigate()
 
@@ -62,8 +61,7 @@ export function MailDetails() {
   }
 
   if (!mail) return <h1>Loading...</h1>
-  
-  
+
   const {subject, body, from, to, sentAt, isRead, prevMailId, nextMailId} = mail
   const timeAgo = formatTimeAgo(sentAt)
 
@@ -86,7 +84,7 @@ export function MailDetails() {
           <div className="spam">
             <i className="fa-solid fa-exclamation" title="Report spam"></i>
           </div>
-          <div title="delete mail" className="delete-btn" onClick={() => onRemoveMail(mail.id)}>
+          <div title="delete mail" className="mail-details-delete-btn" onClick={() => onRemoveMail(mail.id)}>
             <i className="fa-solid fa-trash"></i>
           </div>
 
@@ -117,6 +115,12 @@ export function MailDetails() {
       <section className="mail-info">
         <div className="mail-details-header ">
           <h2 className="subject">{subject}</h2>
+          <div className="mail-details-actions">
+            <i className="fa-regular fa-star"></i>
+            <i className="fa-regular fa-face-smile"></i>
+            <i className="fa-solid fa-reply"></i>
+            <i className="fa-solid fa-ellipsis-vertical"></i>
+          </div>
           <div className="sub-header">
             <div className="sender-img-container">
               <img src="https://via.placeholder.com/150" alt="sender-img" className="sender-img" />
@@ -128,12 +132,6 @@ export function MailDetails() {
               <p className="to">to {to}</p>
             </div>
             <p className="sent ">{timeAgo}</p>
-            <div className="mail-details-actions">
-              <i className="fa-regular fa-star"></i>
-              <i className="fa-regular fa-face-smile"></i>
-              <i className="fa-solid fa-reply"></i>
-              <i className="fa-solid fa-ellipsis-vertical"></i>
-            </div>
           </div>
         </div>
         <div className="mail-details ">

@@ -146,7 +146,6 @@ export function MailIndex() {
           updateMailStatus={updateMailStatus}
         />
       </header>
-      <section className="mail-content-wrapper">
         <aside className="mail-folder-list">
           <MailFolderList
             filterBy={filterBy}
@@ -156,6 +155,7 @@ export function MailIndex() {
             onComposeClick={toggleCompose}
           />{' '}
         </aside>
+      <section className="mail-content-wrapper">
         <main className="mail-list-container">
           <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
           {isComposeOpen && <AddMail onClose={toggleCompose} />}

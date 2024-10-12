@@ -11,7 +11,6 @@
   border-right-color: var(--mail-border-color);
   border-top-color: var(--mail-border-color);
   color: rgb(32, 33, 36);
-
   box-shadow: inset 0 -1px 0 0 rgba(100, 121, 143, 0.12);
   display: flex;
   position: relative;
@@ -19,8 +18,9 @@
   text-indent: 0px;
   cursor: pointer;
   align-items: center; 
-  padding: 10px 0; 
+  padding: clamp(8px, 2vw, 10px) 0; /* Responsive padding */
 }
+
 .mail-review:hover {
   box-shadow: inset -1px 0 0 #dadce0, inset 1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 1px 3px 1px rgba(60, 64, 67, 0.15);
@@ -36,36 +36,35 @@
   display: table;
   width: 100%;
   table-layout: fixed;
-  width: 100%; 
 }
 
 .mail-list-table td {
-  padding: 10px 0;
+  padding: clamp(5px, 2vw, 10px) 0; /* Responsive padding */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .select {
-  width: 40px; 
+  width: clamp(30px, 4vw, 40px); /* Responsive width */
   display: flex;
   align-items: center; 
   justify-content: center; 
- padding:  0 13px 0 10px;
+  padding: 0 clamp(8px, 2vw, 13px) 0 clamp(10px, 2vw, 10px); /* Responsive padding */
 }
-
-
 
 .mail-list-table td .star-col {
   padding: 0; 
   margin: 0; 
-  width: 30px;
+  width: clamp(25px, 4vw, 30px); /* Responsive width */
   display: flex;
   align-items: center; 
 }
+
 .star {
   cursor: pointer;
 }
+
 .star:hover {
   background-color: #e8e3e3;
   border-radius: 50%;
@@ -80,13 +79,14 @@
   background-color: var(--readed-mail-color);
 }
 
-.delete-btn{
+.delete-btn {
   display: none;
 }
 
 .mail-review:hover .mail-sent {
- display: none;
+  display: none;
 }
+
 .mail-review:hover .delete-btn {
- display: block;
+  display: block;
 }
