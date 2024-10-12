@@ -1,12 +1,12 @@
 const { useEffect, useState } = React
-const { useSearchParams } = ReactRouterDOM
+const { useSearchParams, useLocation, useNavigate } = ReactRouterDOM
 
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteDetails } from "../cmps/NoteDetails.jsx"
 import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { SideBar } from "../cmps/SideBar.jsx"
-import { NoteFilter } from "../cmps/NoteFilter.jsx"
+
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { noteService } from "../services/note.service.js"
 import { getTruthyValues } from "../../../services/util.service.js"
@@ -20,24 +20,44 @@ export function NoteIndex() {
     const [selectedNote, setSelectedNote] = useState(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+
+    // Handling location for pre-filling notes from emails
+    const location = useLocation();
+    const navigate = useNavigate()
+
     useEffect(() => {
         loadNotes()
         setSearchPrms(getTruthyValues(filterBy))
     }, [filterBy])
-    
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const emailTitle = params.get('title') || '';
+        const emailBody = params.get('body') || '';
+        
+        // If email data is present, show the modal and prefill the form
+        if (emailTitle || emailBody) {
+            const newNote = noteService.getEmptyNote('NoteTxt')
+            newNote.info.title = emailTitle
+            newNote.info.txt = emailBody
+            openEditModal(newNote)
+        }
+    }, [location])
+
+
     function loadNotes() {
         noteService.query(filterBy)
-        .then(setNotes)
-        .catch(err => {
-            console.log('Problems getting notes:', err)
-            showErrorMsg('Could not load notes')
-        })
+            .then(setNotes)
+            .catch(err => {
+                console.log('Problems getting notes:', err)
+                showErrorMsg('Could not load notes')
+            })
     }
 
     const onToggleSidebar = () => {
         setIsSidebarOpen(prevState => !prevState); // Toggle sidebar open/close
     };
-    
+
     function onRemoveNote(noteId) {
         setNotes(notes => notes.filter(note => note.id !== noteId))
         noteService.remove(noteId)
@@ -60,6 +80,7 @@ export function NoteIndex() {
     function closeEditModal() {
         setIsModalOpen(false);
         setSelectedNote(null);
+        navigate('/note')
     };
 
     function onSaveNote(noteToSave) {
@@ -102,10 +123,10 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <section className="note-header">
-                <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} onMenuClick={onToggleSidebar}/>
+                <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} onMenuClick={onToggleSidebar} />
             </section>
             <div className="note-body">
-                <SideBar  isOpen={isSidebarOpen}/>
+                <SideBar isOpen={isSidebarOpen} />
                 <div className="note-content">
                     <AddNote onAddNote={onAddNote} />
                     <NoteList
@@ -116,14 +137,14 @@ export function NoteIndex() {
                     />
                 </div>
             </div>
-                    {isModalOpen && (
-                        <NoteDetails
-                            note={selectedNote}
-                            onClose={closeEditModal}
-                            onSaveNote={onSaveNote}
-                            onRemoveNote={onRemoveNote}
-                        />
-                    )}
+            {isModalOpen && (
+                <NoteDetails
+                    note={selectedNote}
+                    onClose={closeEditModal}
+                    onSaveNote={onSaveNote}
+                    onRemoveNote={onRemoveNote}
+                />
+            )}
         </section>
     )
 }
