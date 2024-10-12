@@ -34,9 +34,14 @@ export function NoteIndex() {
         const params = new URLSearchParams(location.search);
         const emailTitle = params.get('title') || '';
         const emailBody = params.get('body') || '';
+        const noteId = params.get('noteID') || '';
         
         // If email data is present, show the modal and prefill the form
-        if (emailTitle || emailBody) {
+        if (noteId) {
+            const noteToEdit = notes.find(note => note.id == noteId)
+            openEditModal(noteToEdit)
+        }
+        else if (emailTitle || emailBody) {
             const newNote = noteService.getEmptyNote('NoteTxt')
             newNote.info.title = emailTitle
             newNote.info.txt = emailBody
@@ -44,6 +49,9 @@ export function NoteIndex() {
         }
     }, [location])
 
+    function sendNoteEditQuery(noteToEdit) {
+        navigate(`/note/?noteID=${noteToEdit.id}`);
+    }
 
     function loadNotes() {
         noteService.query(filterBy)
@@ -132,7 +140,7 @@ export function NoteIndex() {
                     <NoteList
                         notes={notes}
                         onRemoveNote={onRemoveNote}
-                        onEditNote={openEditModal}
+                        onEditNote={sendNoteEditQuery}
                         onSaveNote={onSaveNote}
                     />
                 </div>
