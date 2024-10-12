@@ -6,10 +6,11 @@
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
     padding: 5px;
+    background-color: var(--clr2bg);
 }
 
 .note-show {
-    /* display: flex; */
+    display: flex;
     justify-content: space-between;
     align-items: center;
     /* margin-top: 0.5rem; */
@@ -44,17 +45,17 @@
 /* Media Query for Smaller Devices */
 @media (max-width: 768px) {
     .note-form {
-        width: 100%;
-        margin: 10px;
+        width: 65%;
         padding: 5px;
         /* box-shadow: none; */
         border-radius: 8px;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         margin: 20px auto;
+       
     }
 
     .note-show {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: stretch;
     }
 
@@ -69,7 +70,7 @@
     }
 
     .note-cmpn {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: flex-start;
     }
 }
@@ -78,6 +79,7 @@
 @media (max-width: 480px) {
     .note-form {
         padding: 5px;
+        margin: 20px auto;
     }
 
     .note-show input, textarea {

@@ -2,10 +2,10 @@
 .sidebar-notes {
     position: fixed;
     width: 60px;
-    background-color: #fff;
-    height: calc(100vh - 120px);
+    background-color: var(--clr2bg);
+    height: calc(100vh - 130px);
     padding-top: 10px;
-    position: fixed;
+    /* position: fixed; */
     top: 130px;
     left: 0;
     transition: transform 0.3s ease-in-out;
@@ -21,11 +21,11 @@
 .sidebar-notes-item {
     display: flex;
     align-items: center;
-    padding: 1rem ;
+    
     cursor: pointer;
     font-size: 18px;
     color: #5f6368;
-    border-radius: 10rem;
+    border-radius: 5rem;
     /* border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem; */
     transition: background-color 0.3s ease;
@@ -35,6 +35,7 @@
     /* margin-right: 15px; */
     /* border-top-left-radius: 2rem; */
     font-size: 18px;
+    padding: 1rem ;
 }
 
 .sidebar-notes-item .side-text {
@@ -68,4 +69,81 @@
 
 .sidebar-notes:hover .side-text {
     opacity: 1;
+}
+
+/* Small screens: Phones (max-width: 600px) */
+@media (max-width: 600px) {
+    .sidebar-notes {
+        width: 50px; /* Reduce width for small screens */
+        height: calc(100vh - 100px); /* Adjust height if needed */
+        margin-left: 0;
+        /* top: 190px; */
+    }
+
+    .sidebar-notes.open {
+        width: 200px; /* Less expansion on small screens */
+    }
+
+    .sidebar-notes-item {
+        font-size: 16px; /* Smaller font size for sidebar items */
+    }
+
+    .sidebar-notes-item .icon-button {
+        font-size: 16px; /* Adjust button size */
+        padding: 0.8rem;
+    }
+
+    .sidebar-notes-item .side-text {
+        font-size: 0.8rem; /* Smaller text size */
+    }
+}
+
+/* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .sidebar-notes {
+        width: 60px; /* Normal width for medium screens */
+        height: calc(100vh - 110px); /* Adjust height if needed */
+    }
+
+    .sidebar-notes.open {
+        width: 230px; /* Slightly smaller expansion on tablets */
+    }
+
+    .sidebar-notes-item {
+        font-size: 17px; /* Adjust font size */
+    }
+
+    .sidebar-notes-item .icon-button {
+        font-size: 17px; /* Adjust icon size */
+        padding: 0.9rem ;
+    }
+
+    .sidebar-notes-item .side-text {
+        font-size: 0.9rem; /* Slightly smaller text size */
+    }
+}
+
+/* Large screens: Desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .sidebar-notes {
+        width: 60px;
+        height: calc(100vh - 130px);
+    }
+
+    .sidebar-notes.open {
+        width: 250px; /* Full expansion on larger screens */
+    }
+
+    .sidebar-notes-item {
+        font-size: 18px;
+    }
+
+    .sidebar-notes-item .icon-button {
+        font-size: 18px;
+        padding: 0.8rem 0.5rem;
+    }
+
+    .sidebar-notes-item .side-text {
+        font-size: 1rem; /* Regular text size on large screens */
+    }
 }

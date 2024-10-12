@@ -1,6 +1,5 @@
 :root {
   --main-bg-color: lightblue;
-  --clr1bg: #e8f0fe;
   
   /* Mail root color */
   --primary-mail-bgc:#F4F6FA;
@@ -9,9 +8,12 @@
   --hover-state-color:#EAEBEF;
   --new-mail-color:#C2E7FF;
   --mail-border-color: rgb(128, 128, 128);
- --input-search-color: #EAF1FB;
- --btn-color:#707271;
-
+  --input-search-color: #EAF1FB;
+  --btn-color:#707271;
+  
+  /* Note root color */
+  --clr1bg: #e8f0fe;
+  --clr2bg: #fff
 
 
 }

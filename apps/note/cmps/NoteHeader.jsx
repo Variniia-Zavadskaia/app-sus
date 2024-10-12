@@ -57,13 +57,6 @@ export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
                     </button>
                     <span className="tooltip-text">List View</span>
                 </div>
-
-                <div className="tooltip">
-                    <button className="icon-button" aria-label="Settings">
-                        <i className="fa-solid fa-gear"></i>
-                    </button>
-                    <span className="tooltip-text">Settings</span>
-                </div>
             </div>
 
             <div className="profile-actions-area">

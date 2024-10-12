@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: space-between;
     /* Ensure that elements spread evenly */
-    padding: 0 15px;
+    /* padding: 0 20px; */
     z-index: 1000;
     /* Prevent items from wrapping to the next line */
     /* width: 100%; */
@@ -25,7 +25,7 @@
     margin-left: -20px;
     font-size: 0.78rem;
     background-color: #555;
-    color: #fff;
+    color: var(--clr2bg);
     opacity: 0;
     transition: opacity 0.3s;
     padding: 5px;
@@ -126,4 +126,72 @@ input:focus {
 .profile-actions-area {
     display: flex;
     align-items: center;
+}
+
+/* Small screens: Phones (max-width: 600px) */
+@media (max-width: 600px) {
+    .note-header-nav {
+        padding: 0 10px;
+        /* flex-direction: column; Stack elements vertically */
+        /* align-items: flex-start; */
+    }
+
+    .logo-area {
+        margin-bottom: 10px; /* Add spacing between logo and search */
+    }
+
+    .search-area {
+        width: 20%; 
+        margin-bottom: 10px;
+    }
+
+    .settings-area {
+        margin-right: 0;
+    }
+
+    .menu-button {
+        font-size: 1.2rem; /* Smaller button size */
+    }
+
+    .search-area input {
+        font-size: 0.9rem; /* Smaller text size */
+    }
+}
+
+/* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .note-header-nav {
+        padding: 0 15px;
+    }
+
+    .search-area {
+        width: 50%; /* Reduce search area width */
+    }
+
+    .settings-area {
+        margin-right: -1rem; 
+    }
+
+    .menu-button {
+        font-size: 1.3rem; /* Adjust button size for medium screens */
+    }
+}
+
+/* Large screens: Desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .note-header-nav {
+        padding: 0 20px;
+    }
+
+    .search-area {
+        width: 500px; /* Fixed width for search area */
+    }
+
+    .settings-area {
+        margin-right: -3rem;
+    }
+
+    .menu-button {
+        font-size: 1.5rem; /* Larger button for bigger screens */
+    }
 }

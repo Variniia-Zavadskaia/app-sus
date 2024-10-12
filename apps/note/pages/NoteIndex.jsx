@@ -108,6 +108,7 @@ export function NoteIndex() {
                         onSaveNote={onSaveNote}
                     />
                 </div>
+            </div>
                     {isModalOpen && (
                         <NoteDetails
                             note={selectedNote}
@@ -116,7 +117,6 @@ export function NoteIndex() {
                             onRemoveNote={onRemoveNote}
                         />
                     )}
-            </div>
         </section>
     )
 }

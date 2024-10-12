@@ -17,27 +17,29 @@ export function EditNoteTxt(props) {
 
     return (
         <div className="note-show" >
-            <input
-                id='title'
-                name='title'
-                type="text"
-                className="note-title"
-                onChange={(ev) => handleChange(ev.target)}
-                value={props.info.title || ''}
-                placeholder="Title"
-            />
             <div>
-                <textarea
-                    id='txt'
-                    name='txt'
+                <input
+                    id='title'
+                    name='title'
                     type="text"
-                    cols='30'
-                    rows='3'
-                    value={props.info.txt}
+                    className="note-title"
                     onChange={(ev) => handleChange(ev.target)}
-                    className="note-text"
-                    placeholder="Take a note..."
+                    value={props.info.title || ''}
+                    placeholder="Title"
                 />
+                <div className="note-show-cmp">
+                    <textarea
+                        id='txt'
+                        name='txt'
+                        type="text"
+                        cols='30'
+                        rows='3'
+                        value={props.info.txt}
+                        onChange={(ev) => handleChange(ev.target)}
+                        className="note-text"
+                        placeholder="Take a note..."
+                    />
+                </div>
             </div>
         </div>
     );

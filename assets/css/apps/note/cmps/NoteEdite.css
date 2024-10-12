@@ -1,10 +1,11 @@
 .note-edite .note-form {
     display: flex;
     flex-flow: column;
-    width: 540px;
+    /* width: 540px; */
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
+    background-color: var(--clr2bg);
 }
 
 .form-actions{
@@ -19,7 +20,7 @@
 }
 .close-btn{
     border: none;
-    background-color: #fff;
+    background-color: var(--clr2bg);
     align-self: flex-end;
     font-size: 16px;
     cursor: pointer;
