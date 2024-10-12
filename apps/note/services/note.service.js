@@ -20,7 +20,13 @@ function query(filterBy = {}) {
             console.log('All notes:', notes);
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                notes = notes.filter(note => regExp.test(note.info))
+                notes = notes.filter(note => {
+                    const { txt = '', title = '', todos = [] } = note.info || {}
+                    const isMatchInTodos = todos.some(todo => regExp.test(todo.txt));
+                    return regExp.test(txt) || regExp.test(title) || isMatchInTodos;
+                })
+                // notes = notes.filter(note => noteIncludes(note))
+                console.log('Filtered notes by text:', notes);
             }
             if (filterBy.type) {
                 notes = notes.filter(note => note.type.includes(filterBy.type))
@@ -56,9 +62,8 @@ function save(note) {
 //     })
 // }
 
-function getEmptyNoteTodo()
-{
-    return  { txt: '', doneAt: null }
+function getEmptyNoteTodo() {
+    return { txt: '', doneAt: null }
 }
 
 function getEmptyNote(type = '', backgroundColor = '#e8f0fe') {
@@ -83,17 +88,21 @@ function getFilterFromSearchParams(searchParams) {
 
 function _createNotes() {
     const type = ['NoteTxt', 'NoteImg', 'NoteTodos']
-    let notes = loadFromStorage(NOTE_KEY) 
+    let notes = loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = [
             _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
             _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
             _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)])
+            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
         ]
 
         console.log(notes);
-        
+
 
         saveToStorage(NOTE_KEY, notes)
     }
@@ -122,7 +131,7 @@ function _createNote(type) {
                 title: 'Get my stuff together',
                 todos: [
                     { id: makeId(), txt: 'Driving license', doneAt: null },
-                    { id: makeId(), txt:'Coding power', doneAt: getRandomDate(note.createdAt, new Date()) }
+                    { id: makeId(), txt: 'Coding power', doneAt: getRandomDate(note.createdAt, new Date()) }
                 ]
             }
             break;

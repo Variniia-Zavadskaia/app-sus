@@ -1,12 +1,11 @@
 const { useState } = React
 
 import { SideBar } from "./SideBar.jsx";
-import { NoteFilter } from "./NoteFilter.jsx";
+import { NoteFilter } from "../cmps/NoteFilter.jsx"
 
 export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
 
    
-
     return (
         // <div className="note-header">
         <nav className="note-header-nav">
@@ -33,15 +32,7 @@ export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
 
             </div>
             {/* Search bar */}
-            <div className="search-area">
-                <div className="tooltip">
-                    <button className="icon-button" aria-label="Search">
-                        <i className="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                    <span className="tooltip-text">Search</span>
-                </div>
-                <input type="text" className="search-input" placeholder="Search" />
-            </div>
+            <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
 
             <div className="settings-area">
                 <div className="tooltip">

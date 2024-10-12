@@ -12,18 +12,18 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
         const field = target.name
         let value = target.value
 
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value || ''
-                break
+        // switch (target.type) {
+        //     case 'number':
+        //     case 'range':
+        //         value = +value || ''
+        //         break
 
-            case 'checkbox':
-                value = target.checked
-                break
+        //     case 'checkbox':
+        //         value = target.checked
+        //         break
 
-            default: break
-        }
+        //     default: break
+        // }
 
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
@@ -34,7 +34,7 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { info } = filterByToEdit
+    const { info, type } = filterByToEdit
     return (
         <div className="search-area">
             <div className="tooltip">
@@ -44,10 +44,24 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
                 <span className="tooltip-text">Search</span>
             </div>
             <input value={info}
+                name="txt"
                 type="text"
                 onChange={handleChange}
                 className="search-input"
                 placeholder="Search" />
+            <div className="tooltip">
+                <button className="icon-button" aria-label="Select type" onSubmit={onSubmitFilter}>
+                    <i className="fa-solid fa-sliders"></i>
+                    <select id="type" name="type" value={type} onChange={handleChange}>
+                        <option value="">Select type</option>
+                        {/* <option value="">All types</option> */}
+                        <option value="NoteTxt">Note text</option>
+                        <option value="NoteImg">Image</option>
+                        <option value="NoteTodos">To Do</option>
+                    </select>
+                </button>
+                <span className="tooltip-text">Search</span>
+            </div>
         </div>
     )
 }
