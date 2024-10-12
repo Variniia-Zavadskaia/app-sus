@@ -1,5 +1,5 @@
 const {useEffect, useState, useRef} = React
-const {Link, useSearchParams, Outlet} = ReactRouterDOM
+const {useSearchParams} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
@@ -78,6 +78,12 @@ export function MailIndex() {
       filtered = filtered.filter((mail) => mail.isRead === filterBy.isRead)
     }
 
+    if (filterBy.sortBy === 'date') {
+      filtered.sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt))
+    } else if (filterBy.sortBy === 'title') {
+      filtered.sort((a, b) => a.subject.localeCompare(b.subject))
+    }
+
     setFilteredMails(filtered)
   }
 
@@ -108,9 +114,7 @@ export function MailIndex() {
   // Update mail status without reloading all mails
   function updateMailStatus(id, updatedMail) {
     const updatedMails = mails.map((mail) => (mail.id === id ? updatedMail : mail))
-    setMails(updatedMails) // Update the state with the new status
-
-    // Persist to storage after updating state
+    setMails(updatedMails)
     mailService
       .update('mailDB', updatedMail)
       .then(() => {
@@ -133,7 +137,14 @@ export function MailIndex() {
   return (
     <section className="mail-index">
       <header className="mail-header-section ">
-        <MailHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} openMenu={openMenu} />
+        <MailHeader
+          filterBy={filterBy}
+          onSetFilterBy={onSetFilterBy}
+          isMenuOpen={isMenuOpen}
+          openMenu={openMenu}
+          mails={filteredMails}
+          updateMailStatus={updateMailStatus}
+        />
       </header>
       <section className="mail-content-wrapper">
         <aside className="mail-folder-list">
@@ -146,7 +157,7 @@ export function MailIndex() {
           />{' '}
         </aside>
         <main className="mail-list-container">
-          <MailList mails={mails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
+          <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
           {isComposeOpen && <AddMail onClose={toggleCompose} />}
         </main>
       </section>

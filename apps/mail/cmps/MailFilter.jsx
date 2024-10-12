@@ -1,50 +1,59 @@
 const {useState, useEffect} = React
 
-export function MailFilter({filterBy, onSetFilterBy}) {
+export function MailFilter({filterBy, onSetFilterBy, filteredMails, updateMailStatus}) {
   const [filterByToEdit, setFilterByToEdit] = useState({...filterBy})
-
+  const [isMoreOptionsOpen, setIsMoreOptionsOpen] = useState(false)
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [sortByDate, setSortByDate] = useState(false)
+  const [sortByTitle, setSortByTitle] = useState(false)
   useEffect(() => {
     onSetFilterBy(filterByToEdit)
   }, [filterByToEdit])
 
   function handleChange({target}) {
-    console.log('target', target)
-
     const {name, value, type, checked} = target
 
     if (type === 'checkbox') {
-      // Handle checkboxes (isRead and sent)
-      if (name === 'sortBy') {
-        // For sortBy, clear previous selection
-        setFilterByToEdit((prev) => ({
-          ...prev,
-          sortBy: prev.sortBy === value ? null : value, // Toggle selection
-        }))
-      } else {
-        setFilterByToEdit((prev) => ({
-          ...prev,
-          [name]: checked,
-        }))
-      }
+      setFilterByToEdit((prev) => ({
+        ...prev,
+        [name]: checked,
+      }))
     } else {
-      // Handle text input
       setFilterByToEdit((prev) => ({
         ...prev,
         [name]: value,
       }))
     }
   }
-  function handleFolderChange({target}) {
-    const {value} = target
+
+  function handleStatusChange(eventOrValue) {
+    const value = typeof eventOrValue === 'string' ? eventOrValue : eventOrValue.target.value
+    setStatusFilter(value)
+
     setFilterByToEdit((prev) => ({
       ...prev,
-      folder: value, // Update folder filter
+      isRead: value === 'all' ? null : value === 'read', // `null` for all, `true` for read, `false` for unread
     }))
+
+    if (value === 'date') {
+      setSortByDate(true)
+      setSortByTitle(false)
+    } else if (value === 'title') {
+      setSortByTitle(true)
+      setSortByDate(false)
+    } else {
+      setSortByDate(false)
+      setSortByTitle(false)
+    }
   }
 
   function onSubmit(ev) {
     ev.preventDefault()
     onSetFilterBy(filterByToEdit)
+  }
+
+  function toggleMoreOptions() {
+    setIsMoreOptionsOpen((prev) => !prev)
   }
 
   return (
@@ -62,12 +71,32 @@ export function MailFilter({filterBy, onSetFilterBy}) {
                 placeholder="Search mails..."
                 onChange={(ev) => onSetFilterBy({search: ev.target.value})}
               />
-              <button className="more-filter-option">
+              <button className="more-filter-option" onClick={toggleMoreOptions}>
                 <i className="fa-solid fa-sliders" title="Show more search options"></i>
               </button>
             </div>
           </div>
         </label>
+        {isMoreOptionsOpen && (
+          <section className="more-options">
+            <div className="sort-buttons">
+              <button className={sortByDate ? 'sorted' : ''} type="button" onClick={() => handleStatusChange('date')}>
+                Sort by Date
+              </button>
+              <button className={sortByTitle ? 'sorted' : ''} type="button" onClick={() => handleStatusChange('title')}>
+                Sort by Title
+              </button>
+            </div>
+
+            <div className="status-filter">
+              <select name="status" value={statusFilter} onChange={handleStatusChange}>
+                <option value="all">All</option>
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
+              </select>
+            </div>
+          </section>
+        )}
       </div>
     </form>
   )

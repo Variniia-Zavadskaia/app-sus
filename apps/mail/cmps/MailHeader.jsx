@@ -1,6 +1,6 @@
 import {MailFilter} from './MailFilter.jsx'
 
-export function MailHeader({filterBy, onSetFilterBy, openMenu}) {
+export function MailHeader({filterBy, onSetFilterBy, openMenu, filteredMails ,updateMailStatus}) {
   return (
     <div className="mail-header">
       <div className="header-nav-logo">
@@ -20,7 +20,7 @@ export function MailHeader({filterBy, onSetFilterBy, openMenu}) {
         <div className="empty-place"></div>
       </div>
       <div className="mail-filter-container ">
-        <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+        <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} mails={filteredMails} updateMailStatus={updateMailStatus}/>
         <i className="fa-regular fa-circle-question" title="Support"></i>
         <i className="fa-solid fa-gear" title="Settings"></i>
       </div>

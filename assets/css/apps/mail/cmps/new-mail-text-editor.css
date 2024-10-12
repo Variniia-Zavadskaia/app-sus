@@ -46,9 +46,6 @@ button:hover {
   opacity: 0.8;
 }
 
-select {
-  padding: 5px;
-}
 
 .additional-controls select {
   border-radius: 2px;
