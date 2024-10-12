@@ -15,9 +15,6 @@ export function NoteDetails({ note, onClose, onSaveNote, onRemoveNote }) {
                     note={note} 
                     onSaveNote={onSaveNote} 
                     onRemoveNote={removeNote}/>
-                <div className="modal-actions">
-                    <button onClick={onClose}>Close</button>
-                </div>
             </div>
         </div>
     );

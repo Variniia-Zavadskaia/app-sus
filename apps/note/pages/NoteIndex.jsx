@@ -63,16 +63,22 @@ export function NoteIndex() {
     };
 
     function onSaveNote(noteToSave) {
-        setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
         closeEditModal()
-        noteService.save(noteToSave)
-            .then(() => {
-                showSuccessMsg('note has successfully saved!')
-            })
-            .catch(() => {
-                console.error('Could not save note:', err)
-                showErrorMsg(`Couldn't save note`)
-            })
+        if (noteToSave.id && noteToSave.id !== '') {
+            setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
+            noteService.save(noteToSave)
+                .then(() => {
+                    showSuccessMsg('note has successfully saved!')
+
+                })
+                .catch(() => {
+                    console.error('Could not save note:', err)
+                    showErrorMsg(`Couldn't save note`)
+                })
+        }
+        else {
+            onAddNote(noteToSave)
+        }
     }
 
     function onAddNote(noteToAdd) {
