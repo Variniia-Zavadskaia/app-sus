@@ -8,7 +8,7 @@ export function NoteTodos(props) {
     }
 
     return (
-        <section className="todo-list">
+        <section className="todo-list-container">
             <h3>{props.info.title}</h3>
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={false} />
         </section>
@@ -41,11 +41,10 @@ export function EditNoteTodos(props) {
     };
 
     return (
-        <section className="todo-list">
+        <section className="todo-list-container">
             <input className="todo-title" onChange={handleTitleChange} value={props.info.title || ''} id='title' type="text" name='title' placeholder="Title" />
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo} />
             <button className="btn-todo" onClick={onAddTodo}> <i className="fa-solid fa-plus"></i><span>New Todo</span></button>
-            
         </section>
     );
 }

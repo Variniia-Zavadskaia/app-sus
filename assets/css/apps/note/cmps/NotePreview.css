@@ -14,13 +14,6 @@
     border-radius: 8px;
 }
 
-.note-preview ul {
-    list-style-type: none;
-    padding: 0;
-    align-content: start;
-    align-items: center;
-}
-
 .active-btn {
     display: flex;
     align-items: center;
