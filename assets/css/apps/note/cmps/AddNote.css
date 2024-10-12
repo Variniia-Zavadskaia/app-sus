@@ -1,3 +1,15 @@
+.add-note {
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .note-form {
     display: flex;
     flex-flow: column;
@@ -6,7 +18,7 @@
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
     padding: 5px;
-    background-color: var(--clr2bg);
+    /* background-color: var(--clr2bg); */
 }
 
 .note-show {
@@ -16,21 +28,31 @@
     /* margin-top: 0.5rem; */
 }
 
+.note-show input{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    /* margin-bottom: 15px; */
+}
+
 .note-show input, textarea {
     background: transparent;
     border: none;
     padding: 1rem;
-    color: rgb(0, 0, 0);
-    
+    color: rgb(0, 0, 0);  
 }
 
 .note-show input, textarea:focus {
+    border-color: #007bff;
     outline: none;
 }
 
 .note-show textarea{
     resize: none;
     height: max-content;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .note-cmpn{

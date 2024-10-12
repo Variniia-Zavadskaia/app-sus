@@ -1,52 +1,92 @@
-.todo-list {
-    max-width: 500px;
-    align-items: start;
-    /* margin: 10px auto; */
+.todo-list h3{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
-
-.todo-ul {
+.todo-list {
+    display: flex;
+    flex-flow: column;
     list-style-type: none;
     padding-top: 10px;
-    /* font-size: 20px; */
+    justify-content: space-between;
 }
 
-.todo-ul div {
-    display: flex;
-    align-items: center;
-    /* margin-bottom: 10px; */
-    /* padding: 3px; */
-    transition: background-color 0.3s ease;
-    justify-content: flex-start;
-    font-size: 17px;
+.todo-list input {
+    padding: 2px;
+    user-select: none;
+    border: none;
 }
 
 .todo-title {
     font-size: 20px;
 }
 
-.todo-ul div input[type="checkbox"] {
+.todo-list li {
+    display: flex; 
+    justify-content: space-between;
+    /* background-color: var(--clr2bg); */
+}
+
+.todo-list li.completed span {
+    text-decoration: line-through;
+}
+
+.todo-fill {
+    display: flex;
+}
+
+span {
+    font-size: 16px;
+}
+
+.todo-list input[type="checkbox"] {
+    margin-right: 10px;
+    width: 1rem;
+}
+
+.todo-show {
+    justify-content: space-between;
+
+}
+.todo-show input{
+    font-size: 16px;
+}
+.todo-list li.completed .todo-show input{
+    text-decoration: line-through;
+}
+
+/* .todo-ul div {
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    justify-content: flex-start;
+    font-size: 17px;
+} */
+
+
+
+/* .todo-ul div input[type="checkbox"] {
     margin-right: 10px;
     width: 50px;
-}
+} */
 
 .btn-todo {
-    border: #fff;
-    /* background-color: #fff; */
+    border: none;
+    background-color: var(--clr2bg);
     margin-left: 10px;
-    align-self: flex-end;
+
+    /* align-self: flex-end; */
 
 }
 
-
-.todo-ul div input {
+/* .todo-ul div input {
     font-size: 16px;
     color: #555;
     cursor: pointer;
     user-select: none;
     border: none;
-}
+} */
 
-input[type="checkbox"]:checked+input {
+/* input[type="checkbox"]:checked+input {
     text-decoration: line-through;
     color: #999;
 }
@@ -55,9 +95,9 @@ input[type="checkbox"]:checked+input::before {
     content: '✔';
     display: inline-block;
     margin-right: 8px;
-}
+} */
 
-span {
+/* span {
     padding-left: 10px;
 }
 
@@ -73,4 +113,4 @@ span {
     .todo-list li {
         padding: 8px;
     }
-}
+} */

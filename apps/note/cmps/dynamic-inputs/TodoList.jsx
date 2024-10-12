@@ -18,33 +18,36 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
     }
 
     return (
-        <div className="todo-ul ">
+        <ul className="todo-list">
             {todos && todos.length > 0 ? (
                 todos.map((todo, index) => (
-                    <div key={index} className={todo.doneAt ? 'completed' : ''} >
-                        <input
-                            type="checkbox"
-                            checked={todo.doneAt !== null}
-                            onChange={(ev) => toggleTodo(ev, index)}
-                        />
-                        {edit ? (
-                            <div className="todo-show">
-                                <input
-                                    id='todo-text'
-                                    name='todo-text'
-                                    type="text"
-                                    onChange={(ev) => handleTodoChange(ev, index)}
-                                    value={todo.txt || ''}
-                                />
-                            </div>
-                        ) : (<span>{todo.txt}</span>)}
+                    <li key={index} className={todo.doneAt ? 'completed' : ''} >
+                        <div className="todo-fill">
+                            <input
+                                type="checkbox"
+                                checked={todo.doneAt !== null}
+                                onChange={(ev) => toggleTodo(ev, index)}
+                            />
+                            {edit ? (
+                                <div className="todo-show">
+
+                                    <input
+                                        id='todo-text'
+                                        name='todo-text'
+                                        type="text"
+                                        onChange={(ev) => handleTodoChange(ev, index)}
+                                        value={todo.txt || ''}
+                                    />
+                                </div>
+                            ) : (<span>{todo.txt}</span>)}
+                        </div>
                         <div className="tooltip">
                             <button className="icon-button btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
                         </div>
-                    </div>
+                    </li>
                 ))
             ) : (<p></p>)}
-        </div>
+        </ul>
     )
 
 }

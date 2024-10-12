@@ -38,9 +38,9 @@ export function AddNote({ onAddNote }) {
     }
 
     return (
-        <div className="add-note" ref={formRef}>
+        <div className="add-note" >
             {noteType ? (
-                <div>
+                <div className='add-note-edit' ref={formRef}>
                     <NoteEdit note={noteToAdd} onSaveNote={onSubmit} />
                 </div>
             ) : (

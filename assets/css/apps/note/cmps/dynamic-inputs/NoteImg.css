@@ -1,0 +1,22 @@
+.note-img h3{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.note-img-input{
+   /* width: 560px; */
+   /* height: max-content; */
+}
+
+.note-img-input img{
+    max-width: fit-content;
+    max-height:fit-content;
+}
+
+.note-img-input input{
+    border: none;
+    font-size: 1.2rem;
+}
+.upload-img-btn input{  
+    font-size: 1rem;
+    border: none;
+}

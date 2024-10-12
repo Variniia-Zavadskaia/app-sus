@@ -1,7 +1,7 @@
 
 export function NoteTxt(props) {
     return (
-        <section>
+        <section className="note-txt">
             <h3>{props.info.title}</h3>
             <p>{props.info.txt}</p>
         </section>

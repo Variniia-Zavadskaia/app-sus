@@ -66,7 +66,7 @@ function getEmptyNoteTodo() {
     return { txt: '', doneAt: null }
 }
 
-function getEmptyNote(type = '', backgroundColor = '#e8f0fe') {
+function getEmptyNote(type = '', backgroundColor = '#fff') {
     return {
         type,
         isPinned: false,
@@ -112,6 +112,7 @@ function _createNote(type) {
     const note = getEmptyNote(type)
     note.id = makeId()
     note.createdAt = getRandomDate(new Date(2020, 0, 1), new Date());
+    note.style.backgroundColor = '#e8f0fe'
 
     switch (type) {
         case 'NoteTxt':

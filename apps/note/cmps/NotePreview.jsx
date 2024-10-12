@@ -22,13 +22,6 @@ export function NotePreview({ note, onRemoveNote, onEditNote, onSaveNote }) {
         <article className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
             <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
             <NoteFooter note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote}/>
-            {/* <section className="active-btn">
-                <button className="btn" onClick={onTogglePin}><i className={`fa-solid ${note.isPinned ? 'fa-thumbtack-slash' : 'fa-thumbtack'} `}></i></button>
-                <ColorInput onSetNoteStyle={onSetNoteStyle} currentColor={noteStyle.backgroundColor} />
-                <button className="btn"><i className="fa-solid fa-envelope"></i></button>
-                <button className="btn" onClick={() => onEditNote(note)}><i className="fa-solid fa-pen-to-square"></i></button>
-                <button className="btn" onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash-can"></i></button>
-            </section> */}
         </article>
     )
 }

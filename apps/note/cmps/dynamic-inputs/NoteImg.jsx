@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 
 export function NoteImg(props) {
     return (
-        <section>
+        <section className="note-img">
             <h3>{props.info.title}</h3>
             <img src={props.info.url} alt="" />
         </section>
@@ -51,7 +51,7 @@ export function EditNoteImg(props) {
     }
 
     return (
-        <div className="note-img-input">
+        <div className="note-img-input ">
             <input onChange={handleChange} value={props.info.title || ''}
                 id='title' type="text" name='title' />
             <div className="upload-img-btn">

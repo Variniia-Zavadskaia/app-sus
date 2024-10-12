@@ -35,7 +35,7 @@ export function NoteEdit({ note, onRemoveNote = null, onSaveNote }) {
                     cmpType={noteToEdit.type}
                     info={noteToEdit.info}
                     onChangeInfo={onChangeInfo} />
-                <section className="form-actions">
+                <section className="note-form-actions">
                     <NoteFooter
                         note={noteToEdit}
                         onRemoveNote={onRemoveNote}

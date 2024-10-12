@@ -1,21 +1,21 @@
-.note-edite .note-form {
+/* .note-form {
     display: flex;
     flex-flow: column;
-    /* width: 540px; */
+    width: 540px;
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
-    background-color: var(--clr2bg);
-}
+    background-color:#fff;
+} */
 
-.form-actions{
+.note-form-actions{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 5px;
     padding-right: 5px;
 }
-.form-actions .icon-button{
+.note-form-actions .icon-button{
     padding: 0px 10px;
 }
 .close-btn{
