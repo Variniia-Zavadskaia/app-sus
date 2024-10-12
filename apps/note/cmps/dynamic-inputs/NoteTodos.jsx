@@ -44,7 +44,7 @@ export function EditNoteTodos(props) {
         <section className="todo-list">
             <input className="todo-title" onChange={handleTitleChange} value={props.info.title || ''} id='title' type="text" name='title' placeholder="Title" />
             <TodoList todos={props.info.todos} onChangeTodo={onChangeTodo} edit={true} onRemoveTodo={onRemoveTodo} />
-            <button className="btn-todo" onClick={onAddTodo}> <i className="fa-solid fa-plus"></i><span onClick={onAddTodo}>New Todo</span></button>
+            <button className="btn-todo" onClick={onAddTodo}> <i className="fa-solid fa-plus"></i><span>New Todo</span></button>
             
         </section>
     );
