@@ -1,12 +1,12 @@
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {mailService} from '../services/mail.service.js'
-import {EmojiPicker} from './Emoji.jsx'
 import {TxtEditor} from './TxtEditor.jsx'
+
 const {useState} = React
 
-export function AddMail({onClose}) {
+export function AddMail({onClose, onMailAdded}) {
   const [mailToSave, setMailToSave] = useState(mailService.getEmptyMail())
-  const [textColor, setTextColor] = useState('#000000')
+  const [textColor, setTextColor] = useState('#000000') //DEfault color txt
   const [fontFamily, setFontFamily] = useState('Arial') // Default font
   const [fontSize, setFontSize] = useState(16) // Default font size
   const [textAlign, setTextAlign] = useState('left') // Default text alignment
@@ -33,6 +33,7 @@ export function AddMail({onClose}) {
         console.log('Mail saved successfully:', savedMail)
         setMailToSave(mailService.getEmptyMail())
         showSuccessMsg('Sent mail')
+        onMailAdded(savedMail)
         onClose()
       })
       .catch((err) => {

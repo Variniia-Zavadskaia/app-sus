@@ -24,7 +24,7 @@
 }
 
 .logo {
-  width: clamp(25px, 15vw, 200px); 
+  width: clamp(25px, 6vw, 200px); 
   height: auto;
   font-size: clamp(16px, 5vw, 36px); 
 }

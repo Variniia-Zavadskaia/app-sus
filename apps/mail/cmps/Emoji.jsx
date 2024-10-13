@@ -3,7 +3,7 @@ const {useState} = React
 export function EmojiPicker({addEmoji}) {
   const [showEmojis, setShowEmojis] = useState(false)
 
-  // DONT OPEN REALLY LONG 
+  // DONT OPEN REALLY LONG
   const emojis = [
     '😀',
     '😁',
@@ -146,7 +146,6 @@ export function EmojiPicker({addEmoji}) {
     '🥈',
     '🥉',
     '🏅',
-    '🏵️',
     '🎖️',
     '🏵️',
     '🏋️',
@@ -181,7 +180,6 @@ export function EmojiPicker({addEmoji}) {
     '🐙',
     '🦑',
     '🦋',
- 
   ]
   function handleEmojiClick(emoji) {
     addEmoji(emoji)

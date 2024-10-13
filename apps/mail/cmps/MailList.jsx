@@ -18,7 +18,7 @@ export function MailList({mails, updateMailStatus, onRemoveMail, showArchived })
     navigate(`/mail/${mail.id}`) // Pass `onRemoveMail` here if needed
   }
 
-  const filteredMails = mails.filter((mail) => (showArchived ? mail.removedAt : !mail.removedAt));
+  const filteredMails = mails.filter((mail) => (showArchived ? mail.removedAt : !mail.removedAt))
 
   if (!filteredMails.length) return <p>No mails to display</p>
 

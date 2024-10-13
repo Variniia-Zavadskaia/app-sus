@@ -6,7 +6,8 @@
   height: calc(100vh - 80px); /* Adjust height based on header size */
   overflow-y: auto; /* Enable scrolling if content overflows */
   background-color: white;
-  padding: 0 10px;
+  padding: 0 20px;
+  overflow-x: hidden;
 }
 
 .mail-header-section {
