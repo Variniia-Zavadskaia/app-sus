@@ -4,7 +4,7 @@
   height: calc(100vh - 120px);
   background-color: var(--primary-mail-bgc);
   padding-top: 10px;
-  top: 130px;
+  top: 124px;
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 999;
@@ -61,7 +61,7 @@ ul li p {
   font-weight: bold;
   min-width: 35px;
   max-width: 56px;
-  height: 56px;
+  height: 50px;
   box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
   cursor: pointer;
 }
@@ -183,8 +183,7 @@ li:hover {
 
 @media (max-width: 600px) {
   .label-folder-list {
-    width: 40px; /* Set a minimum width for mobile */
-    padding-top: 10px; /* Reduce top padding on smaller screens */
+    width: 40px; 
   }
   .compose-btn {
     max-width: 30px;

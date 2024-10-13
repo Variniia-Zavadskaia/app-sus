@@ -92,6 +92,7 @@ export function AddMail({onClose}) {
             value={mailToSave.to}
             onChange={handleChange}
             required
+            autoComplete="off"
           />
         </div>
 
@@ -107,6 +108,7 @@ export function AddMail({onClose}) {
             id="subject"
             value={mailToSave.subject}
             onChange={handleChange}
+            autoComplete="off"
           />
         </div>
 

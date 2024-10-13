@@ -1,16 +1,36 @@
 .mail-info-page {
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center horizontally */
-  width: 100%; /* Full width */
-  height: calc(100vh - 80px); /* Adjust height based on header size */
-  overflow-y: auto; /* Enable scrolling if content overflows */
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%; 
+  height: calc(100vh - 60px); 
+  overflow-y: auto; 
   background-color: white;
-  padding: 0 10px;
+  padding: 0 20px;
+  overflow-x: hidden;
+}
+
+
+.mail-info-page::-webkit-scrollbar {
+  width: 3px;
+  height:5px ;
+}
+
+.mail-info-page::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.mail-info-page::-webkit-scrollbar-thumb {
+  background: #868788; 
+  border-radius: 4px;
+}
+
+.mail-info-page::-webkit-scrollbar-thumb:hover {
+  background: #868788; 
 }
 
 .mail-header-section {
-  width: 100%;
+  width: 109%;
 }
 
 .mail-action-nav-bar {
