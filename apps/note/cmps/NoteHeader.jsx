@@ -40,7 +40,7 @@ export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
 
                 <div className="tooltip">
                     <button className="icon-button prof-button" aria-label="Account">
-                    <i class="fa-regular fa-circle-user"></i>
+                    <i className="fa-regular fa-circle-user"></i>
                     </button>
                     <span className="tooltip-text">Account</span>
                 </div>

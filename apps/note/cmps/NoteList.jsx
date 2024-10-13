@@ -2,23 +2,26 @@ import { NotePreview } from "./NotePreview.jsx";
 
 
 export function NoteList({ notes, onRemoveNote, onEditNote, onSaveNote }) {
+    const pinnedExists = notes.findIndex(note => note.isPinned) !== -1
+    const unpinnedExists =  notes.findIndex(note => !note.isPinned) !== -1
+
     return (
         <div className="note-container  " >
                 <div className="pinned " >
-                    <h4> Pinned </h4>
+                    {pinnedExists && <h4> Pinned </h4> } 
                     <div className="note-layout" >
                         {notes.filter(note => note.isPinned).map(note =>
-                            <div key={note.id} className="note-item note-pinned">
+                            <div key={note.id} className="note-pinned">
                                 <NotePreview note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote} />
                             </div>
                         )}
                     </div>
                 </div>
                 <div className="unpinned " >
-                    <h4> Others</h4>
+                    {pinnedExists && unpinnedExists && <h4> Others</h4>}
                     <div className="note-layout" >
                         {notes.filter(note => !note.isPinned).map(note =>
-                            <div key={note.id} className="note-item note-unpinned">
+                            <div key={note.id} className="note-unpinned">
                                 <NotePreview note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote} />
                             </div>
                         )}

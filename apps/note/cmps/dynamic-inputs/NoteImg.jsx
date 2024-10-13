@@ -37,7 +37,7 @@ export function EditNoteImg(props) {
 
     function loadImageFromInput(ev) {
         const reader = new FileReader()
-    
+
         function onImageReady(img) {
             props.onChangeInfo('url', img.src);
         }
@@ -55,10 +55,16 @@ export function EditNoteImg(props) {
             <input onChange={handleChange} value={props.info.title || ''}
                 id='title' type="text" name='title' />
             <div className="upload-img-btn">
-                <input type="file" className="file" name="image"
-                    onChange={loadImageFromInput} accept="image/*" />
-            </div>
-            <div id="fileList">
+                <div className="tooltip">
+                    <button className="icon-button img" aria-label="Add Image">
+                        <i className="fa-regular fa-image"></i>
+                    <input type="file" className="file hidden-input" name="image"
+                        onChange={loadImageFromInput} accept="image/*" />
+                    </button>
+                    <span className="tooltip-text">Add Image</span>
+                </div>
+                <div id="fileList">
+                </div>
                 {!file ? (
                     <img src={props.info.url} alt="" />
                 ) : (

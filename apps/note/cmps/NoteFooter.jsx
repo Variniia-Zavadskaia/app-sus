@@ -1,6 +1,6 @@
 const { useState } = React
 const { useNavigate } = ReactRouterDOM
-import { ColorInput } from "../../note/cmps/dynamic-inputs/ColorInput.jsx"
+import { ColorInput } from "./ColorInput.jsx"
 
 export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
 
@@ -23,8 +23,8 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
         if (note.type === 'NoteTxt') {
             const title = encodeURIComponent(note.info.title);
             const body = encodeURIComponent(note.info.txt);
-            // Redirect to MissKeep with query params
-            navigate(`/mail/?title=${title}&body=${body}`);
+
+            navigate(`/mail?status=inbox&folder=inbox?title=${title}&body=${body}`);
         }
     };
 
@@ -42,10 +42,10 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
 
     function onRestore() {
         console.log('test');
-        
+
         if (note.folder === "Trash" && note.folderBeforeRemove) {
             note.folder = note.folderBeforeRemove;
-            note.folderBeforeRemove = null; 
+            note.folderBeforeRemove = null;
             onSaveNote(note);
         }
     }
@@ -84,6 +84,8 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                         <span className="tooltip-text">Send to Mail</span>
                     </div>
 
+
+
                     {onEditNote !== null &&
                         <div className="tooltip">
                             <button className="icon-button" onClick={() => onEditNote(note)} aria-label="Edit">
@@ -105,6 +107,13 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                             </button>
                             <span className="tooltip-text">Return from archive</span>
                         </div>)}
+
+                    <div className="tooltip">
+                        <button className="icon-button" onClick={handleSendToMail} aria-label="Send">
+                           <i className="fa-solid fa-copy"></i>
+                        </button>
+                        <span className="tooltip-text">Send to Mail</span>
+                    </div>
 
                     {onRemoveNote !== null &&
                         <div className="tooltip">

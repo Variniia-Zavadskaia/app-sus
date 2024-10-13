@@ -2,6 +2,7 @@ const { useEffect, useState } = React
 const { useSearchParams, useLocation, useNavigate } = ReactRouterDOM
 
 import { AddNote } from "../cmps/AddNote.jsx"
+import { AddMail } from "../../mail/cmps/AddMail.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteDetails } from "../cmps/NoteDetails.jsx"
 import { NoteHeader } from "../cmps/NoteHeader.jsx"
@@ -35,8 +36,8 @@ export function NoteIndex() {
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
-        const emailTitle = params.get('title') || '';
-        const emailBody = params.get('body') || '';
+        const mailTitle = params.get('title') || '';
+        const mailBody = params.get('body') || '';
         const noteId = params.get('noteID') || '';
         
         // If email data is present, show the modal and prefill the form
@@ -44,13 +45,19 @@ export function NoteIndex() {
             const noteToEdit = notes.find(note => note.id == noteId)
             openEditModal(noteToEdit)
         }
-        else if (emailTitle || emailBody) {
+        else if (mailTitle || mailBody) {
             const newNote = noteService.getEmptyNote('NoteTxt')
-            newNote.info.title = emailTitle
-            newNote.info.txt = emailBody
+            newNote.info.title = mailTitle
+            newNote.info.txt = mailBody
             openEditModal(newNote)
         }
     }, [location])
+
+    // function handleChange({target}) {
+        
+    //     const {name, value} = target
+    //     setMailToSave((prevMail) => ({...prevMail, [name]: value}))
+    //   }
 
     function sendNoteEditQuery(noteToEdit) {
         navigate(`/note/?noteID=${noteToEdit.id}`);
