@@ -1,4 +1,4 @@
-const { useState } = React
+const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 import { ColorInput } from "./ColorInput.jsx"
 
@@ -24,7 +24,12 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
             const title = encodeURIComponent(note.info.title);
             const body = encodeURIComponent(note.info.txt);
 
-            navigate(`/mail?status=inbox&folder=inbox?title=${title}&body=${body}`);
+            navigate(
+                `/mail?status=inbox&folder=inbox?subject=${title}&body=${body}`,
+                {
+                    state: {title, body}
+                }
+            );
         }
     };
 

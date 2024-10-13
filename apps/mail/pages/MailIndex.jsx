@@ -1,5 +1,6 @@
 const {useEffect, useState, useRef} = React
 const {useSearchParams} = ReactRouterDOM
+const {useLocation} = ReactRouter
 
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
@@ -18,12 +19,27 @@ export function MailIndex() {
   const [unreadCount, setUnreadCount] = useState(0) //  unreadCount state
   const [isComposeOpen, setIsComposeOpen] = useState(false) // addMail form state
 
+  const [mailFromNote, setMailFromNote] = useState({title: '', body: ''});
+
   const mailsRef = useRef([]) //to track the curr state
   const initialMailsRef = useRef([]) // to store the initial state
+
+  const location = useLocation()
+
+  useEffect(() => {
+    console.log(mailFromNote)
+  }, [mailFromNote])
 
   useEffect(() => {
     loadMails()
     setSearchPrms(getTruthyValues(filterBy))
+    if (location.state) {
+      setMailFromNote(location.state);
+      console.log(mailFromNote)
+      setIsComposeOpen(true)
+    }
+    console.log('jjjj');
+    
   }, [filterBy])
 
   function loadMails() {
@@ -133,6 +149,8 @@ export function MailIndex() {
     return mails.filter((mail) => mail.isRead === false).length
   }
 
+  
+
   if (!mails.length) return <h1>Loading...</h1>
   return (
     <section className="mail-index">
@@ -158,7 +176,7 @@ export function MailIndex() {
       <section className="mail-content-wrapper">
         <main className="mail-list-container">
           <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
-          {isComposeOpen && <AddMail onClose={toggleCompose} />}
+          {isComposeOpen && <AddMail onClose={toggleCompose} data={mailFromNote} />}
         </main>
       </section>
     </section>

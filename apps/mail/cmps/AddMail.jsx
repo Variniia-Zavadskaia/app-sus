@@ -2,14 +2,24 @@ import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.
 import {mailService} from '../services/mail.service.js'
 import {TxtEditor} from './TxtEditor.jsx'
 
-const {useState} = React
+const {useLocation} = ReactRouter
+const {useState, useEffect} = React
 
-export function AddMail({onClose, onMailAdded}) {
+export function AddMail({onClose, onMailAdded, data}) {
   const [mailToSave, setMailToSave] = useState(mailService.getEmptyMail())
   const [textColor, setTextColor] = useState('#000000') //DEfault color txt
   const [fontFamily, setFontFamily] = useState('Arial') // Default font
   const [fontSize, setFontSize] = useState(16) // Default font size
   const [textAlign, setTextAlign] = useState('left') // Default text alignment
+   
+  // const location = useLocation()
+  useEffect(() => {
+    // inside state: title and body of new mail from note 
+    console.log('mail from note', data)
+    if(data){
+      setMailToSave({...mailToSave, subject: data.title, body: data.body})
+    }
+  }, [])
 
   function handleChange({target}) {
     const {name, value} = target

@@ -1,5 +1,5 @@
 const {useEffect, useState} = React
-const {useParams, useNavigate} = ReactRouter
+const {useParams, useNavigate, useLocation } = ReactRouter
 const {Link, useSearchParams} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
@@ -19,6 +19,7 @@ export function MailDetails() {
 
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     setSearchPrms(getTruthyValues(filterBy))
@@ -60,6 +61,23 @@ export function MailDetails() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  function sendToKeepApp() {
+    if (mail) {
+      const { subject, body } = mail;
+      const noteData = {
+        title: subject,
+        content: body,
+      };
+
+      console.log('Sending to KeepApp:', noteData);
+
+      // Redirect to KeepApp with the mail details in the URL
+      // window.location.href = ``
+      
+      showSuccessMsg('Mail details sent to KeepApp!')
+    }
+  }
+
   if (!mail) return <h1>Loading...</h1>
 
   const {subject, body, from, to, sentAt, isRead, prevMailId, nextMailId} = mail
@@ -67,7 +85,7 @@ export function MailDetails() {
 
   return (
     <section className="mail-info-page ">
-      <section className="mail-header-section ">
+      <section className="mail-details-header-section ">
         <MailHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} openMenu={openMenu} />
         <MailFolderList filterBy={filterBy} onSetFilterBy={onSetFilterBy} isMenuOpen={isMenuOpen} />
       </section>
@@ -91,10 +109,15 @@ export function MailDetails() {
           <div className="unread ">
             <i className="fa-regular fa-envelope" title="Mark as Unread"></i>
           </div>
-          <div className="unread">
+
+          <div className="mail-details-sent-mail ">  
+          <i className="fa-solid fa-share-from-square" title="Send to KeepApp" onClick={sendToKeepApp}></i>
+          </div>
+
+          <div className="move-to">
             <i className="fa-regular fa-folder-closed" title="Move to"></i>
           </div>
-          <div className="unread">
+          <div className="more">
             <i className="fa-solid fa-ellipsis-vertical" title="More"></i>
           </div>
         </div>
