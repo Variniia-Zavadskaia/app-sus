@@ -5,17 +5,18 @@
     padding: 16px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
     overflow: hidden;
+    /* width: 250px; */
 }
 
-.note-preview:nth-child(2) {
-    grid-row: span 2;
+.note-preview:nth-child(odd) {
+    grid-row: span 2; 
 }
 
-.note-preview:nth-child(5) {
-    grid-row: span 2;
+.note-preview:nth-child(even) {
+    grid-row: span 1; 
 }
 
-.note:hover {
+.note-preview:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 

@@ -35,7 +35,6 @@
  .note-body {
      display: flex;
      background-color: var(--clr2bg);
-     justify-content: space-evenly;
      overflow: auto;
      height: calc(100vh - 130px);
  }
@@ -44,52 +43,41 @@
      width: calc(100vh - 100px);
      left: 100px;
      padding: 0.25em 0.5rem;
-     /* align-items: stretch; */
  }
 
- @media only screen and (min-width: 1024px) {
-    .note-header {
-        height: 70px;
-        padding: 1rem;
-    }
+ @media (min-width: 1024px) {
+     .note-header {
+         height: 70px;
+         padding: 1rem;
+     }
 
-    .note-content {
-        width: calc(100vw - 200px);
-        padding: 1rem;
-    }
-}
+     .note-content {
+         width: calc(100vw - 200px);
+         padding: 1rem;
+     }
+ }
 
- @media only screen and (min-width: 768px) and (max-width: 1024px)   {
-    .note-header {
-        height: 60px;
-        padding: 0.5rem;
-    }
+ @media (min-width: 768px) {
+     .note-header {
+         height: 60px;
+         padding: 0.5rem;
+     }
 
-    /* .note-body {
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 0.5rem;
-    } */
+     .note-content {
+         width: calc(100vw - 170px);
+         padding: 1rem;
+     }
+ }
 
-    .note-content {
-        width: calc(100vw - 200px);
-        padding: 1rem;
-    }
-}
+ @media (max-width:480px) {
+     .note-header {
+         height: 60px;
+         padding: 0.5rem;
+     }
 
-@media (max-width:480px) {
-    .note-header {
-        height: 50px;
-        padding: 0.25rem;
-    }
-
-    /* .note-body {
-        flex-direction: column;
-        padding: 0.25rem;
-    } */
-
-    .note-content {
-        width: calc(100vw - 300px);
-        padding: rem;
-    }
-}
+     .note-content {
+         width: calc(100vw - 130px);
+         padding: 2rem;
+         justify-self: center;
+     }
+ }

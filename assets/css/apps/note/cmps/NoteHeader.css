@@ -89,16 +89,16 @@
 }
 
 .select-wrapper {
-    position: relative; 
-    display: inline-block; 
+    position: relative;
+    display: inline-block;
 }
 
 .hidden-select {
-    position: absolute; 
-    opacity: 0; 
-    width: 100%; 
-    height: 100%; 
-    cursor: pointer; 
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 /* Button Style */
@@ -128,25 +128,48 @@
     display: flex;
     align-items: center;
 }
-.prof-button{
+
+.prof-button {
     font-size: 1.5rem;
 }
 
 /* Small screens: Phones (max-width: 600px) */
-/* @media (max-width:480px) {
+@media (max-width:480px) {
     .note-header-nav {
-        padding: 0 10px;
-        flex-direction: column; Stack elements vertically
-        align-items: flex-start;
+        align-items: center;
     }
 
-    .logo-area {
-        margin-bottom: 10px; /* Add spacing between logo and search */
-    
+    .search-area {
+        width: 40%;
+        height: 40px;
+    }
+
+    .search-area .search-input-noute {
+        width: 40%;
+        font-size: 0.9rem;
+    }
+
+    .logo-img {
+        margin-left: 5px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .tooltip-text {
+        font-size: 0.7rem;
+    }
+
+    .icon-button {
+        font-size: 1.2rem;
+    }
+}
+
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
-/* @media only screen and (min-width: 768px) and (max-width: 1024px)  {
+@media (min-width: 768px) {
     .note-header-nav {
-        padding: 0 15px;
+        /* padding: 0 px; */
     }
 
     .search-area {
@@ -154,14 +177,14 @@
     }
 
     .settings-area {
-        margin-right: -1rem; 
+        margin-right: -1rem;
     }
 
     .menu-button {
-        font-size: 1.3rem; 
+        font-size: 1.3rem;
     }
-} */
+}
 
-/* Large screens: Desktops (min-width: 1024px) */
+@media (max-width: 1024px) {
 
-
+}

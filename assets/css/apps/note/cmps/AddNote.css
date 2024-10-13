@@ -34,6 +34,7 @@
 /* Media Query for Very Small Devices */
 @media (max-width: 480px) {
     .note-show {
+        /* flex-direction: column; */
         padding: 5px;
         align-items: stretch;
         
@@ -42,10 +43,13 @@
     .note-show input,
     textarea {
         padding: 0.3rem;
+        width: 100%;
     }
 
     .note-show button {
         margin-top: 5px;
+        width: 100%;
+        align-self: center;
     }
 }
 
@@ -64,6 +68,7 @@
     .note-show {
         /* flex-direction: column; */
         align-items: stretch;
+        padding: 10px;
     }
 
     .note-show input,
