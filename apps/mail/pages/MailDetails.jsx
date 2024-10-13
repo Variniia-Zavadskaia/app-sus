@@ -1,5 +1,5 @@
 const {useEffect, useState} = React
-const {useParams, useNavigate, useLocation } = ReactRouter
+const {useParams, useNavigate, useLocation} = ReactRouter
 const {Link, useSearchParams} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
@@ -16,7 +16,6 @@ export function MailDetails() {
   const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   //   console.log(mailId, 'mailid from params')
-
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -63,17 +62,12 @@ export function MailDetails() {
 
   function sendToKeepApp() {
     if (mail) {
-      const { subject, body } = mail;
-      const noteData = {
-        title: subject,
-        content: body,
-      };
+      const {subject, body} = mail
+      // here you need to NAV it right 
+      navigate(`/note?subject=${subject}&body=${body}`, {
+        state: {subject, body},
+      })
 
-      console.log('Sending to KeepApp:', noteData);
-
-      // Redirect to KeepApp with the mail details in the URL
-      // window.location.href = ``
-      
       showSuccessMsg('Mail details sent to KeepApp!')
     }
   }
@@ -110,8 +104,8 @@ export function MailDetails() {
             <i className="fa-regular fa-envelope" title="Mark as Unread"></i>
           </div>
 
-          <div className="mail-details-sent-mail ">  
-          <i className="fa-solid fa-share-from-square" title="Send to KeepApp" onClick={sendToKeepApp}></i>
+          <div className="mail-details-sent-mail ">
+            <i className="fa-solid fa-share-from-square" title="Send to KeepApp" onClick={sendToKeepApp}></i>
           </div>
 
           <div className="move-to">
