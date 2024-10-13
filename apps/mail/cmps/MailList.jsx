@@ -1,9 +1,10 @@
-const {useNavigate, Outlet, Link } = ReactRouterDOM
+const {useNavigate } = ReactRouterDOM
 
 
 import {MailPreview} from './MailPreview.jsx'
 
 export function MailList({mails, updateMailStatus, onRemoveMail, showArchived }) {
+  console.log('Rendering MailList with mails:', mails)
   
   const navigate = useNavigate()
 
@@ -15,7 +16,7 @@ export function MailList({mails, updateMailStatus, onRemoveMail, showArchived })
     updateMailStatus(mail.id, updatedMail)
 
     // Navigate to mail details
-    navigate(`/mail/${mail.id}`) // Pass `onRemoveMail` here if needed
+    navigate(`/mail/${mail.id}`) 
   }
 
   const filteredMails = mails.filter((mail) => (showArchived ? mail.removedAt : !mail.removedAt))

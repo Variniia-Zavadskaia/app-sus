@@ -2,7 +2,6 @@ import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.
 import {mailService} from '../services/mail.service.js'
 import {TxtEditor} from './TxtEditor.jsx'
 
-const {useLocation} = ReactRouter
 const {useState, useEffect} = React
 
 export function AddMail({onClose, onMailAdded, data}) {
@@ -20,6 +19,12 @@ export function AddMail({onClose, onMailAdded, data}) {
       setMailToSave({...mailToSave, subject: data.title, body: data.body})
     }
   }, [])
+
+    useEffect(() => {
+    if (initialBody) {
+      setMailToSave((prevMail) => ({ ...prevMail, body: initialBody })); // Set initial body text
+    }
+  }, [initialBody])
 
   function handleChange({target}) {
     const {name, value} = target
@@ -75,7 +80,6 @@ export function AddMail({onClose, onMailAdded, data}) {
     }
   }
 
-  // const fontSizeValue = fontSize === 'Small' ? 16 : fontSize === 'Medium' ? 20 : 24 // Map to numeric values
 
   return (
     <section className="add-mail">
@@ -103,6 +107,7 @@ export function AddMail({onClose, onMailAdded, data}) {
             value={mailToSave.to}
             onChange={handleChange}
             required
+            autoComplete="off"
           />
         </div>
 
@@ -118,6 +123,7 @@ export function AddMail({onClose, onMailAdded, data}) {
             id="subject"
             value={mailToSave.subject}
             onChange={handleChange}
+            autoComplete="off"
           />
         </div>
 

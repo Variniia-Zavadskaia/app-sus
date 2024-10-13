@@ -1,6 +1,13 @@
 import {MailFilter} from './MailFilter.jsx'
+const { useNavigate} = ReactRouter
+
 
 export function MailHeader({filterBy, onSetFilterBy, openMenu, filteredMails ,updateMailStatus}) {
+  const navigate = useNavigate()
+  
+  function goMailIndexPage(){
+    navigate('/mail')
+  }
   return (
     <div className="mail-header">
       <div className="header-nav-logo">
@@ -14,7 +21,7 @@ export function MailHeader({filterBy, onSetFilterBy, openMenu, filteredMails ,up
             <i className="fa-solid fa-bars"></i>
           </button>
         </div>
-        <div className="logo">
+        <div className="logo" onClick={goMailIndexPage}>
           <i className="fa-solid fa-m"></i>
         </div>
         <div className="empty-place"></div>

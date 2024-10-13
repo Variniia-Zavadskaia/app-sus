@@ -80,7 +80,17 @@
   background-color: var(--readed-mail-color);
 }
 
-.delete-btn {
+.action-hover{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.delete-btn  {
+  display: none;
+}
+
+.unread-btn {
   display: none;
 }
 
@@ -89,5 +99,8 @@
 }
 
 .mail-review:hover .delete-btn {
+  display: block;
+}
+.mail-review:hover .unread-btn {
   display: block;
 }

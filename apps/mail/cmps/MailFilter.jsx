@@ -70,6 +70,7 @@ export function MailFilter({filterBy, onSetFilterBy, filteredMails, updateMailSt
                 id="search"
                 placeholder="Search mails..."
                 onChange={(ev) => onSetFilterBy({search: ev.target.value})}
+                autoComplete="off"
               />
               <button className="more-filter-option" onClick={toggleMoreOptions}>
                 <i className="fa-solid fa-sliders" title="Show more search options"></i>

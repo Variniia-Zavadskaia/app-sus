@@ -35,7 +35,7 @@
 @import './apps/note/cmps/dynamic-inputs/ColorInput.css';
 
 @import './apps/mail/cmps/mail-header.css';
-@import './apps/mail/cmps/Mail-list.css'; 
+@import './apps/mail/cmps/mail-list.css'; 
 @import './apps/mail/cmps/Mail-filter.css'; 
 @import './apps/mail/cmps/mail-folder-list.css';
 @import './apps/mail/cmps/mail-details.css';
