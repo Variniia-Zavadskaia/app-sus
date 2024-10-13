@@ -1,9 +1,10 @@
 const { useState } = React
-export function SideBar({ isOpen }) {
+export function SideBar({ isOpen, onSetFolder }) {
 
     const [activeItem, setActiveItem] = useState("Notes");
     const handleItemClick = (item) => {
         setActiveItem(item); // Update the active item
+        onSetFolder(item)
     };
     return (
         <div className={`sidebar-notes ${isOpen ? 'open' : 'closed'}`}>

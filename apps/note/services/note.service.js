@@ -32,6 +32,10 @@ function query(filterBy = {}) {
                 notes = notes.filter(note => note.type.includes(filterBy.type))
                 console.log('Filtered notes by type:', notes);
             }
+            if(filterBy.folder){
+                notes = notes.filter(note => note.folder.includes(filterBy.folder))
+                console.log('Filtered notes by type:', notes);
+            }
             return notes
         })
 }
@@ -69,6 +73,7 @@ function getEmptyNoteTodo() {
 function getEmptyNote(type = '', backgroundColor = '#fff') {
     return {
         type,
+        folder: 'Notes',
         isPinned: false,
         style: {
             backgroundColor

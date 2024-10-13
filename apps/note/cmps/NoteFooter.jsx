@@ -28,6 +28,17 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
         }
     };
 
+    function onRemove() {
+        if (note.folder !== "Trash") {
+            note.folder = "Trash"
+            onSaveNote(note)
+        } else {
+            //ask user if 
+            // if yes - remove, else don'
+            onRemoveNote(note.id)
+        }
+    }
+
     return (
         <footer className="note-footer">
             {/* <section className="active-btn"> */}
@@ -61,7 +72,7 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                     
                 {onRemoveNote !== null &&
                     <div className="tooltip">
-                        <button className="icon-button" onClick={() => onRemoveNote(note.id)} aria-label="Remove">
+                        <button className="icon-button" onClick={onRemove} aria-label="Remove">
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
                         <span className="tooltip-text">Remove</span>

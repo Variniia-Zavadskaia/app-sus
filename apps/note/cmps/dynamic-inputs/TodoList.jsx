@@ -42,7 +42,10 @@ export function TodoList({ todos, onChangeTodo, edit, onRemoveTodo }) {
                             ) : (<span>{todo.txt}</span>)}
                         </div>
                         <div className="tooltip">
-                            <button className="icon-button btn-todo" onClick={() => onRemoveTodo(index)}><i className="fa-solid fa-xmark"></i></button>
+                            <button className="icon-button" onClick={() => onRemoveTodo(index)} aria-label="Remove">
+                                <i className="fa-solid fa-xmark"></i>
+                            </button>
+                            <span className="tooltip-text">Remove</span>
                         </div>
                     </li>
                 ))

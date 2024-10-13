@@ -19,6 +19,7 @@ export function NoteIndex() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [folder, setFolder] = useState('Notes')
 
 
     // Handling location for pre-filling notes from emails
@@ -26,6 +27,8 @@ export function NoteIndex() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        console.log();
+        
         loadNotes()
         setSearchPrms(getTruthyValues(filterBy))
     }, [filterBy])
@@ -127,6 +130,10 @@ export function NoteIndex() {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }
 
+    function  onSetFolder(folder) {
+        setFolder(folder)
+    }
+
     if (!notes) return <h1>Loading...</h1>
     return (
         <section className="note-index">
@@ -134,11 +141,11 @@ export function NoteIndex() {
                 <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} onMenuClick={onToggleSidebar} />
             </section>
             <div className="note-body">
-                <SideBar isOpen={isSidebarOpen} />
+                <SideBar isOpen={isSidebarOpen} onSetFolder={onSetFolder}/>
                 <div className="note-content">
                     <AddNote onAddNote={onAddNote} />
                     <NoteList
-                        notes={notes}
+                        notes={notes.filter(note => note.folder === folder)}
                         onRemoveNote={onRemoveNote}
                         onEditNote={sendNoteEditQuery}
                         onSaveNote={onSaveNote}

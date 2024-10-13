@@ -3,14 +3,14 @@
     background-color: var(--clr1bg);
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    max-width: 270px;
+    max-width: 240px;
     /* border-radius: 8px; */
     justify-content: center;
     align-items: center;
 }
 
 .note-preview img {
-    max-width: 250px;
+    max-width: 220px;
     border-radius: 8px;
 }
 
@@ -19,10 +19,6 @@
     align-items: center;
     justify-content: space-between;
     margin-inline: auto;
-}
-
-.btn {
-   align-self: center;
 }
 
 

@@ -2,7 +2,7 @@
     border-radius: 8px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     margin: 20px auto;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .note-form {
@@ -30,7 +30,6 @@
 
 .close-btn {
     border: none;
-    background-color: var(--clr2bg);
     align-self: flex-end;
     font-size: 16px;
     cursor: pointer;

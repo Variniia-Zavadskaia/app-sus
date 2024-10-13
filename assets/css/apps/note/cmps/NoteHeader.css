@@ -10,7 +10,7 @@
 }
 
 .tooltip {
-    /* position: relative; */
+    position: relative;
     display: inline-block;
 }
 
@@ -125,43 +125,24 @@ input:focus {
 }
 
 /* Small screens: Phones (max-width: 600px) */
-@media (max-width:480px) {
+/* @media (max-width:480px) {
     .note-header-nav {
         padding: 0 10px;
-        /* flex-direction: column; Stack elements vertically */
-        /* align-items: flex-start; */
+        flex-direction: column; Stack elements vertically
+        align-items: flex-start;
     }
 
     .logo-area {
         margin-bottom: 10px; /* Add spacing between logo and search */
-    }
-
-    .search-area {
-        width: 20%; 
-        margin-bottom: 10px;
-    }
-
-    .settings-area {
-        margin-right: 0;
-    }
-
-    .menu-button {
-        font-size: 1.2rem; /* Smaller button size */
-    }
-
-    .search-area input {
-        font-size: 0.9rem; /* Smaller text size */
-    }
-}
-
+    
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
-@media only screen and (min-width: 768px) and (max-width: 1024px)  {
+/* @media only screen and (min-width: 768px) and (max-width: 1024px)  {
     .note-header-nav {
         padding: 0 15px;
     }
 
     .search-area {
-        width: 50%; /* Reduce search area width */
+        width: 50%;
     }
 
     .settings-area {
@@ -169,26 +150,10 @@ input:focus {
     }
 
     .menu-button {
-        font-size: 1.3rem; /* Adjust button size for medium screens */
+        font-size: 1.3rem; 
     }
-}
+} */
 
 /* Large screens: Desktops (min-width: 1024px) */
-@media (min-width: 1024px) {
-    .note-header-nav {
-        padding: 0 5px;
-    }
 
-    .search-area {
-        width: 500px; /* Fixed width for search area */
-    }
-
-    .settings-area {
-        margin-right: -3rem;
-    }
-
-    .menu-button {
-        font-size: 1.5rem; /* Larger button for bigger screens */
-    }
-}
 
