@@ -4,7 +4,7 @@ import {TxtEditor} from './TxtEditor.jsx'
 
 const {useState, useEffect} = React
 
-export function AddMail({onClose, onMailAdded, data}) {
+export function AddMail({onClose,  data}) {
   const [mailToSave, setMailToSave] = useState(mailService.getEmptyMail())
   const [textColor, setTextColor] = useState('#000000') //DEfault color txt
   const [fontFamily, setFontFamily] = useState('Arial') // Default font
@@ -20,11 +20,7 @@ export function AddMail({onClose, onMailAdded, data}) {
     }
   }, [])
 
-    useEffect(() => {
-    if (initialBody) {
-      setMailToSave((prevMail) => ({ ...prevMail, body: initialBody })); // Set initial body text
-    }
-  }, [initialBody])
+ 
 
   function handleChange({target}) {
     const {name, value} = target
@@ -48,7 +44,6 @@ export function AddMail({onClose, onMailAdded, data}) {
         console.log('Mail saved successfully:', savedMail)
         setMailToSave(mailService.getEmptyMail())
         showSuccessMsg('Sent mail')
-        onMailAdded(savedMail)
         onClose()
       })
       .catch((err) => {
