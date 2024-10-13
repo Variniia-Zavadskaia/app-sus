@@ -45,7 +45,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    /* padding: 8px; */
+    padding: 10px;
 }
 
 .logo-img {
@@ -98,7 +98,7 @@ input:focus {
     font-size: 1.2rem;
     margin: 0 8px;
     color: #5f6368;
-    /* padding: 10px; */
+    padding: 10px;
 }
 
 .icon-button:hover {
@@ -125,7 +125,7 @@ input:focus {
 }
 
 /* Small screens: Phones (max-width: 600px) */
-@media (max-width: 600px) {
+@media (max-width:480px) {
     .note-header-nav {
         padding: 0 10px;
         /* flex-direction: column; Stack elements vertically */
@@ -155,7 +155,7 @@ input:focus {
 }
 
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
-@media (min-width: 600px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .note-header-nav {
         padding: 0 15px;
     }
@@ -176,7 +176,7 @@ input:focus {
 /* Large screens: Desktops (min-width: 1024px) */
 @media (min-width: 1024px) {
     .note-header-nav {
-        padding: 0 20px;
+        padding: 0 5px;
     }
 
     .search-area {
@@ -191,3 +191,4 @@ input:focus {
         font-size: 1.5rem; /* Larger button for bigger screens */
     }
 }
+

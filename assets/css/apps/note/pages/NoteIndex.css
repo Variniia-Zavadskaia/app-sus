@@ -36,12 +36,48 @@
      background-color: var(--clr2bg);
      display: flex;
      justify-content: space-evenly;
+     overflow: auto;
+     height: calc(100vh - 130px);
  }
 
  .note-content {
-     /* position: fixed; */
-     width: calc(100vh - 80px);
-     left: 80px;
+     width: calc(100vh - 100px);
+     left: 100px;
      padding: 0.25em 0.5rem;
      align-items: stretch;
  }
+
+@media (max-width: 768px) and (max-width: 1024px)  {
+    .note-header {
+        height: 60px;
+        padding: 0.5rem;
+    }
+
+    .note-body {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0.5rem;
+    }
+
+    .note-content {
+        width: 100%;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width:480px) {
+    .note-header {
+        height: 50px;
+        padding: 0.25rem;
+    }
+
+    .note-body {
+        flex-direction: column;
+        padding: 0.25rem;
+    }
+
+    .note-content {
+        width: 100%;
+        padding: 0.25rem;
+    }
+}

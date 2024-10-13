@@ -2,56 +2,63 @@
 .sidebar-notes {
     position: fixed;
     width: 60px;
+    height: calc(100vh - 140px);
     background-color: var(--clr2bg);
-    height: calc(100vh - 130px);
     padding-top: 10px;
-    /* position: fixed; */
-    top: 130px;
     left: 0;
+    top: 130px;
+    z-index: 100;
     transition: transform 0.3s ease-in-out;
-    /* z-index: 999; */
     overflow: hidden;
     margin-left: 5px;
 }
 
 .sidebar-notes.open {
-    width: 250px;
+    width: 100px;
 }
 
 .sidebar-notes-item {
     display: flex;
     align-items: center;
-    
+
     cursor: pointer;
     font-size: 18px;
     color: #5f6368;
-    border-radius: 5rem;
-    /* border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem; */
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
     transition: background-color 0.3s ease;
+    margin-left: 5px;
+}
+.sidebar-notes.open .sidebar-notes-item{
+    width: 8rem;
+    /* height: 3rem; */
+    border-top-left-radius:none;
 }
 
 .sidebar-notes-item .icon-button {
-    /* margin-right: 15px; */
-    /* border-top-left-radius: 2rem; */
     font-size: 18px;
-    padding: 1rem ;
+
+    margin-left: 10px;
 }
 
 .sidebar-notes-item .side-text {
     opacity: 0;
     transition: opacity 0.3s ease;
+    /* white-space: nowrap; */
 }
 
 .sidebar-notes.open .side-text {
     opacity: 1;
 }
 
-
 .sidebar-notes-item.active {
     background-color: #fef0c3;
     color: #202124;
-    
+    width: 8rem;
+    /* height: 3rem; */
+    border-top-left-radius:none;
+
 }
 
 .sidebar-notes-item.active:hover {
@@ -64,7 +71,7 @@
 
 /* Add hover effect to expand the sidebar */
 .sidebar-notes:hover {
-    width: 250px;
+    width: 200px;
 }
 
 .sidebar-notes:hover .side-text {
@@ -72,67 +79,75 @@
 }
 
 /* Small screens: Phones (max-width: 600px) */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .sidebar-notes {
-        width: 50px; /* Reduce width for small screens */
-        height: calc(100vh - 100px); /* Adjust height if needed */
-        margin-left: 0;
-        /* top: 190px; */
+        width: 50px;
+        /* Reduce width for small screens */
+        height: calc(100vh - 100px);
+        left: 0;
+        position: fixed;
+        z-index: 100;
     }
 
     .sidebar-notes.open {
-        width: 200px; /* Less expansion on small screens */
+        width: 110px;
+        /* Less expansion on small screens */
     }
 
     .sidebar-notes-item {
-        font-size: 16px; /* Smaller font size for sidebar items */
+        font-size: 16px;
+        /* Smaller font size for sidebar items */
     }
 
     .sidebar-notes-item .icon-button {
-        font-size: 16px; /* Adjust button size */
-        padding: 0.8rem;
+        font-size: 16px;
+        /* Adjust button size */
+        padding: 1rem 0.6rem;
     }
 
     .sidebar-notes-item .side-text {
-        font-size: 0.8rem; /* Smaller text size */
+        font-size: 0.8rem;
+        /* Smaller text size */
+
     }
 }
 
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
-@media (min-width: 600px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .sidebar-notes {
-        width: 60px; /* Normal width for medium screens */
-        height: calc(100vh - 110px); /* Adjust height if needed */
+        width: 60px;
+        /* Reduce width for small screens */
+        height: calc(100vh - 135px);
+        left: 0;
+        position: fixed;
+        z-index: 100;
     }
 
     .sidebar-notes.open {
-        width: 230px; /* Slightly smaller expansion on tablets */
+        width: 200px;
+        /* Slightly smaller expansion on tablets */
     }
 
     .sidebar-notes-item {
-        font-size: 17px; /* Adjust font size */
+        font-size: 17px;
+        /* Adjust font size */
     }
 
     .sidebar-notes-item .icon-button {
-        font-size: 17px; /* Adjust icon size */
-        padding: 0.9rem ;
+        font-size: 17px;
+        /* Adjust icon size */
+        padding: 0.9rem;
+        margin-left: 3px;
     }
 
     .sidebar-notes-item .side-text {
-        font-size: 0.9rem; /* Slightly smaller text size */
+        font-size: 0.9rem;
+        /* Slightly smaller text size */
     }
 }
 
 /* Large screens: Desktops (min-width: 1024px) */
 @media (min-width: 1024px) {
-    .sidebar-notes {
-        width: 60px;
-        height: calc(100vh - 130px);
-    }
-
-    .sidebar-notes.open {
-        width: 250px; /* Full expansion on larger screens */
-    }
 
     .sidebar-notes-item {
         font-size: 18px;
@@ -144,6 +159,7 @@
     }
 
     .sidebar-notes-item .side-text {
-        font-size: 1rem; /* Regular text size on large screens */
+        font-size: 1rem;
+        /* Regular text size on large screens */
     }
 }

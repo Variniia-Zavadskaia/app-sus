@@ -18,15 +18,6 @@ export function SideBar({ isOpen }) {
 
             </div>
             <div
-                className={`sidebar-notes-item ${activeItem === "Reminders" ? "active" : ""}`}
-                onClick={() => handleItemClick("Reminders")}
-            >
-                <button className="icon-button" aria-label="Reminders">
-                    <i className="fa-solid fa-bell"></i>
-                </button>
-                <span className="side-text">Reminders</span>
-            </div>
-            <div
                 className={`sidebar-notes-item ${activeItem === "Archive" ? "active" : ""}`}
                 onClick={() => handleItemClick("Archive")}
             >
