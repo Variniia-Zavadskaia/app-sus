@@ -47,10 +47,7 @@
 
 .sidebar-notes-item .icon-button {
     font-size: 1.2rem;
-   
-    /* display: flex;
-    align-items: center; 
-    justify-content: center;  */
+    margin-left: 0.5rem;
 }
 
 .sidebar-notes.open .side-text {
@@ -62,7 +59,7 @@
 
 .sidebar-notes .side-text {
    color: black;
-   margin-left: 1rem;
+   margin-left: 1.8rem;
 }
 
 .sidebar-notes-item.active {

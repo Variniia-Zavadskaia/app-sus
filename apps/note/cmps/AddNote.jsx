@@ -61,7 +61,7 @@ export function AddNote({ onAddNote }) {
                             </div>
                             <div className="tooltip">
                                 <button className="icon-button" onClick={() => createNewNote('NoteImg')} aria-label="Add Image">
-                                    <i className="fa-solid fa-image"></i>
+                                    <i className="fa-regular fa-image"></i>
                                 </button>
                                 <span className="tooltip-text">Add Image</span>
                             </div>
