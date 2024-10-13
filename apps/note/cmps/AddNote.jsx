@@ -26,9 +26,9 @@ export function AddNote({ onAddNote }) {
 
     }, []);
 
-    function onSubmit(noteToAdd) {
+    function onSubmit(noteToAdd, closeSection = true) {
         onAddNote(noteToAdd);
-        setNoteType('');
+        if (closeSection) setNoteType('');
     }
 
     function createNewNote(type) {
