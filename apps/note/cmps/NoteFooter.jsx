@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 import { ColorInput } from "./ColorInput.jsx"
 
-export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
+export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote, onSaveCopy }) {
 
     const [noteStyle, setNoteStyle] = useState(note.style || { backgroundColor: '#e8f0fe' })
     const navigate = useNavigate()
@@ -65,6 +65,14 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
         onSaveNote(note)
     }
 
+    function onMakeCopy() {
+        let newNote = JSON.parse(JSON.stringify(note))
+
+        newNote.id = ''
+        newNote.isPinned = false
+        onSaveCopy(newNote)
+    }
+
     return (
         <footer className="note-footer">
             {/* <section className="active-btn"> */}
@@ -114,10 +122,10 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                         </div>)}
 
                     <div className="tooltip">
-                        <button className="icon-button" onClick={handleSendToMail} aria-label="Send">
+                        <button className="icon-button" onClick={onMakeCopy} aria-label="Make Copy">
                            <i className="fa-solid fa-copy"></i>
                         </button>
-                        <span className="tooltip-text">Send to Mail</span>
+                        <span className="tooltip-text">Make Copy</span>
                     </div>
 
                     {onRemoveNote !== null &&
@@ -127,7 +135,8 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                             </button>
                             <span className="tooltip-text">Remove</span>
                         </div>}
-                </div>) : (<div className="note-icons">
+                </div>) : (
+                <div className="note-icons">
                     <div className="tooltip">
                         <button className="icon-button" onClick={() => onRemoveNote(note.id)} aria-label="Delete permanently">
                             <i className="fa-solid fa-trash"></i>

@@ -21,7 +21,12 @@ export function NotePreview({ note, onRemoveNote, onEditNote, onSaveNote }) {
     return (
         <article className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
             <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
-            <NoteFooter note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote}/>
+            <NoteFooter 
+                note={note} 
+                onRemoveNote={onRemoveNote} 
+                onEditNote={onEditNote} 
+                onSaveNote={onSaveNote} 
+                onSaveCopy={onSaveNote}/>
         </article>
     )
 }

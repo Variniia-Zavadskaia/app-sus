@@ -101,8 +101,8 @@ export function NoteIndex() {
         navigate('/note')
     };
 
-    function onSaveNote(noteToSave) {
-        closeEditModal()
+    function onSaveNote(noteToSave, closeModal = true) {
+        if (closeModal) closeEditModal();
         if (noteToSave.id && noteToSave.id !== '') {
             setNotes(prevNotes => prevNotes.map(note => note.id === noteToSave.id ? noteToSave : note))
             noteService.save(noteToSave)

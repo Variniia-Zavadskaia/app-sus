@@ -26,6 +26,10 @@ export function NoteEdit({ note, onRemoveNote = null, onSaveNote }) {
     function onChangeNote(note) {
         setNoteToEdit({...note})        
     }
+
+    function onSaveCopy(copyNote) {
+        onSaveNote(copyNote, false);
+    }
     
 
     return (
@@ -40,7 +44,9 @@ export function NoteEdit({ note, onRemoveNote = null, onSaveNote }) {
                         note={noteToEdit}
                         onRemoveNote={onRemoveNote}
                         onEditNote={null}
-                        onSaveNote={onChangeNote} />
+                        onSaveNote={onChangeNote} 
+                        onSaveCopy={onSaveCopy}
+                        />
                     <button className="close-btn" type="submit" onClick={onSave}> Save </button>
                 </section>
             </div>

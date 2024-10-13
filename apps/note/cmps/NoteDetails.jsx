@@ -14,7 +14,8 @@ export function NoteDetails({ note, onClose, onSaveNote, onRemoveNote }) {
                 <NoteEdit 
                     note={note} 
                     onSaveNote={onSaveNote} 
-                    onRemoveNote={removeNote}/>
+                    onRemoveNote={removeNote}
+                    onSaveCopy={onSaveNote} />
             </div>
         </div>
     );
