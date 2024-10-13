@@ -99,13 +99,13 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote, onSaveC
 
 
 
-                    {onEditNote !== null &&
+                    {/* {onEditNote !== null &&
                         <div className="tooltip">
                             <button className="icon-button" onClick={() => onEditNote(note)} aria-label="Edit">
                                 <i className="fa-solid fa-pen-to-square"></i>
                             </button>
                             <span className="tooltip-text">Edit</span>
-                        </div>}
+                        </div>} */}
 
                     {note.folder !== "Archive" ? (
                         <div className="tooltip">

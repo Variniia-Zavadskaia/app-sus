@@ -19,7 +19,10 @@ export function NotePreview({ note, onRemoveNote, onEditNote, onSaveNote }) {
     }
 
     return (
-        <article className="note-preview" style={{ backgroundColor: note.style.backgroundColor }}>
+        <article 
+            className="note-preview" 
+            style={{ backgroundColor: note.style.backgroundColor }}
+            onClick={()=>onEditNote(note)}>
             <DynamicCmp cmpType={note.type} info={note.info} onChangeInfo={onChangeInfo} />
             <NoteFooter 
                 note={note} 
