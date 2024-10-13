@@ -62,13 +62,13 @@ export function MailDetails() {
 
   function sendToKeepApp() {
     if (mail) {
-      const {subject, body} = mail
+    //   const {subject, body} = mail
+        const subject = encodeURIComponent(mail.subject);
+        const body = encodeURIComponent(mail.body);
       // here you need to NAV it right 
-      navigate(`/note?subject=${subject}&body=${body}`, {
-        state: {subject, body},
-      })
+        navigate(`/note/?title=${subject}&body=${body}`)
 
-      showSuccessMsg('Mail details sent to KeepApp!')
+        showSuccessMsg('Mail details sent to KeepApp!')
     }
   }
 
