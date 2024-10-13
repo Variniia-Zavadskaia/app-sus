@@ -1,8 +1,9 @@
 const {useState, useEffect} = React
+const {useNavigate} = ReactRouter
 
-export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unreadMailCount, onComposeClick }) {
-
+export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unreadMailCount, onComposeClick}) {
   const [selectedFolder, setSelectedFolder] = useState(filterBy.folder || 'inbox')
+  const navigate = useNavigate()
 
   const folders = [
     {name: 'Inbox', value: 'inbox', icon: 'fa-solid fa-inbox'},
@@ -19,6 +20,7 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unread
 
   function handleFolderChange(folder) {
     setSelectedFolder(folder)
+    navigate(`/mail?folder=${folder}`)
   }
 
   return (
