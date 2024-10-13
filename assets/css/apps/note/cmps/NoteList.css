@@ -1,5 +1,5 @@
  /* note list */
- .note-layout {
+.note-layout {
      display: grid;
      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
      grid-gap: 15px;
@@ -21,7 +21,6 @@
      gap: 0.5em;
      padding: 0.5em;
  }
-
 
  .pinned:empty::after {
      content: "No pinned items. Click a note below to pin it.";
@@ -64,19 +63,31 @@
 }
 
  /* Media Query for Tablets and Smaller Devices */
- @media (max-width: 768px) and (max-width: 1024px) {
-     .note-layout {
-         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-         
-     }
+ @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .note-layout {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
 
-     .note-container {
-         font-size: 14px;
-       
-     }
+    .note-container {
+        font-size: 14px;
+    }
 
-     .note-item {
-         padding: 0.8em;
+    .note-item {
+        padding: 0.8em;
+    }
+}
 
-     }
- }
+/* Media Query for 1024px and Larger Devices (Desktops, Large Tablets) */
+@media only screen and (min-width: 1024px) {
+    .note-layout {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .note-container {
+        font-size: 16px;
+    }
+
+    .note-item {
+        padding: 1em;
+    }
+}
