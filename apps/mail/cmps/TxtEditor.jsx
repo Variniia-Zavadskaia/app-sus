@@ -107,7 +107,7 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
               <option value={20}>Medium</option>
               <option value={24}>Large</option>
             </select>
-
+            <div className="txt-editor-action-btn-container">  
             {/* Font Style Buttons */}
             <button type="button" onClick={toggleBold} style={{fontWeight: isBold ? 'bold' : 'normal'}}>
               <span className="bold-icon">
@@ -129,26 +129,28 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
               </span>
             </button>
             {/* Text Alignment Buttons */}
+            
             <button type="button" onClick={() => onChangeStyle('textAlign', 'left')}>
-              <span className="txt-aling-left">
-                <i className="fa-solid fa-aling-left"></i>
+              <span className="txt-align-left">
+                <i className="fa-solid fa-align-left"></i>
               </span>
             </button>
             <button type="button" onClick={() => onChangeStyle('textAlign', 'center')}>
-              <span className="txt-aling-center">
-                <i className="fa-solid fa-aling-center"></i>
+              <span className="txt-align-center">
+                <i className="fa-solid fa-align-center"></i>
               </span>
             </button>
             <button type="button" onClick={() => onChangeStyle('textAlign', 'right')}>
-              <span className="txt-aling-right">
-                <i className="fa-solid fa-aling-right"></i>
+              <span className="txt-align-right">
+                <i className="fa-solid fa-align-right"></i>
               </span>
             </button>
             <button type="button" onClick={() => onChangeStyle('textAlign', 'justify')}>
-              <span className="txt-aling-justify">
-                <i className="fa-solid fa-aling-justify"></i>
+              <span className="txt-align-justify">
+                <i className="fa-solid fa-align-justify"></i>
               </span>
             </button>
+            </div>
           </div>
         </footer>
           <EmojiPicker addEmoji={addEmojiToBody} />

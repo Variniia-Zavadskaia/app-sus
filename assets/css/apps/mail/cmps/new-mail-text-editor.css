@@ -31,7 +31,6 @@
 .additional-controls > div,
 .additional-controls > button,
 .additional-controls > select {
-  display: inline-block;
   vertical-align: middle;
 }
 
@@ -64,11 +63,12 @@ button:hover {
   position: relative;
   display: flex;
 }
+
 .add-mail-color-label-icon {
   position: absolute;
   color: rgba(235, 235, 235, 0.658);
-  left: 1px;
-  bottom: 6px;
+  left: 8px;
+  bottom: 5px;
 }
 
 input#color {
@@ -77,4 +77,48 @@ input#color {
   border: none;
   margin: 0;
   background-color: transparent;
+}
+
+.txt-editor-action-btn-container {
+  display: flex;
+  justify-content: space-between; 
+  margin: 10px 0;
+  gap: 7px;
+}
+
+
+@media (max-width: 600px) {
+  .form-actions.visible {
+    display: flex;
+    flex-wrap: wrap; 
+    width: 100%; 
+    height: 200px;
+    padding: 8px; 
+    gap: 8px; 
+    border-radius: 6px; 
+  }  
+  
+  .form-actions.visible .additional-controls {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   justify-content: flex-end;
+   gap: 3px;
+
+  }
+  .form-actions.visible button {
+    width: 3em; 
+    height: 40px; 
+    font-size: 16px; 
+    margin-bottom: 10px; 
+  }
+  .form-actions.visible span {
+    font-size: 0.8rem; 
+  }
+
+  .txt-editor-action-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 }

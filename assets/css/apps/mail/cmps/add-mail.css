@@ -120,14 +120,14 @@ textarea:focus {
   justify-content: space-between;
   overflow-y: auto;
   width: 320px;
-  height: 266px;
+  height: 300px;
   gap: 6px;
   top: -265px;
   border: 1px groove rgba(0, 0, 0, 0.047) ;
   border-radius: 4px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   background-color:#FFFFFF ;
-  padding-block-start: 30px;
+  padding-block-start: 135px;
 }
 
 
@@ -150,4 +150,54 @@ textarea:focus {
 
 .emoji-picker::-webkit-scrollbar-thumb:hover {
   background: #868788; 
+}
+
+@media (max-width:600px) {
+  .add-mail{
+    width: 50vw;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .add-mail-header h2{
+    font-size: 1rem;
+  }
+
+  .add-mail-input-to, .add-mail-input-subject, .add-mail-textarea {
+    width: 100%; 
+  }
+ .form-body-and-action{
+  height: calc(100vh - 250px);   
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+  }
+
+  .emoji-picker {
+    width: 100%; 
+    height: 300px;
+    top: -410px; 
+    left: 0;
+    gap: 4px; 
+    padding: 10px; 
+    padding-block-start: 381px;
+    border-radius: 6px; 
+  }
+
+  .emoji-picker .emoji {
+    width: 25px; 
+    height: 25px;
+  }
+
+  .emoji-picker::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .emoji-picker::-webkit-scrollbar-thumb {
+    background: #868788;
+  }
+
+  
 }
