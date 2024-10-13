@@ -6,6 +6,9 @@ export function SideBar({ isOpen, onSetFolder }) {
         setActiveItem(item); // Update the active item
         onSetFolder(item)
     };
+
+    const labels = ["Crit", "family"]
+
     return (
         <div className={`sidebar-notes ${isOpen ? 'open' : 'closed'}`}>
             <div
@@ -18,6 +21,16 @@ export function SideBar({ isOpen, onSetFolder }) {
                 <span className="side-text">Notes</span>
 
             </div>
+            <div
+                className={`sidebar-notes-item ${activeItem === "Label" ? "active" : ""}`}
+                onClick={() => handleItemClick("Archive")}
+            >
+                <button className="icon-button" aria-label="Label">
+                <i className="fa-solid fa-tag"></i>
+                </button>
+                <span className="side-text">Label</span>
+            </div>
+            
             <div
                 className={`sidebar-notes-item ${activeItem === "Archive" ? "active" : ""}`}
                 onClick={() => handleItemClick("Archive")}

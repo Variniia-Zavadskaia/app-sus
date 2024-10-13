@@ -33,20 +33,22 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
                 name="txt"
                 type="text"
                 onChange={handleChange}
-                className="search-input"
+                className="search-input-noute"
                 placeholder="Search" />
             <div className="tooltip">
-                <button className="icon-button" aria-label="Select type" onSubmit={onSubmitFilter}>
-                    <i className="fa-solid fa-sliders"></i>
-                    <select id="type" name="type" value={type} onChange={handleChange}>
-                        <option value="">Select type</option>
-                        {/* <option value="">All types</option> */}
+                <div className="select-wrapper">
+                    <select id="type" name="type" value={type} className="hidden-select" onChange={handleChange}>
+                        {/* <option value="">Select type</option> */}
+                        <option value="">All types</option>
                         <option value="NoteTxt">Note text</option>
                         <option value="NoteImg">Image</option>
                         <option value="NoteTodos">To Do</option>
                     </select>
-                </button>
-                <span className="tooltip-text">Search</span>
+                    <button className="icon-button"  id="type" aria-label="Select type" onSubmit={onSubmitFilter}>
+                        <i className="fa-solid fa-sliders"></i>
+                    </button>
+                    <span className="tooltip-text">Search</span>
+                </div>
             </div>
         </div>
     )
