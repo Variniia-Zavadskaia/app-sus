@@ -1,7 +1,8 @@
 .add-note {
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center; 
+    width: 540px; 
 }
 
 .note-show {
@@ -33,6 +34,14 @@
 
 /* Media Query for Very Small Devices */
 @media (max-width: 480px) {
+
+    .add-note {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+         width: 100%;; 
+    }
+    
     .note-show {
         /* flex-direction: column; */
         padding: 5px;
@@ -54,17 +63,10 @@
 }
 
 /* Media Query for Smaller Devices */
-@media only screen and (min-width: 768px) and (max-width: 1024px)  {
-    /* .note-form {
-        width: 65%;
-        padding: 5px;
-        box-shadow: none;
-        border-radius: 8px;
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-        margin: 20px auto;
+@media (min-width: 768px)  {
 
-    } */
-
+ 
+   
     .note-show {
         /* flex-direction: column; */
         align-items: stretch;

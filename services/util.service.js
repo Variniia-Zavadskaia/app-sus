@@ -151,3 +151,5 @@ export const formatTimeAgo = (dateString) => {
     return sentDate.toLocaleDateString() // Returns date if more than a day ago
   }
 }
+
+export  const appLabels=['Critical', 'Family', 'Work','Friends', 'Spam', 'Memories', 'Romantic']

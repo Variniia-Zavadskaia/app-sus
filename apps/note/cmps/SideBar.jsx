@@ -1,10 +1,21 @@
-const { useState } = React
+const { useState, useEffect } = React
+const {useNavigate} = ReactRouter
+
+import { appLabels } from "../../../services/util.service.js";
+
 export function SideBar({ isOpen, onSetFolder }) {
 
     const [activeItem, setActiveItem] = useState("Notes");
+    const navigate = useNavigate()
+
+    // useEffect(()=>{
+    //     navigate(`/note/?folder=Notes`)
+    // })
+
     const handleItemClick = (item) => {
         setActiveItem(item); // Update the active item
         onSetFolder(item)
+        navigate(`/note/?folder=${item}`)
     };
 
     const labels = ["Crit", "family"]
@@ -23,14 +34,14 @@ export function SideBar({ isOpen, onSetFolder }) {
             </div>
             <div
                 className={`sidebar-notes-item ${activeItem === "Label" ? "active" : ""}`}
-                onClick={() => handleItemClick("Archive")}
+                onClick={() => handleItemClick("Label")}
             >
                 <button className="icon-button" aria-label="Label">
-                <i className="fa-solid fa-tag"></i>
+                    <i className="fa-solid fa-tag"></i>
                 </button>
                 <span className="side-text">Label</span>
             </div>
-            
+
             <div
                 className={`sidebar-notes-item ${activeItem === "Archive" ? "active" : ""}`}
                 onClick={() => handleItemClick("Archive")}

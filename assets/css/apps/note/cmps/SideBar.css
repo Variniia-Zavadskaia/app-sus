@@ -3,7 +3,7 @@
     display: flex;
     flex-flow: column;
     position: sticky;
-    height: calc(100% - 140px);
+    height: calc(100vh - 100px);
     background-color: var(--clr2bg);
     min-height: auto;
     padding-top: 8px;
@@ -13,7 +13,7 @@
     transition-property: width, box-shadow, border-radius;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     width: 80px;
-    z-index: 985;
+    /* z-index: 985; */
     overflow: hidden;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 
@@ -76,10 +76,10 @@
 /* Small screens: Phones (max-width: 600px) */
 @media (max-width: 480px) {
     .sidebar-notes {
-        width: 50px;
+        width: 60px;
         height: calc(100vh - 100px);
         left: 0;
-        z-index: 1;
+        /* z-index: 1; */
         align-self: start;
     }
 
@@ -103,22 +103,17 @@
 
     .sidebar-notes-item .side-text {
         font-size: 1rem;
-        margin-left: 1rem;
     }
 }
 
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 648px)  {
     .sidebar-notes {
-        width: 60px;
-        height: calc(100vh - 150px);
+        width: 70px;
+        height: calc(100vh - 100px);
         left: 0;
-        z-index: 1;
+        /* z-index: 1; */
         align-self: start;
-    }
-
-    .sidebar-notes.open {
-        width: 200px;
     }
 
     .sidebar-notes-item {
@@ -127,34 +122,53 @@
 
         cursor: pointer;
         transition: background-color 0.3s ease;
-        border-radius: 0 20px 20px 0;
+        border-radius: 0 30px 30px 0;
     }
+
+    /* .sidebar-notes-item {
+        font-size: 1.2rem;
+    } */
 
     .sidebar-notes-item .icon-button {
         font-size: 1.2rem;
-        margin-left: 0.2rem;
+        padding: 0.7rem 0.4rem;
     }
 
-    .sidebar-notes-item .side-text {
+    /* .sidebar-notes-item .side-text {
         font-size: 1rem;
-        margin-left: 1rem;
-    }
+    } */
 }
 
 /* Large screens: Desktops (min-width: 1024px) */
-/* @media (min-width: 1024px) {
+@media (min-width: 1024px) {
 
-    .sidebar-notes-item {
-        font-size: 18px;
+    .sidebar-notes {
+        width: 80px;
+        height: calc(100vh - 100px);
+        left: 0;
+        /* z-index: 1; */
+        align-self: start;
     }
 
+    .sidebar-notes-item {
+        padding: 10px 15px;
+        color: white;
+
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-radius: 0 30px 30px 0;
+    }
+
+    /* .sidebar-notes-item {
+        font-size: 1.2rem;
+    } */
+
     .sidebar-notes-item .icon-button {
-        font-size: 18px;
+        font-size: 1.2rem;
         padding: 0.8rem 0.5rem;
     }
 
-    .sidebar-notes-item .side-text {
+    /* .sidebar-notes-item .side-text {
         font-size: 1rem;
-        
-    }
-} */
+    } */
+}

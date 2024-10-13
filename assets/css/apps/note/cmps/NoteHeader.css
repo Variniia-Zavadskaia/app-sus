@@ -169,7 +169,7 @@
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
 @media (min-width: 768px) {
     .note-header-nav {
-        /* padding: 0 px; */
+        padding: 0 10px;
     }
 
     .search-area {

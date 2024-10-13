@@ -1,6 +1,6 @@
+import { appLabels } from "../services/util.service.js"
 
-export function LabelPicker(){
-    const label =['Critical', 'Family', 'Work','Friends', 'Spam', 'Memories', 'Romantic']
+export function LabelPicker() {
+   
 
 }
-
