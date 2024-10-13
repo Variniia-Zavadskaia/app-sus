@@ -25,9 +25,9 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote, onSaveC
             const body = encodeURIComponent(note.info.txt);
 
             navigate(
-                `/mail?status=inbox&folder=inbox?subject=${title}&body=${body}`,
+                `/mail/?status=inbox&folder=inbox?subject=${title}&body=${body}`,
                 {
-                    state: {title, body}
+                    state: {title: note.info.title, body: note.info.txt}
                 }
             );
         }
