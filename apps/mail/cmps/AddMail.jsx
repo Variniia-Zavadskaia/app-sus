@@ -1,15 +1,20 @@
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {mailService} from '../services/mail.service.js'
-import {EmojiPicker} from './Emoji.jsx'
 import {TxtEditor} from './TxtEditor.jsx'
 const {useState} = React
 
-export function AddMail({onClose}) {
+export function AddMail({onClose, initialBody}) {
   const [mailToSave, setMailToSave] = useState(mailService.getEmptyMail())
   const [textColor, setTextColor] = useState('#000000')
   const [fontFamily, setFontFamily] = useState('Arial') // Default font
   const [fontSize, setFontSize] = useState(16) // Default font size
   const [textAlign, setTextAlign] = useState('left') // Default text alignment
+
+    useEffect(() => {
+    if (initialBody) {
+      setMailToSave((prevMail) => ({ ...prevMail, body: initialBody })); // Set initial body text
+    }
+  }, [initialBody])
 
   function handleChange({target}) {
     const {name, value} = target
@@ -64,7 +69,6 @@ export function AddMail({onClose}) {
     }
   }
 
-  // const fontSizeValue = fontSize === 'Small' ? 16 : fontSize === 'Medium' ? 20 : 24 // Map to numeric values
 
   return (
     <section className="add-mail">

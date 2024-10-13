@@ -29,8 +29,8 @@
   background: #868788; 
 }
 
-.mail-header-section {
-  width: 109%;
+.mail-details-header-section {
+  width: 105%;
 }
 
 .mail-action-nav-bar {
@@ -53,7 +53,10 @@
 .archive,
 .spam,
 .mail-details-delete-btn,
-.unread {
+.unread ,
+.mail-details-sent-mail,
+.move-to,
+.more{
   cursor: pointer;
   margin-right: 15px;
 }

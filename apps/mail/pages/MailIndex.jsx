@@ -17,6 +17,7 @@ export function MailIndex() {
   const [filteredMails, setFilteredMails] = useState([]) // folderList state
   const [unreadCount, setUnreadCount] = useState(0) //  unreadCount state
   const [isComposeOpen, setIsComposeOpen] = useState(false) // addMail form state
+  const [initialBody, setInitialBody] = useState('') // State for initial body text
 
   const mailsRef = useRef([]) //to track the curr state
   const initialMailsRef = useRef([]) // to store the initial state
@@ -24,6 +25,10 @@ export function MailIndex() {
   useEffect(() => {
     loadMails()
     setSearchPrms(getTruthyValues(filterBy))
+    const note = searchPrms.get('note') || ''
+    if (note) {
+      setInitialBody(note) // Set the initial body text if a note is provided
+    }
   }, [filterBy])
 
   function loadMails() {
@@ -35,7 +40,7 @@ export function MailIndex() {
           initialMailsRef.current = loadedMails
         }
         mailsRef.current = loadedMails // Track latest mails
-        // console.log('loadmails ', loadedMails)
+        console.log('loadmails ', loadedMails)
 
         setMails(loadedMails) // Set state
         filterMails(loadedMails) //filter the mails by  folder value
@@ -102,7 +107,7 @@ export function MailIndex() {
     mailService
       .remove(mailId)
       .then(() => {
-        setMails(updatedMails)
+        setFilteredMails(updatedMails)
         showSuccessMsg(`Mail removed successfully!`)
       })
       .catch((err) => {
@@ -114,7 +119,9 @@ export function MailIndex() {
   // Update mail status without reloading all mails
   function updateMailStatus(id, updatedMail) {
     const updatedMails = mails.map((mail) => (mail.id === id ? updatedMail : mail))
-    setMails(updatedMails)
+    setFilteredMails(updatedMails) // Update the state with the new status
+
+    // Persist to storage after updating state
     mailService
       .update('mailDB', updatedMail)
       .then(() => {
@@ -130,7 +137,8 @@ export function MailIndex() {
   }
 
   function countUnreadMails(mails) {
-    return mails.filter((mail) => mail.isRead === false).length
+    const loggedInUser = mailService.getUserLogged()
+    return mails.filter((mail) => !mail.isRead && mail.to === loggedInUser.email && !mail.removedAt).length
   }
 
   if (!mails.length) return <h1>Loading...</h1>
@@ -146,19 +154,19 @@ export function MailIndex() {
           updateMailStatus={updateMailStatus}
         />
       </header>
-        <aside className="mail-folder-list">
-          <MailFolderList
-            filterBy={filterBy}
-            onSetFilterBy={onSetFilterBy}
-            isMenuOpen={isMenuOpen}
-            unreadMailCount={unreadCount}
-            onComposeClick={toggleCompose}
-          />{' '}
-        </aside>
+      <aside className="mail-folder-list">
+        <MailFolderList
+          filterBy={filterBy}
+          onSetFilterBy={onSetFilterBy}
+          isMenuOpen={isMenuOpen}
+          unreadMailCount={unreadCount}
+          onComposeClick={toggleCompose}
+        />{' '}
+      </aside>
       <section className="mail-content-wrapper">
         <main className="mail-list-container">
           <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} />
-          {isComposeOpen && <AddMail onClose={toggleCompose} />}
+          {isComposeOpen && <AddMail onClose={toggleCompose} initialBody={initialBody} />}
         </main>
       </section>
     </section>

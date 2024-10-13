@@ -89,7 +89,7 @@ function safeSave(mail) {
   }
   
   console.log('mail', mail)
-  return save(mail)
+  return storageService.post(MAIL_KEY, mail)
 }
 
 // Helper function to check if the mail ID is valid
