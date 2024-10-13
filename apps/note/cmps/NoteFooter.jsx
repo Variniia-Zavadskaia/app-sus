@@ -42,10 +42,12 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
 
     function onArchive() {
         if (note.folder !== "Archive") {
-            note.folderBeforeRemove = note.folder
             note.folder = "Archive"
-            onSaveNote(note)
-        } 
+            
+        } else {
+            note.folder = "Notes"
+        }
+        onSaveNote(note)
     }
 
     return (
@@ -79,12 +81,19 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
                         <span className="tooltip-text">Edit</span>
                     </div>}
 
-                <div className="tooltip">
-                    <button className="icon-button" onClick={onArchive} aria-label="Archive">
-                    <i className="fa-solid fa-floppy-disk"></i>
-                    </button>
-                    <span className="tooltip-text">Archive</span>
-                </div>
+                {note.folder !== "Archive" ? (
+                    <div className="tooltip">
+                        <button className="icon-button" onClick={onArchive} aria-label="Archive">
+                            <i className="fa-solid fa-floppy-disk"></i>
+                        </button>
+                        <span className="tooltip-text">Archive</span>
+                    </div>) : (
+                    <div className="tooltip">
+                        <button className="icon-button" onClick={onArchive} aria-label="Return from archive">
+                            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                        <span className="tooltip-text">Return from archive</span>
+                    </div>)}
 
                 {onRemoveNote !== null &&
                     <div className="tooltip">
@@ -102,14 +111,8 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote }) {
     )
 
 } 
-{/* <div className="tooltip">
-    <button className="icon-button" aria-label="Return from archive">
-      <i className="fa-solid fa-arrow-up-right-from-square"></i>
-    </button>
-    <span className="tooltip-text">Return from archive</span>
-</div>
 
-<div className="tooltip">
+{/* <div className="tooltip">
     <button className="icon-button" aria-label="Delete permanently">
     <i className="fa-solid fa-trash"></i>
     </button>
