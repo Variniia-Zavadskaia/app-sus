@@ -79,6 +79,7 @@ function getEmptyNote(type = '', backgroundColor = '#fff') {
             backgroundColor
         },
         info: {},
+        labels:[]
     }
 }
 
@@ -93,6 +94,7 @@ function getFilterFromSearchParams(searchParams) {
 
 function _createNotes() {
     const type = ['NoteTxt', 'NoteImg', 'NoteTodos']
+   
     let notes = loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = [
