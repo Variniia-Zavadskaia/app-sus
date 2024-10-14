@@ -1,29 +1,45 @@
  /* note list */
-.note-container{
-    position:relative;
-    padding: 0 5rem; 
+ .note-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+ }
+
+ .pinned, .unpinned {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
- .note-layout {
-     /* display: grid; */
+
+.note-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px); /* Flexible columns */
+    gap: 10px; /* Space between the notes */
+    grid-auto-flow: dense; /* Allows filling empty spaces */
+}
+
+
+ /* .note-layout {
+     display: grid;
      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-     /* columns: 250px 6; */
-     /* direction: column; */
+     columns: 250px 6;
+     direction: column;
      gap: 10px;
      align-items: start;
      justify-items: space-around;
-     grid-auto-flow: dense; 
-     position:absolute;
+     grid-auto-flow: dense;
+     position: absolute;
      top: 0;
      left: 0;
- }
+ } */
 
 
- .pinned,
-    .unpinned {
+ /* .pinned,
+ .unpinned {
      margin-bottom: 1rem;
      gap: 0.5em;
      padding: 0.5em;
- }
+ } */
 
  .pinned:empty::after {
      content: "No pinned items. Click a note below to pin it.";
@@ -39,8 +55,8 @@
      /* text-align: center; */
  }
 
-  /* Media Query for Very Small Devices (Phones) */
-  /* @media (max-width: 480px) {
+ /* Media Query for Very Small Devices (Phones) */
+ /* @media (max-width: 480px) {
     .note-layout {
         grid-template-columns: 1fr;
         justify-content: center;
@@ -57,28 +73,28 @@
    
 } */
 
-@media (max-width: 480px) {
-    .note-layout  {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      justify-content: center;
-    }
-  }
+ @media (max-width: 480px) {
+     .note-layout {
+         grid-template-columns: repeat(auto-fill, 250px);
+         justify-content: center;
+     }
+ }
 
  /* Media Query for Tablets and Smaller Devices */
  @media (min-width: 768px) {
-    .note-layout {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-}
+     .note-layout {
+         grid-template-columns: repeat(auto-fill,250px);
+     }
+ }
 
-/* Media Query for 1024px and Larger Devices (Desktops, Large Tablets) */
-@media (min-width: 1024px) {
-    .note-layout {
-        /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
-        columns: 250px 6;
-        display: block;
-        /* unicode-bidi: isolate; */
-        margin: 0 auto;
-        /* overflow: visible; */
-    }
-}
+ /* Media Query for 1024px and Larger Devices (Desktops, Large Tablets) */
+ @media (min-width: 1024px) {
+     .note-layout {
+         grid-template-columns: repeat(auto-fill, 250px);
+         /* columns: 250px 6; */
+         /* display: block; */
+         /* unicode-bidi: isolate; */
+         /* margin: 0 auto; */
+         /* overflow: visible; */
+     }
+ }
