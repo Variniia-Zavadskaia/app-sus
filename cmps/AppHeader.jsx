@@ -19,6 +19,9 @@ export function AppHeader() {
                 <NavLink to="/note" className="nav-link">
                     Note
                 </NavLink>
+                <NavLink to="/book" className="nav-link">
+                    Book
+                </NavLink>
             </nav>
         </header>
     );

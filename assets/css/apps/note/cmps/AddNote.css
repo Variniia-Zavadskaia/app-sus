@@ -66,6 +66,7 @@ textarea {
 
 /* Media Query for Smaller Devices */
 @media (min-width: 768px) {
+    
     .note-show {
         align-items: stretch;
         padding: 10px;
@@ -101,6 +102,7 @@ textarea {
     .note-show {
         justify-content: space-between;
         gap: 15px;
+        /* box-sizing: border-box; */
         /* Add more space between input and button */
     }
 }

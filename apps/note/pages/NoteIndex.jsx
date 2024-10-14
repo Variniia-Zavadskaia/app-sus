@@ -1,6 +1,7 @@
 const { useEffect, useState } = React
 const { useSearchParams, useLocation, useNavigate } = ReactRouterDOM
 
+import { AppLoader } from '../../../cmps/AppLoader.jsx'
 import { AddNote } from "../cmps/AddNote.jsx"
 import { AddMail } from "../../mail/cmps/AddMail.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
@@ -29,7 +30,7 @@ export function NoteIndex() {
 
     useEffect(() => {
         console.log();
-        
+
         loadNotes()
         setSearchPrms(getTruthyValues(filterBy))
     }, [filterBy])
@@ -39,7 +40,7 @@ export function NoteIndex() {
         const mailTitle = params.get('title') || '';
         const mailBody = params.get('body') || '';
         const noteId = params.get('noteID') || '';
-        
+
         // If email data is present, show the modal and prefill the form
         if (noteId) {
             const noteToEdit = notes.find(note => note.id == noteId)
@@ -54,7 +55,7 @@ export function NoteIndex() {
     }, [location])
 
     // function handleChange({target}) {
-        
+
     //     const {name, value} = target
     //     setMailToSave((prevMail) => ({...prevMail, [name]: value}))
     //   }
@@ -137,26 +138,28 @@ export function NoteIndex() {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }
 
-    function  onSetFolder(folder) {
+    function onSetFolder(folder) {
         setFolder(folder)
     }
 
-    if (!notes) return <h1>Loading...</h1>
+    if (!notes) return <AppLoader />
     return (
         <section className="note-index">
             <section className="note-header">
                 <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} onMenuClick={onToggleSidebar} />
             </section>
             <div className="note-body">
-                <SideBar isOpen={isSidebarOpen} onSetFolder={onSetFolder}/>
-                <div className="note-content">
-                    <AddNote onAddNote={onAddNote} />
-                    <NoteList
-                        notes={notes.filter(note => note.folder === folder)}
-                        onRemoveNote={onRemoveNote}
-                        onEditNote={sendNoteEditQuery}
-                        onSaveNote={onSaveNote}
-                    />
+                <SideBar isOpen={isSidebarOpen} onSetFolder={onSetFolder} />
+                <div className='note-content-wrapper'>
+                    <div className="note-content">
+                        <AddNote onAddNote={onAddNote} />
+                        <NoteList
+                            notes={notes.filter(note => note.folder === folder)}
+                            onRemoveNote={onRemoveNote}
+                            onEditNote={sendNoteEditQuery}
+                            onSaveNote={onSaveNote}
+                        />
+                    </div>
                 </div>
             </div>
             {isModalOpen && (

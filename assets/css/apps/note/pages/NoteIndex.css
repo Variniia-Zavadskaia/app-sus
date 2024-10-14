@@ -9,16 +9,16 @@
  html,
  body {
      height: 100%;
+     margin: 0;
      background-color: var(--clr2bg);
-     /* margin: 0; */
-     /* overflow: auto; */
+     overflow: hidden;
  }
 
  .note-index {
      display: flex;
      flex-direction: column;
      height: 100vh;
-     background-color: var(--clr2bg);
+     /* background-color: var(--clr2bg); */
  }
 
  .note-header {
@@ -36,13 +36,20 @@
      display: flex;
      direction: row;
      background-color: var(--clr2bg);
-     overflow: auto;
      height: calc(100vh - 130px);
  }
 
  .note-content {
      width: calc(100vh - 100px);
      padding: 0.25em 0.5rem;
+     /* overflow: auto; */
+ }
+ .note-content-wrapper{
+    display: flex;
+    width: 100%;
+    overflow: auto; 
+    justify-content: center;
+
  }
 
 
@@ -78,8 +85,8 @@
      }
 
      .note-content {
-         /* width: calc(100vw - 200px); */
-         width: 100%;
+         width: calc(100vw - 200px);
+         /* width: 100%; */
          padding: 1rem;
      }
  }

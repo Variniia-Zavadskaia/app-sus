@@ -23,6 +23,10 @@ export function App() {
                 <Route path="/mail/:mailId" element={<MailDetails />} />
                 <Route path="/mail/underConstruction" element={<ComingSoon />} />
                 <Route path="/note" element={<NoteIndex />} />
+                {/* <Route path="/book/:bookId" element={<BookDetails />} />
+                <Route path="/book/edit/:bookId" element={<BookEdit />} />
+                <Route path="/book/edit" element={<BookEdit />} />
+                <Route path="/book" element={<BookIndex />} /> */}
             </Routes>
         </section>
     </Router>
