@@ -82,38 +82,9 @@ export function EditNoteImg(props) {
     );
 }
 
-// return (
-//     <div className="note-img-input">
-//         <div className="tooltip">
-//             <button className="icon-button" onClick={(e) => {
-//                 document.getElementById("fileElem").click();
-//                 e.preventDefault();
-//             }} aria-label="Choose Image">
-//                 <i className="fa-solid fa-image"></i>
-//             </button>
-//             <span className="tooltip-text">Choose New Image</span>
-//         </div>
-//         <input onChange={handleChange} value={props.info.title || ''}
-//             id='title' type="text" name='title' />
-//         <input
-//             id="fileElem"
-//             type="file"
-//             style={{ display: "none" }}
-//             onChange={handleFile}
-//         />
-//         <div id="fileList">
-//             {!file ? (
-//                 <img src={props.info.url} alt="" />
-//             ) : (
-//                 <div>
-//                     <img
-//                         src={props.info.url}
-//                         alt={file ? file.name : "Selected file"}
-//                         height={60}
-//                     />
-//                     <span>{`${file.name}: ${file.size} bytes`}</span>
-//                 </div>
-//             )}
-//         </div>
-//     </div>
-// );
+export function composeMailNoteImg({note}) {
+    const title = note.info.title;
+    const body = note.info.url;
+
+    return {title, body}
+}

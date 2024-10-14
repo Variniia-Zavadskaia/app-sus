@@ -49,4 +49,26 @@ export function EditNoteTodos(props) {
     );
 }
 
+export function composeMailNoteTodos({note}) {
 
+    console.log(note);
+    const title = note.info.title;
+
+    // const huinia = imgs.map(img =>{
+    //     return `<div class="img-card">
+    //                 <img src="${img.url}" onclick="onImgSelect(${img.id})" />
+    //             </div>`
+    // })
+    let todoStrs = note.info.todos.map(todo => {
+            let todoStr = '[' + (todo.doneAt === null ? ' ' : 'v') + '] ' + todo.txt
+                            + (todo.doneAt === null ? '' : '(Done at '+ todo.doneAt.toString()+')') +'\n';
+            
+            console.log(todoStr);
+            
+            return todoStr;
+    })
+
+    let body = todoStrs.join('')
+
+    return {title, body}
+}

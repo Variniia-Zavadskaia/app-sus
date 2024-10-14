@@ -45,3 +45,10 @@ export function EditNoteTxt(props) {
     );
 }
 
+export function composeMailNoteTxt({note}) {
+    const title =note.info.title;
+    const body = note.info.txt;
+
+    return {title, body}
+}
+

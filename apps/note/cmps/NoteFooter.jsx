@@ -1,6 +1,9 @@
 const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 import { ColorInput } from "./ColorInput.jsx"
+import { composeMailNoteTxt } from "./dynamic-inputs/NoteTxt.jsx";
+import { composeMailNoteTodos } from "./dynamic-inputs/NoteTodos.jsx";
+import { composeMailNoteImg } from "./dynamic-inputs/NoteImg.jsx";
 
 export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote, onSaveCopy }) {
 
@@ -20,18 +23,36 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote, onSaveC
     }
 
     function handleSendToMail() {
-        if (note.type === 'NoteTxt') {
-            const title = encodeURIComponent(note.info.title);
-            const body = encodeURIComponent(note.info.txt);
+        // if (note.type === 'NoteTxt') {
+            const {title, body} = composeMailData()
+
+            console.log("title:", title, "\nbody:", body);
+            
+
+            const queryTitle = encodeURIComponent(title);
+            const queryBody = encodeURIComponent(body);
 
             navigate(
-                `/mail/?status=inbox&folder=inbox?subject=${title}&body=${body}`,
+                `/mail/?status=inbox&folder=inbox?subject=${queryTitle}&body=${queryBody}`,
                 {
-                    state: {title: note.info.title, body: note.info.txt}
+                    state: {title, body}
                 }
             );
-        }
+        // }
     };
+
+    function composeMailData() {
+        switch (note.type) {
+            case 'NoteTxt':
+                return composeMailNoteTxt({note})
+            case 'NoteImg':
+                return composeMailNoteImg({note});
+            case 'NoteTodos':
+                return composeMailNoteTodos({note});
+            default:
+                return <div>Unknown note type</div>;
+        }
+    } 
 
     function onRemove() {
         if (note.folder !== "Trash") {
