@@ -31,15 +31,16 @@ export function MailPreview({mail, onClick, onRemoveMail = () => {}, updateMailS
 
   return (
     <tr className={`mail-review ${isRead ? 'read' : 'unread'} `} onClick={onClick}>
-      <td className="select">
+      {/* <td className="select">
         <input type="checkbox" onChange={(e) => {
             e.preventDefault() // Prevent row click
             setIsSelected((isSelected) => !isSelected)
           }} />
-      </td>
+      </td> */}
       <td className="star-col ">
         <span className="star" onClick={handleStarClick}>
-        <i className={`fa-${isStared ? 'solid' : 'regular'} fa-star`} style={{ color: isStared ? '#FFD700' : 'inherit' }}></i>
+        <i className={`fa-${isStared ? 'solid' : 'regular'} fa-star`} 
+        style={{ color: isStared ? '#FFD700' : 'inherit' }}></i>
         </span>
       </td>
       <td className="mail-sender">{from}</td>

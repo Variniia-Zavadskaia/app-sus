@@ -69,12 +69,7 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
   }
 
   function loadImg(src) {
-    console.log(src)
-
-    const imgEl = <img key={src} src={src} alt="test" />
-    setImgUrls([...imgUrls, imgEl])
-
-    
+    setImgUrls([...imgUrls, src])
   }
 
   return (

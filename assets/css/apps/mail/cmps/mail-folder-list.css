@@ -4,7 +4,7 @@
   height: calc(100vh - 120px);
   background-color: var(--primary-mail-bgc);
   padding-top: 10px;
-  top: 120px;
+  top: 105px;
   left: 0;
   transition: transform 0.3s ease-in-out;
   z-index: 999;
