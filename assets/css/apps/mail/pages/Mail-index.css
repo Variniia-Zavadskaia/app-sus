@@ -19,12 +19,7 @@ body {
 }
 
 
-.mail-header {
-  position: sticky;
-  top: 0;
-  padding: clamp(0.25em, 2vw, 1em) clamp(0.5rem, 4vw, 1rem); /* Responsive padding */
-  background-color: var(--primary-mail-bgc);
-}
+
 
 .menu-icon-btn {
   padding: 0;

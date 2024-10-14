@@ -9,7 +9,7 @@ export function MailHeader({filterBy, onSetFilterBy, openMenu, filteredMails ,up
     navigate('/mail')
   }
   return (
-    <div className="mail-header">
+    <div className="mail-header-app">
       <div className="header-nav-logo">
         <div className="menu-btn">
           <button
