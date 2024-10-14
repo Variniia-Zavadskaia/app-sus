@@ -107,7 +107,7 @@
 }
 
 /* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
-@media (min-width: 648px)  {
+@media (min-width: 768px)  {
     .sidebar-notes {
         width: 70px;
         height: calc(100vh - 100px);

@@ -1,17 +1,20 @@
-.add-note {
+/* .add-note {
     display: flex;
     justify-self: center;
-    /* align-self: center;  */
-    width: 540px; 
-}
+    width: 100%;
+    max-width: 540px;
+    margin: 20px auto;
+} */
 
 .note-show {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
-.note-show input {
+.note-show input,
+textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
@@ -35,18 +38,17 @@
 /* Media Query for Very Small Devices */
 @media (max-width: 480px) {
 
-    .add-note {
+    /* .add-note {
         display: flex;
         justify-content: center;
-        align-items: center; 
-         width: 100%;; 
-    }
-    
+        align-items: center;
+        width: 100%;
+    } */
+
     .note-show {
         /* flex-direction: column; */
         padding: 5px;
         align-items: stretch;
-        
     }
 
     .note-show input,
@@ -63,14 +65,12 @@
 }
 
 /* Media Query for Smaller Devices */
-@media (min-width: 768px)  {
-
- 
-   
+@media (min-width: 768px) {
     .note-show {
-        /* flex-direction: column; */
         align-items: stretch;
         padding: 10px;
+        gap: 10px;
+        /* Ensure a consistent gap */
     }
 
     .note-show input,
@@ -81,17 +81,26 @@
 
     .note-show button {
         align-self: flex-end;
-        /* Align button to the end */
         margin-top: 10px;
     }
 
     .note-cmpn {
-        /* flex-direction: column; */
+        flex-direction: row;
         align-items: flex-start;
     }
 }
 
 
 @media (min-width: 1024px) {
-   
+
+    .add-note {
+        max-width: 540px;
+        /* Maintain width on large screens */
+    }
+
+    .note-show {
+        justify-content: space-between;
+        gap: 15px;
+        /* Add more space between input and button */
+    }
 }
