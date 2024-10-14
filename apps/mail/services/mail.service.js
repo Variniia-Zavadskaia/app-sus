@@ -64,9 +64,13 @@ function get(mailId) {
 }
 
 function update(mailId, updatedMail) {
-  return storageService.put(mailId, updatedMail).then(() => {
-    console.log('Mail updated in storage:', updatedMail)
-  })
+updatedMail.id = mailId
+console.log('Updating mail with ID:', updatedMail.id)
+  return storageService.put(MAIL_KEY, updatedMail)
+    .then(() => {
+      console.log('Mail updated in storage:', updatedMail)
+    })
+    .catch(err => console.error('Error updating mail:', err))
 }
 
 function remove(mailId) {

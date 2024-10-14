@@ -2,10 +2,10 @@ const {useEffect, useState} = React
 const {useParams, useNavigate, useLocation} = ReactRouter
 const {Link, useSearchParams} = ReactRouterDOM
 
-import { AppLoader } from '../../../cmps/AppLoader.jsx'
+import {AppLoader} from '../../../cmps/AppLoader.jsx'
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
 import {formatTimeAgo, getTruthyValues} from '../../../services/util.service.js'
-import { EmojiPicker } from '../cmps/Emoji.jsx'
+import {EmojiPicker} from '../cmps/Emoji.jsx'
 import {MailFolderList} from '../cmps/MailFolderList.jsx'
 import {MailHeader} from '../cmps/MailHeader.jsx'
 import {mailService} from '../services/mail.service.js'
@@ -97,7 +97,7 @@ export function MailDetails() {
 
   // Update mail status without reloading all mails
   function updateMailStatus(id, updatedMail) {
-    const updatedMails = mail.map((mail) => (mail.id === id ? updatedMail : mail))
+    updatedMail = mail.map((mail) => (mail.id === id ? updatedMail : mail))
     setFilteredMails(updatedMails) // Update the state with the new status
 
     // Persist to storage after updating state

@@ -27,19 +27,18 @@ export function MailIndex() {
 
   const location = useLocation()
 
-  useEffect(() => {
-    // console.log(mailFromNote)
-  }, [mailFromNote])
+  // useEffect(() => {
+  //   // console.log(mailFromNote)
+  // }, [mailFromNote])
 
   useEffect(() => {
     loadMails()
     setSearchPrms(getTruthyValues(filterBy))
     if (location.state) {
       setMailFromNote(location.state)
-      console.log(mailFromNote)
       setIsComposeOpen(true)
     }
-  }, [filterBy])
+  }, [filterBy, mailFromNote])
 
   function loadMails() {
     mailService
@@ -65,9 +64,12 @@ export function MailIndex() {
   // Function to filter mails based on folder and isRead
   function filterMails(mails) {
     let filtered = [...mails]
+
     const loggedInUser = mailService.getUserLogged()
 
     if (filterBy.folder) {
+      console.log(filterBy.folder, 'filterby.folder')
+
       switch (filterBy.folder) {
         case 'inbox':
           filtered = filtered.filter((mail) => !mail.removedAt && mail.to === loggedInUser.email)
@@ -101,18 +103,18 @@ export function MailIndex() {
     }
 
     if (filterBy.search) {
-      const searchText = filterBy.search.toLowerCase();
-      filtered = filtered.filter(mail => 
-          mail.subject.toLowerCase().includes(searchText) ||
-          mail.body.toLowerCase().includes(searchText)
-      );
-  }
+      const searchText = filterBy.search.toLowerCase()
+      filtered = filtered.filter(
+        (mail) => mail.subject.toLowerCase().includes(searchText) || mail.body.toLowerCase().includes(searchText)
+      )
+    }
 
     setFilteredMails(filtered)
   }
 
   function onSetFilterBy(filterBy) {
     setFilterBy((preFilter) => ({...preFilter, ...filterBy}))
+    setFilteredMails([])
   }
 
   function toggleCompose() {
@@ -122,43 +124,43 @@ export function MailIndex() {
   function removeMailToBin(mailId) {
     const currentDate = new Date().toISOString()
     updateMailStatus(mailId, {removedAt: currentDate})
+    filterMails(updatedMail)
   }
 
   function onRemoveMail(mailId) {
     const mailToRemove = mails.find((mail) => mail.id === mailId)
 
-    if (mailToRemove && mailToRemove.removedAt) {
-      mailService
-        .remove(mailId)
-        .then(() => {
-          setMails((prevMails) => prevMails.filter((mail) => mail.id !== mailId))
+    if (mailToRemove) {
+      // If the mail is already in the bin, remove it from the service and update state
+      if (mailToRemove.removedAt) {
+        mailService
+          .remove(mailId)
+          .then(() => {
+            // Remove the mail from both mails and filteredMails
+            setMails((prevMails) => prevMails.filter((mail) => mail.id !== mailId))
+            setFilteredMails((prevFilteredMails) => prevFilteredMails.filter((mail) => mail.id !== mailId))
 
-          filterMails(mails)
-          console.log('mails deleted from the service')
-
-          showSuccessMsg(`Mail removed from bin successfully!`)
-        })
-        .catch((err) => {
-          console.log('Problems removing mail from bin:', err)
-          showErrorMsg(`Problems removing mail from bin (${mailId})`)
-        })
-    } else {
-      removeMailToBin(mailId)
+            showSuccessMsg(`Mail removed from bin successfully!`)
+          })
+          .catch((err) => {
+            console.log('Problems removing mail from bin:', err)
+            showErrorMsg(`Problems removing mail from bin (${mailId})`)
+          })
+      } else {
+        removeMailToBin(mailId)
+      }
     }
   }
 
   // Update mail status without reloading all mails
-  function updateMailStatus(id, updatedMail) {
-    const updatedMails = mails.map((mail) => (mail.id === id ? updatedMail : mail))
-    console.log('Before updating:', mails)
+  function updateMailStatus(mailId, updatedMail) {
+    const updatedMails = mails.map((mail) => (mail.id === mailId ? {...mail, ...updatedMail} : mail))
     setMails(updatedMails)
-    console.log('After updating:', updatedMails)
+    setFilteredMails(updatedMails)
     mailService
-      .update('mailDB', {...updatedMail, id})
+      .update(mailId, updatedMail)
       .then(() => {
-        setMails((prevMails) => prevMails.map((mail) => (mail.id === id ? {...mail, ...updatedMail} : mail)))
         filterMails(mails)
-        return mails
       })
       .catch((err) => {
         console.error('Error updating mail status:', err)

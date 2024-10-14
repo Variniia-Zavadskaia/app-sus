@@ -1,6 +1,6 @@
 import {formatTimeAgo} from '../../../services/util.service.js'
 const {useState} = React
-export function MailPreview({mail, onClick, onRemoveMail = () => {}, updateMailStatus}) {
+export function MailPreview({ mail, onRemoveMail, updateMailStatus, onClick }) {
   const [isSelected, setIsSelected] = useState(false)
   const {subject, body, from, sentAt, isRead, isStared} = mail
   const timeAgo = formatTimeAgo(sentAt)
@@ -28,6 +28,7 @@ export function MailPreview({mail, onClick, onRemoveMail = () => {}, updateMailS
     ev.stopPropagation()
     onRemoveMail(mail.id)
   }
+
 
 
   return (
