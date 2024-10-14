@@ -156,9 +156,11 @@ textarea:focus {
   .add-mail{
     width: 50vw;
     right: 0;
-    bottom: 0;
-    height: 100vh;
+    bottom: 20px;
+    height: calc(100vh - 80px);
+    padding-block-end: 20px;
     border-radius: 0;
+    overflow: hidden;
   }
 
   .add-mail-header h2{
@@ -169,10 +171,17 @@ textarea:focus {
     width: 100%; 
   }
  .form-body-and-action{
-  height: calc(100vh - 250px);   
+  height: calc(100vh - 300px);   
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+  }
+
+  .add-mail img {
+    max-width: 100%;
+    height: auto;    
+    border-radius: 5px; 
+    margin: 10px 0;  
   }
 
   .emoji-picker {
