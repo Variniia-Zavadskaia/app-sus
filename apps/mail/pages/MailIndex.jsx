@@ -2,7 +2,7 @@ const {useEffect, useState, useRef} = React
 const {useSearchParams} = ReactRouterDOM
 const {useLocation} = ReactRouter
 
-import { AppLoader } from '../../../cmps/AppLoader.jsx'
+import {AppLoader} from '../../../cmps/AppLoader.jsx'
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
 import {AddMail} from '../cmps/AddMail.jsx'
@@ -19,9 +19,8 @@ export function MailIndex() {
   const [filteredMails, setFilteredMails] = useState([]) // folderList state
   const [unreadCount, setUnreadCount] = useState(0) //  unreadCount state
   const [isComposeOpen, setIsComposeOpen] = useState(false) // addMail form state
-  const [initialBody, setInitialBody] = useState('') // State for initial body text
 
-  const [mailFromNote, setMailFromNote] = useState({title: '', body: ''});
+  const [mailFromNote, setMailFromNote] = useState({title: '', body: ''})
 
   const mailsRef = useRef([]) //to track the curr state
   const initialMailsRef = useRef([]) // to store the initial state
@@ -36,11 +35,10 @@ export function MailIndex() {
     loadMails()
     setSearchPrms(getTruthyValues(filterBy))
     if (location.state) {
-      setMailFromNote(location.state);
+      setMailFromNote(location.state)
       console.log(mailFromNote)
       setIsComposeOpen(true)
     }
-    
   }, [filterBy])
 
   function loadMails() {
@@ -85,6 +83,7 @@ export function MailIndex() {
           break
         case 'bin':
           filtered = filtered.filter((mail) => mail.removedAt)
+          console.log('Filtered bin mails:', filtered)
           break
         default:
           break
@@ -101,6 +100,14 @@ export function MailIndex() {
       filtered.sort((a, b) => a.subject.localeCompare(b.subject))
     }
 
+    if (filterBy.search) {
+      const searchText = filterBy.search.toLowerCase();
+      filtered = filtered.filter(mail => 
+          mail.subject.toLowerCase().includes(searchText) ||
+          mail.body.toLowerCase().includes(searchText)
+      );
+  }
+
     setFilteredMails(filtered)
   }
 
@@ -112,32 +119,46 @@ export function MailIndex() {
     setIsComposeOpen((prev) => !prev) // Toggle the compose form visibility
   }
 
-  function onRemoveMail(mailId) {
-    console.log(mailId, 'remove mail')
+  function removeMailToBin(mailId) {
+    const currentDate = new Date().toISOString()
+    updateMailStatus(mailId, {removedAt: currentDate})
+  }
 
-    const updatedMails = mails.map((mail) => (mail.id === mailId ? {...mail, removedAt: true} : mail))
-    mailService
-      .remove(mailId)
-      .then(() => {
-        setFilteredMails(updatedMails)
-        showSuccessMsg(`Mail removed successfully!`)
-      })
-      .catch((err) => {
-        console.log('Problems removing mail:', err)
-        showErrorMsg(`Problems removing mail (${mailId})`)
-      })
+  function onRemoveMail(mailId) {
+    const mailToRemove = mails.find((mail) => mail.id === mailId)
+
+    if (mailToRemove && mailToRemove.removedAt) {
+      mailService
+        .remove(mailId)
+        .then(() => {
+          setMails((prevMails) => prevMails.filter((mail) => mail.id !== mailId))
+
+          filterMails(mails)
+          console.log('mails deleted from the service')
+
+          showSuccessMsg(`Mail removed from bin successfully!`)
+        })
+        .catch((err) => {
+          console.log('Problems removing mail from bin:', err)
+          showErrorMsg(`Problems removing mail from bin (${mailId})`)
+        })
+    } else {
+      removeMailToBin(mailId)
+    }
   }
 
   // Update mail status without reloading all mails
   function updateMailStatus(id, updatedMail) {
     const updatedMails = mails.map((mail) => (mail.id === id ? updatedMail : mail))
-    setFilteredMails(updatedMails) // Update the state with the new status
-
-    // Persist to storage after updating state
+    console.log('Before updating:', mails)
+    setMails(updatedMails)
+    console.log('After updating:', updatedMails)
     mailService
-      .update('mailDB', updatedMail)
+      .update('mailDB', {...updatedMail, id})
       .then(() => {
-        console.log('Mail updated in the service')
+        setMails((prevMails) => prevMails.map((mail) => (mail.id === id ? {...mail, ...updatedMail} : mail)))
+        filterMails(mails)
+        return mails
       })
       .catch((err) => {
         console.error('Error updating mail status:', err)
@@ -152,8 +173,6 @@ export function MailIndex() {
     const loggedInUser = mailService.getUserLogged()
     return mails.filter((mail) => !mail.isRead && mail.to === loggedInUser.email && !mail.removedAt).length
   }
-
-  
 
   if (!mails.length) return <AppLoader />
   return (

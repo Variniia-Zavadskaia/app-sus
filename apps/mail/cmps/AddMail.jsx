@@ -99,6 +99,7 @@ export function AddMail({onClose,  data}) {
             type="email"
             name="to"
             id="to"
+            pattern=".+@example\.com"
             value={mailToSave.to}
             onChange={handleChange}
             required
