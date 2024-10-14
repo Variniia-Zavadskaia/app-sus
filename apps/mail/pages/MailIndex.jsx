@@ -2,6 +2,7 @@ const {useEffect, useState, useRef} = React
 const {useSearchParams} = ReactRouterDOM
 const {useLocation} = ReactRouter
 
+import { AppLoader } from '../../../cmps/AppLoader.jsx'
 import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
 import {getTruthyValues} from '../../../services/util.service.js'
 import {AddMail} from '../cmps/AddMail.jsx'
@@ -154,7 +155,7 @@ export function MailIndex() {
 
   
 
-  if (!mails.length) return <h1>Loading...</h1>
+  if (!mails.length) return <AppLoader />
   return (
     <section className="mail-index">
       <header className="mail-header-section ">

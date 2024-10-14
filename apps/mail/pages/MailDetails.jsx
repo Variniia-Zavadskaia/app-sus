@@ -2,6 +2,7 @@ const {useEffect, useState} = React
 const {useParams, useNavigate, useLocation} = ReactRouter
 const {Link, useSearchParams} = ReactRouterDOM
 
+import { AppLoader } from '../../../cmps/AppLoader.jsx'
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
 import {formatTimeAgo, getTruthyValues} from '../../../services/util.service.js'
 import { EmojiPicker } from '../cmps/Emoji.jsx'
@@ -114,7 +115,7 @@ export function MailDetails() {
     navigate(`/mail/underConstruction`)
   }
 
-  if (!mail) return <h1>Loading...</h1>
+  if (!mail) return <AppLoader />
 
   const {subject, body, from, to, sentAt, isRead, prevMailId, nextMailId, isStared} = mail
   const timeAgo = formatTimeAgo(sentAt)
