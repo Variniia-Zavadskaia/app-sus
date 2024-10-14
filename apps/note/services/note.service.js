@@ -121,26 +121,6 @@ function _createNote(type) {
     note.createdAt = getRandomDate(new Date(2020, 0, 1), new Date());
     note.style.backgroundColor = '#e8f0fe'
 
-    if (!_createNote.availableImages) {
-        _createNote.availableImages = [
-           'Batman.jpeg',
-        'Clairvoyant.jpeg',
-        'Deadpool.jpeg',
-        'SnowWhite.jpeg'
-        ];
-    }
-
-
-    const getRandomImage = () => {
-        if (_createNote.availableImages.length === 0) {
-            console.warn('use all');
-            return null; 
-        }
-        const randomIdx = Math.floor(Math.random() * _createNote.availableImages.length);
-        const selectedImage = _createNote.availableImages.splice(randomIdx, 1)[0]; 
-        return `assets/img/${selectedImage}`;
-    };
-
     switch (type) {
         case 'NoteTxt':
             note.info = {
@@ -149,10 +129,9 @@ function _createNote(type) {
             }
             break;
         case 'NoteImg':
-            const randomImageUrl = getRandomImage();
             note.info = {
-                title: 'I am AWESOME',
-                url: randomImageUrl || 'assets/img/default.jpeg',
+                title: 'I am BATMAN',
+                url: 'assets/img/BATMAN.jpeg',
             }
             break;
         case 'NoteTodos':
