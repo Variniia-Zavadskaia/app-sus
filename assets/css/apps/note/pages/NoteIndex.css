@@ -34,6 +34,7 @@
 
  .note-body {
      display: flex;
+     direction: row;
      background-color: var(--clr2bg);
      overflow: auto;
      height: calc(100vh - 130px);
@@ -41,9 +42,20 @@
 
  .note-content {
      width: calc(100vh - 100px);
-     left: 100px;
      padding: 0.25em 0.5rem;
  }
+
+ @media (min-width: 768px) {
+    .note-header {
+        height: 60px;
+        padding: 0.5rem;
+    }
+
+    .note-content {
+        width: calc(100vw - 170px);
+        padding: 1rem;
+    }
+ }   
 
  @media (min-width: 1024px) {
      .note-header {
@@ -52,19 +64,8 @@
      }
 
      .note-content {
-         width: calc(100vw - 200px);
-         padding: 1rem;
-     }
- }
-
- @media (min-width: 768px) {
-     .note-header {
-         height: 60px;
-         padding: 0.5rem;
-     }
-
-     .note-content {
-         width: calc(100vw - 170px);
+         /* width: calc(100vw - 200px); */
+         width: 100%;
          padding: 1rem;
      }
  }

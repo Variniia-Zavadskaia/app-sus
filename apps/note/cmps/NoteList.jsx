@@ -21,9 +21,7 @@ export function NoteList({ notes, onRemoveNote, onEditNote, onSaveNote }) {
                     {pinnedExists && unpinnedExists && <h4> Others</h4>}
                     <div className="note-layout" >
                         {notes.filter(note => !note.isPinned).map(note =>
-                            <div key={note.id} className="note-unpinned">
                                 <NotePreview note={note} onRemoveNote={onRemoveNote} onEditNote={onEditNote} onSaveNote={onSaveNote} />
-                            </div>
                         )}
                     </div>
                 </div>

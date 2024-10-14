@@ -1,7 +1,7 @@
 .add-note {
     display: flex;
-    justify-content: center;
-    align-items: center; 
+    justify-self: center;
+    /* align-self: center;  */
     width: 540px; 
 }
 
@@ -14,7 +14,7 @@
 .note-show input {
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background: transparent;
     align-self: stretch;
     padding: 1rem;

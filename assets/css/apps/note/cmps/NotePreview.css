@@ -2,26 +2,29 @@
     background-color: var(--clr1bg);
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 16px;
+    padding: 5px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
-    overflow: hidden;
-    /* width: 250px; */
+    /* overflow: hidden; */
+    margin-bottom: 10px;
+    break-inside: avoid;
+    width: 250px;
+    
 }
 
-.note-preview:nth-child(odd) {
+/* .note-preview:nth-child(odd) {
     grid-row: span 2; 
 }
 
 .note-preview:nth-child(even) {
     grid-row: span 1; 
-}
+} */
 
 .note-preview:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .note-preview img {
-    max-width: 220px;
+    max-width: 100%;
     border-radius: 8px;
 }
 
