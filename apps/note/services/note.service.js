@@ -131,7 +131,7 @@ function _createNote(type) {
         case 'NoteImg':
             note.info = {
                 title: 'I am BATMAN',
-                url: 'assets/img/BATMAN.jpeg',
+                url: 'assets/img/Batman.jpeg',
             }
             break;
         case 'NoteTodos':
