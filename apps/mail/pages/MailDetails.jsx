@@ -18,7 +18,6 @@ export function MailDetails() {
   //   console.log(mailId, 'mailid from params')
 
   const navigate = useNavigate()
-  const location = useLocation()
 
   useEffect(() => {
     setSearchPrms(getTruthyValues(filterBy))

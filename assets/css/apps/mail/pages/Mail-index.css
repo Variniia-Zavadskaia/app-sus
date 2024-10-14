@@ -42,35 +42,4 @@ body {
   background-color: var(--hover-state-color);
 }
 
-.mail-content-wrapper {
-  display: flex;
-  flex: 1;
-  height: 100%; 
-}
 
-.mail-list-container {
-  overflow-y: scroll;
-  padding: 2px;
-  height: calc(100vh - 60px); 
-  transition: margin-left 0.5s; 
-  display: flex;
-  margin-left: clamp(40px, 5vw, 60px); /* Responsive margin */
-}
-
-.mail-list-container::-webkit-scrollbar {
-  width: 3px;
-  height:5px ;
-}
-
-.mail-list-container::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
- 
-.mail-list-container::-webkit-scrollbar-thumb {
-  background: #868788; 
-  border-radius: 4px;
-}
-
-.mail-list-container::-webkit-scrollbar-thumb:hover {
-  background: #868788; 
-}
