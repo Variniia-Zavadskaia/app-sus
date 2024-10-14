@@ -201,7 +201,7 @@ export function MailDetails() {
           </div>
         </div>
         <div className="mail-details ">
-          <p>{body}</p>
+          {body.split('\n').map(line => <p>{line}</p>)}
         </div>
       </section>
       {/* <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} /> */}
