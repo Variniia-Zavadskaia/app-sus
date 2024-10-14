@@ -155,6 +155,8 @@ export function MailDetails() {
           <p>{body}</p>
         </div>
       </section>
+      {/* <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} /> */}
+          {/* {isComposeOpen && <AddMail onClose={toggleCompose} data={mailFromNote} />} */}
     </section>
   )
 }

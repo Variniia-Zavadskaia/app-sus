@@ -10,7 +10,7 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
   const [isUnderlined, setIsUnderlined] = useState(false)
   const [footerVisible, setFooterVisible] = useState(false)
   const [activeButton, setActiveButton] = useState(null)
-
+  const [imgUrls, setImgUrls] = useState([])
   const getTextStyle = () => ({
     color: textColor,
     fontFamily: fontFamily,
@@ -55,6 +55,28 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
     setActiveButton(button)
   }
 
+  function loadImageFromInput(ev) {
+    const reader = new FileReader()
+
+    reader.onload = (ev) => {
+      let img = new Image()
+      img.src = ev.target.result
+      img.onload = () => {
+        loadImg(img.src)
+      }
+    }
+    reader.readAsDataURL(ev.target.files[0])
+  }
+
+  function loadImg(src) {
+    console.log(src)
+
+    const imgEl = <img key={src} src={src} alt="test" />
+    setImgUrls([...imgUrls, imgEl])
+
+    
+  }
+
   return (
     <div className="form-body-and-action">
       <div className="add-mail-form-body">
@@ -69,10 +91,11 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
           cols={30}
         />
       </div>
+      {imgUrls.length ? imgUrls.map((url, idx) => <img key={idx} src={url} alt="test" />) : ''}
       <div className="txt-editor">
-      <button type="submit" className="form-send-btn" onClick={onClick}>
-        Send
-      </button>
+        <button type="submit" className="form-send-btn" onClick={onClick}>
+          Send
+        </button>
         <button type="button" className="editor-footer-tool" onClick={toggleFooter}>
           <span className="editor-icon">
             <i className="fa-solid fa-a"></i>
@@ -107,53 +130,68 @@ export function TxtEditor({textColor, fontFamily, fontSize, textAlign, body, onC
               <option value={20}>Medium</option>
               <option value={24}>Large</option>
             </select>
-            <div className="txt-editor-action-btn-container">  
-            {/* Font Style Buttons */}
-            <button type="button" onClick={toggleBold} style={{fontWeight: isBold ? 'bold' : 'normal'}}>
-              <span className="bold-icon">
-                <i className="fa-solid fa-bold"></i>
-              </span>
-            </button>
-            <button type="button" onClick={toggleItalic} style={{fontStyle: isItalic ? 'italic' : 'normal'}}>
-              <span className="italic-icon">
-                <i className="fa-solid fa-italic"></i>
-              </span>
-            </button>
-            <button
-              type="button"
-              onClick={toggleUnderline}
-              style={{textDecoration: isUnderlined ? 'underline' : 'none'}}
-            >
-              <span className="underline-icon">
-                <i className="fa-solid fa-underline"></i>
-              </span>
-            </button>
-            {/* Text Alignment Buttons */}
-            
-            <button type="button" onClick={() => onChangeStyle('textAlign', 'left')}>
-              <span className="txt-align-left">
-                <i className="fa-solid fa-align-left"></i>
-              </span>
-            </button>
-            <button type="button" onClick={() => onChangeStyle('textAlign', 'center')}>
-              <span className="txt-align-center">
-                <i className="fa-solid fa-align-center"></i>
-              </span>
-            </button>
-            <button type="button" onClick={() => onChangeStyle('textAlign', 'right')}>
-              <span className="txt-align-right">
-                <i className="fa-solid fa-align-right"></i>
-              </span>
-            </button>
-            <button type="button" onClick={() => onChangeStyle('textAlign', 'justify')}>
-              <span className="txt-align-justify">
-                <i className="fa-solid fa-align-justify"></i>
-              </span>
-            </button>
+            <div className="txt-editor-action-btn-container">
+              {/* Font Style Buttons */}
+              <button type="button" onClick={toggleBold} style={{fontWeight: isBold ? 'bold' : 'normal'}}>
+                <span className="bold-icon">
+                  <i className="fa-solid fa-bold"></i>
+                </span>
+              </button>
+              <button type="button" onClick={toggleItalic} style={{fontStyle: isItalic ? 'italic' : 'normal'}}>
+                <span className="italic-icon">
+                  <i className="fa-solid fa-italic"></i>
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={toggleUnderline}
+                style={{textDecoration: isUnderlined ? 'underline' : 'none'}}
+              >
+                <span className="underline-icon">
+                  <i className="fa-solid fa-underline"></i>
+                </span>
+              </button>
+              {/* Text Alignment Buttons */}
+
+              <button type="button" onClick={() => onChangeStyle('textAlign', 'left')}>
+                <span className="txt-align-left">
+                  <i className="fa-solid fa-align-left"></i>
+                </span>
+              </button>
+              <button type="button" onClick={() => onChangeStyle('textAlign', 'center')}>
+                <span className="txt-align-center">
+                  <i className="fa-solid fa-align-center"></i>
+                </span>
+              </button>
+              <button type="button" onClick={() => onChangeStyle('textAlign', 'right')}>
+                <span className="txt-align-right">
+                  <i className="fa-solid fa-align-right"></i>
+                </span>
+              </button>
+              <button type="button" onClick={() => onChangeStyle('textAlign', 'justify')}>
+                <span className="txt-align-justify">
+                  <i className="fa-solid fa-align-justify"></i>
+                </span>
+              </button>
             </div>
           </div>
         </footer>
-          <EmojiPicker addEmoji={addEmojiToBody} />
+        <EmojiPicker addEmoji={addEmojiToBody} />
+        <div className="upload-img-btn">
+          <div className="tooltip">
+            <button className="icon-button img" aria-label="Add Image">
+              <i className="fa-regular fa-image"></i>
+              <input
+                type="file"
+                className="file hidden-input"
+                name="image"
+                onChange={loadImageFromInput}
+                accept="image/*"
+              />
+            </button>
+            <span className="tooltip-text">Add Image</span>
+          </div>
+        </div>
       </div>
     </div>
   )
