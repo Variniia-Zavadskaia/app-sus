@@ -61,7 +61,7 @@ export function composeMailNoteTodos({note}) {
     // })
     let todoStrs = note.info.todos.map(todo => {
             let todoStr = '[' + (todo.doneAt === null ? ' ' : 'v') + '] ' + todo.txt
-                            + (todo.doneAt === null ? '' : '(Done at '+ todo.doneAt.toString()+')') +'\n';
+                            + (todo.doneAt === null ? '' : ' (Done at '+ todo.doneAt.toString()+')') +'\n';
             
             console.log(todoStr);
             
