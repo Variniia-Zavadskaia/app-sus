@@ -32,7 +32,7 @@ function query(filterBy = {}) {
                 notes = notes.filter(note => note.type.includes(filterBy.type))
                 console.log('Filtered notes by type:', notes);
             }
-            if(filterBy.folder){
+            if (filterBy.folder) {
                 notes = notes.filter(note => note.folder.includes(filterBy.folder))
                 console.log('Filtered notes by type:', notes);
             }
@@ -79,7 +79,7 @@ function getEmptyNote(type = '', backgroundColor = '#fff') {
             backgroundColor
         },
         info: {},
-        labels:[]
+        labels: []
     }
 }
 
@@ -94,23 +94,172 @@ function getFilterFromSearchParams(searchParams) {
 
 function _createNotes() {
     const type = ['NoteTxt', 'NoteImg', 'NoteTodos']
-   
+
     let notes = loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
         notes = [
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
-            _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            // _createNote(type[getRandomIntInclusive(0, type.length - 1)]),
+            {
+                id: makeId(),
+                folder: 'Archive',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#dda0dd'
+                },
+                info: {
+                    title: 'Title3',
+                    txt: 'It is impossible to say how first the idea entered my brain; but once conceived, it haunted me day and night. Object there was none. Passion there was none. I loved the old man. He had never wronged me.'
+                }
+            },
+            {
+                id: makeId(),
+                folder: 'Notes',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteImg',
+                isPinned: true,
+                info: {
+                    url: 'assets/img/Batman.jpeg',
+                    title: 'I am BATMAN'
+                },
+                style: {
+                    backgroundColor: '#e8f0fe'
+                }
+            },
+            {
+                id: makeId(),
+                folder: 'Archive',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteTodos',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#e8f0fe'
+                },
+                info: {
+                    title: 'Get my stuff together',
+                    todos: [
+                        { id: makeId(), txt: 'Watch a new movie', doneAt: null },
+                        { id: makeId(), txt: 'Take a walk in the park', doneAt: null },
+                        { id: makeId(), txt: 'Catch up with friends', doneAt: null },
+                        { id: makeId(), txt: 'Play a favorite game', doneAt: null }
+                    ]
+                }
+            },
+
+            {
+                id: makeId(),
+                folder: 'Notes',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#ffd700'
+                },
+                info: {
+                    title: 'Title2',
+                    txt: 'Japan is a beautiful island nation known for its rich culture, advanced technology, traditional arts, delicious cuisine, and iconic landmarks like Mount Fuji and ancient temples. It blends modernity with deep-rooted traditions seamlessly.'
+                }
+            },
+            {
+                id: makeId(),
+                folder: 'Notes',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'assets/img/Fire.jpeg',
+                    title: 'Sunny Day Smiles'
+                },
+                style: {
+                    backgroundColor: '#40e0d0'
+                }
+            },
+            {
+                id: makeId(),
+                folder: 'Trash',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteTodos',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#e8f0fe'
+                },
+                info: {
+                    title: 'Get my stuff together',
+                    todos: [
+                        { id: makeId(), txt: 'Check emails', doneAt: null },
+                        { id: makeId(), txt: 'Finish project report', doneAt: null},
+                        { id: makeId(), txt: 'Team meeting call', doneAt: null },
+                        { id: makeId(), txt: 'Prepare presentation', doneAt: null },
+                        { id: makeId(), txt: 'Update tasks in tracker', doneAt: null },
+                    ]
+                }
+            },
+
+            {
+                id: makeId(),
+                folder: 'Notes',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#e8f0fe'
+                },
+                info: {
+                    title: 'Title1',
+                    txt: 'The quick brown fox jumps over the lazy dog, seeking adventure in a world filled with endless possibilities.',
+                }
+            },
+            {
+                id: makeId(),
+                folder: 'Trash',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'assets/img/No.jpeg',
+                    title: 'Secret Revealed'
+                },
+                style: {
+                    backgroundColor: '#e8f0fe'
+                }
+            },
+            {
+                id: makeId(),
+                folder: 'Notes',
+                createdAt: getRandomDate(new Date(2020, 0, 1), new Date()),
+                type: 'NoteTodos',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#f5deb3'
+                },
+                info: {
+                    title: 'Get my stuff together',
+                    todos: [
+                        { id: makeId(), txt: 'Driving license', doneAt: null },
+                        { id: makeId(), txt: 'Coding power', doneAt: null }
+                    ]
+                }
+            }
         ]
 
+        for (let i = 0; i < notes.length; i++) {
+            if (notes[i].type === 'NoteTodos') {
+                for (let j = 0; j < notes[i].info.todos.length; j++) {
+                    if (getRandomIntInclusive(0,1)) {
+                        notes[i].info.todos[j].doneAt = getRandomDate(notes[i].createdAt, new Date());
+                    }
+                }
+            }
+        }
         console.log(notes);
-
-
         saveToStorage(NOTE_KEY, notes)
     }
 }
