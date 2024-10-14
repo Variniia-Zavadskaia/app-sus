@@ -14,7 +14,7 @@
 
 @import './apps/note/pages/NoteIndex.css';
 
-@import './apps/mail/pages/mail-index.css'; 
+@import './apps/mail/pages/MailIndex.css'; 
 
 /* Cmps */
 
@@ -34,10 +34,10 @@
 @import './apps/note/cmps/dynamic-inputs/NoteTxt.css';
 @import './apps/note/cmps/dynamic-inputs/NoteImg.css';
 
-@import './apps/mail/cmps/mail-header.css';
-@import './apps/mail/cmps/mail-list.css'; 
-@import './apps/mail/cmps/mail-filter.css'; 
-@import './apps/mail/cmps/mail-folder-list.css';
-@import './apps/mail/cmps/mail-details.css';
-@import './apps/mail/cmps/add-mail.css';
-@import './apps/mail/cmps/new-mail-text-editor.css';
+@import './apps/mail/cmps/MailHeader.css';
+@import './apps/mail/cmps/MailList.css'; 
+@import './apps/mail/cmps/MailFilter.css'; 
+@import './apps/mail/cmps/MailFolderList.css';
+@import './apps/mail/cmps/MailDetails.css';
+@import './apps/mail/cmps/AddMail.css';
+@import './apps/mail/cmps/NewMailTextEditor.css';
