@@ -29,6 +29,7 @@ export function MailPreview({mail, onClick, onRemoveMail = () => {}, updateMailS
     onRemoveMail(mail.id)
   }
 
+
   return (
     <tr className={`mail-review ${isRead ? 'read' : 'unread'} `} onClick={onClick}>
       {/* <td className="select">

@@ -4,6 +4,7 @@ const {Link, useSearchParams} = ReactRouterDOM
 
 import {showErrorMsg, showSuccessMsg, showUserMsg} from '../../../services/event-bus.service.js'
 import {formatTimeAgo, getTruthyValues} from '../../../services/util.service.js'
+import { EmojiPicker } from '../cmps/Emoji.jsx'
 import {MailFolderList} from '../cmps/MailFolderList.jsx'
 import {MailHeader} from '../cmps/MailHeader.jsx'
 import {mailService} from '../services/mail.service.js'
@@ -59,21 +60,63 @@ export function MailDetails() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  function handleStarClick(ev) {
+    ev.stopPropagation()
+    const updatedMail = {...mail, isStared: !isStared}
+    updateMailStatus(mail.id, updatedMail)
+  }
+
   function sendToKeepApp() {
     if (mail) {
-    //   const {subject, body} = mail
-        const subject = encodeURIComponent(mail.subject);
-        const body = encodeURIComponent(mail.body);
-      // here you need to NAV it right 
-        navigate(`/note/?title=${subject}&body=${body}`)
+      //   const {subject, body} = mail
+      const subject = encodeURIComponent(mail.subject)
+      const body = encodeURIComponent(mail.body)
+      // here you need to NAV it right
+      navigate(`/note/?title=${subject}&body=${body}`)
 
-        showSuccessMsg('Mail details sent to KeepApp!')
+      showSuccessMsg('Mail details sent to KeepApp!')
     }
+  }
+
+  function onRemoveMail(mailId) {
+    console.log(mailId, 'remove mail')
+
+    const updatedMails = mails.map((mail) => (mail.id === mailId ? {...mail, removedAt: true} : mail))
+    mailService
+      .remove(mailId)
+      .then(() => {
+        setFilteredMails(updatedMails)
+        showSuccessMsg(`Mail removed successfully!`)
+      })
+      .catch((err) => {
+        console.log('Problems removing mail:', err)
+        showErrorMsg(`Problems removing mail (${mailId})`)
+      })
+  }
+
+  // Update mail status without reloading all mails
+  function updateMailStatus(id, updatedMail) {
+    const updatedMails = mail.map((mail) => (mail.id === id ? updatedMail : mail))
+    setFilteredMails(updatedMails) // Update the state with the new status
+
+    // Persist to storage after updating state
+    mailService
+      .update('mailDB', updatedMail)
+      .then(() => {
+        console.log('Mail updated in the service')
+      })
+      .catch((err) => {
+        console.error('Error updating mail status:', err)
+      })
+  }
+
+  function navToComingSoon() {
+    navigate(`/mail/underConstruction`)
   }
 
   if (!mail) return <h1>Loading...</h1>
 
-  const {subject, body, from, to, sentAt, isRead, prevMailId, nextMailId} = mail
+  const {subject, body, from, to, sentAt, isRead, prevMailId, nextMailId, isStared} = mail
   const timeAgo = formatTimeAgo(sentAt)
 
   return (
@@ -89,17 +132,17 @@ export function MailDetails() {
             <i className="fa-solid fa-arrow-left"></i>
           </p>
 
-          <div className="archive">
+          <div className="archive" onClick={navToComingSoon}>
             <i className="fa-solid fa-box-archive" title="Archive"></i>
           </div>
-          <div className="spam">
+          <div className="spam" onClick={navToComingSoon}>
             <i className="fa-solid fa-exclamation" title="Report spam"></i>
           </div>
           <div title="delete mail" className="mail-details-delete-btn" onClick={() => onRemoveMail(mail.id)}>
             <i className="fa-solid fa-trash"></i>
           </div>
 
-          <div className="unread ">
+          <div className="unread " onClick={navToComingSoon}>
             <i className="fa-regular fa-envelope" title="Mark as Unread"></i>
           </div>
 
@@ -107,10 +150,10 @@ export function MailDetails() {
             <i className="fa-solid fa-share-from-square" title="Send to KeepApp" onClick={sendToKeepApp}></i>
           </div>
 
-          <div className="move-to">
+          <div className="move-to" onClick={navToComingSoon}>
             <i className="fa-regular fa-folder-closed" title="Move to"></i>
           </div>
-          <div className="more">
+          <div className="more" onClick={navToComingSoon}>
             <i className="fa-solid fa-ellipsis-vertical" title="More"></i>
           </div>
         </div>
@@ -132,10 +175,16 @@ export function MailDetails() {
         <div className="mail-details-header ">
           <h2 className="subject">{subject}</h2>
           <div className="mail-details-actions">
-            <i className="fa-regular fa-star"></i>
-            <i className="fa-regular fa-face-smile"></i>
-            <i className="fa-solid fa-reply"></i>
-            <i className="fa-solid fa-ellipsis-vertical"></i>
+            <span className="star" onClick={handleStarClick}>
+              <i
+                className={`fa-${isStared ? 'solid' : 'regular'} fa-star`}
+                style={{color: isStared ? '#FFD700' : 'inherit'}}
+              ></i>
+            </span>
+            <EmojiPicker />
+
+            <i className="fa-solid fa-reply" onClick={navToComingSoon}></i>
+            <i className="fa-solid fa-ellipsis-vertical" onClick={navToComingSoon}></i>
           </div>
           <div className="sub-header">
             <div className="sender-img-container">
@@ -155,7 +204,7 @@ export function MailDetails() {
         </div>
       </section>
       {/* <MailList mails={filteredMails} updateMailStatus={updateMailStatus} onRemoveMail={onRemoveMail} /> */}
-          {/* {isComposeOpen && <AddMail onClose={toggleCompose} data={mailFromNote} />} */}
+      {/* {isComposeOpen && <AddMail onClose={toggleCompose} data={mailFromNote} />} */}
     </section>
   )
 }

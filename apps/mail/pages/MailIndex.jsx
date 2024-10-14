@@ -28,7 +28,7 @@ export function MailIndex() {
   const location = useLocation()
 
   useEffect(() => {
-    console.log(mailFromNote)
+    // console.log(mailFromNote)
   }, [mailFromNote])
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function MailIndex() {
           initialMailsRef.current = loadedMails
         }
         mailsRef.current = loadedMails // Track latest mails
-        console.log('loadmails ', loadedMails)
+        // console.log('loadmails ', loadedMails)
 
         setMails(loadedMails) // Set state
         filterMails(loadedMails) //filter the mails by  folder value
