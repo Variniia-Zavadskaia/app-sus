@@ -11,7 +11,7 @@ export function MailFolderList({filterBy = {}, onSetFilterBy, isMenuOpen, unread
     // {name: 'Do later', value: 'clock', icon: 'fa-regular fa-clock'},
     {name: 'Sent', value: 'sent', icon: 'fa-regular fa-paper-plane'},
     // {name: 'Draft ', value: 'draft ', icon: 'fa-regular fa-file'},
-    {name: 'Bin ', value: 'bin ', icon: 'fa-solid fa-trash'},
+    {name: 'Bin ', value: 'bin', icon: 'fa-solid fa-trash'},
   ]
 
   useEffect(() => {

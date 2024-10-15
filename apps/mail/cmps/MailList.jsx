@@ -21,7 +21,8 @@ export function MailList({mails, updateMailStatus, onRemoveMail, showArchived })
 
   const filteredMails = mails.filter((mail) => (showArchived ? mail.removedAt : !mail.removedAt))
 
-  if (!filteredMails.length) return <p>No mails to display</p>
+
+  if (!filteredMails.length) return <h1 className="container">No mails to display</h1>
 
   return (
     <table className="mail-list-table">
