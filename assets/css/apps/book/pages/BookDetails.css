@@ -126,7 +126,7 @@
 }
 
 /* Button for adding reviews */
-button {
+.add-rev {
     background-color: #007bff;
     border: none;
     color: white;
@@ -136,6 +136,6 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+.add-rev:hover {
     background-color: #0056b3;
 }

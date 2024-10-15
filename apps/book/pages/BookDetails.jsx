@@ -139,12 +139,12 @@ export function BookDetails() {
         <article className="book-details">
             <nav className="book-details-nav">
                 <Link to={`/book/${book.prevBookId}`}>
-                    <button>
+                    <button className='add-rev'>
                         <i className="fa-solid fa-arrow-left"></i>
                     </button>
                 </Link>
                 <Link to={`/book/${book.nextBookId}`}>
-                    <button>
+                    <button className='add-rev'>
                         <i className="fa-solid fa-arrow-right"></i>
                     </button>
                 </Link>

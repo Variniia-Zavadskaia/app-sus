@@ -10,7 +10,7 @@ body {
     height: 100%;
     margin: 0;
     background-color: var(--clr2bg);
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .book-index {

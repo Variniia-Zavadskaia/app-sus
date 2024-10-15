@@ -96,6 +96,7 @@ textarea {
 
     .add-note {
         max-width: 540px;
+        margin: 10px auto;
         /* Maintain width on large screens */
     }
 
