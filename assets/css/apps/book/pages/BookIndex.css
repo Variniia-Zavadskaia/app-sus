@@ -10,14 +10,31 @@ body {
     height: 100%;
     margin: 0;
     background-color: var(--clr2bg);
-    /* overflow: auto; */
 }
 
 .book-index {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow-y: auto;
 }
+
+.book-index::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .book-index::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .book-index::-webkit-scrollbar-thumb {
+    background: #868788;
+    border-radius: 4px;
+  }
+  
+  .book-index::-webkit-scrollbar-thumb:hover {
+    background: #868788;
+  }
 
 .book-header {
     position: sticky;
