@@ -65,12 +65,12 @@ export function AddNote({ onAddNote }) {
                                 </button>
                                 <span className="tooltip-text">Add Image</span>
                             </div>
-                            <div className="tooltip">
+                            {/* <div className="tooltip">
                                 <button className="icon-button" onClick={() => createNewNote('NoteTodos')} aria-label="Add Video">
                                 <i className="fa-brands fa-youtube"></i>
                                 </button>
                                 <span className="tooltip-text">Add Video</span>
-                            </div>
+                            </div> */}
                         </div>
 
                     </div>
