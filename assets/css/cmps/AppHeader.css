@@ -1,37 +1,56 @@
 .app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2196f3; 
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2196f3;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo-link {
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .nav-links {
-    display: flex;
-    gap: 15px; 
+  display: flex;
+  gap: 15px;
 }
 
 .nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease;
-    border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
 }
 
 .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .active {
-    background-color: rgba(255, 255, 255, 0.2); 
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    gap: 5px;
+  }
+
+  .app-header {
+    padding: 5px 8px;
+  }
+
+  .logo-link {
+    font-size: 18px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    padding: 4px 6px;
+  }
 }

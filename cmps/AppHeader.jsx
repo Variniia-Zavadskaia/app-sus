@@ -4,7 +4,7 @@ export function AppHeader() {
     return (
         <header className="app-header">
             <div className="logo">
-                <Link to="/" className="logo-link">LOGO</Link>
+                <Link to="/" className="logo-link">SyncSpace</Link>
             </div>
             <nav className="nav-links">
                 <NavLink to="/" className="nav-link">
