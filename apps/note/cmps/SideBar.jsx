@@ -32,7 +32,7 @@ export function SideBar({ isOpen, onSetFolder }) {
                 <span className="side-text">Notes</span>
 
             </div>
-            <div
+            {/* <div
                 className={`sidebar-notes-item ${activeItem === "Label" ? "active" : ""}`}
                 onClick={() => handleItemClick("Label")}
             >
@@ -40,7 +40,7 @@ export function SideBar({ isOpen, onSetFolder }) {
                     <i className="fa-solid fa-tag"></i>
                 </button>
                 <span className="side-text">Label</span>
-            </div>
+            </div> */}
 
             <div
                 className={`sidebar-notes-item ${activeItem === "Archive" ? "active" : ""}`}

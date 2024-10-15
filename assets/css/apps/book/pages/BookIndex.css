@@ -49,20 +49,21 @@ body {
 
 .book-body {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
+    flex-direction: column;
     background-color: var(--clr2bg);
     height: calc(100vh - 130px);
-    gap: 20px; /* Space between items in the body */
+    gap: 20px; 
+    overflow: auto;
 }
 
 .add-book {
-    padding: 10px 20px; /* Button padding */
-    background-color: #007bff; /* Primary button color */
-    color: #fff; /* Text color */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    padding: 10px 20px;
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }
 
 .add-book:hover {

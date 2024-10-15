@@ -127,8 +127,8 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: true,
                 info: {
-                    url: 'assets/img/Batman.jpeg',
-                    title: 'I am BATMAN'
+                    title: 'So  boring',
+                    url: 'assets/img/SleepyGirl.jpeg',
                 },
                 style: {
                     backgroundColor: '#e8f0fe'

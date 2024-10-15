@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
+
+/* Note Header */
+.note-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    width: 100%;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -20px;
+    font-size: 0.78rem;
+    background-color: #555;
+    color: var(--clr2bg);
+    opacity: 0;
+    transition: opacity 0.3s;
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 5px;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.logo-text {
+    font-size: 20px;
+    /* margin-left: 10px; */
+    color: #5f6368;
+}
+
+/* Search Area */
+.search-area {
+    background: #f1f3f4;
+    width: 500px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.search-area .search-input-noute {
+    border: none;
+    background: #f1f3f4;
+    height: 100%;
+    width: 95%;
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.search-input-noutet:focus {
+    outline: none;
+    /* background: #f1f3f4; */
+}
+
+.search-area span {
+    margin-left: 10px;
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.hidden-select {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Button Style */
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0 0.2rem;
+    color: #5f6368;
+    padding: 5px;
+}
+
+.icon-button:hover {
+    color: #202124;
+}
+
+.menu-button {
+    font-size: 1.5rem;
+}
+
+/* Profile Actions Area */
+.profile-actions-area {
+    display: flex;
+    align-items: center;
+}
+
+.prof-button {
+    font-size: 1.5rem;
+}
+
+/* Small screens: Phones (max-width: 600px) */
+@media (max-width:480px) {
+    .note-header-nav {
+        align-items: center;
+    }
+
+    .search-area {
+        width: 40%;
+        height: 40px;
+    }
+
+    .search-area .search-input-noute {
+        width: 40%;
+        font-size: 0.9rem;
+    }
+
+    .logo-img {
+        margin-left: 5px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .tooltip-text {
+        font-size: 0.7rem;
+    }
+
+    .icon-button {
+        font-size: 1.2rem;
+    }
+}
+
+/* Medium screens: Tablets (min-width: 600px and max-width: 1024px) */
+@media (min-width: 768px) {
+    .note-header-nav {
+        padding: 0 10px;
+    }
+
+    .search-area {
+        width: 50%;
+    }
+
+    .settings-area {
+        margin-right: -1rem;
+    }
+
+    .menu-button {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 1024px) {}

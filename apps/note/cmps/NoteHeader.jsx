@@ -45,7 +45,7 @@ export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
                         alt="Logo"
                         aria-hidden="true"
                     />
-                    <span className="tooltip-text">Mr Ghost</span>
+                    <span className="tooltip-text">Happy Ghost</span>
                 </div>
             </div >
         </nav >
