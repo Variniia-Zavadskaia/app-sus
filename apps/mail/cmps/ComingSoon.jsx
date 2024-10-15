@@ -10,7 +10,6 @@ export function ComingSoon() {
   const subtitleRef = useRef(null)
 
   useEffect(() => {
-    // Trigger animation on load
     animateCSS(titleRef.current, 'bounceIn')
     animateCSS(subtitleRef.current, 'fadeInUp')
   }, [animateCSS])
