@@ -4,7 +4,7 @@ export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
 
     return (
         // <div className="note-header">
-        <nav className="note-header-nav">
+        <nav className="book-header-nav">
             <div className="logo-area">
                 <div className="tooltip">
                     <button className="menu-button" aria-label="Main Menu" onClick={onMenuClick}>

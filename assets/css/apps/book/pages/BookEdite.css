@@ -1,0 +1,86 @@
+.book-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.book-edit {
+    background-color: #fff;
+    padding: 20px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Full width */
+    max-width: 600px; /* Smaller maximum width */
+    max-height: 80vh; /* Smaller maximum height */
+    z-index: 20;
+    position: relative;
+}
+
+
+.book-edit-form {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.book-edit-form label {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.book-edit-form input,
+.book-edit-form textarea,
+.book-edit-form select {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+
+.book-edit-form textarea {
+    height: 80px; 
+    resize: vertical;
+}
+
+.book-edit-form input[type="checkbox"] {
+    width: auto;
+    margin-left: 10px;
+}
+
+
+.form-actions-book {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-edit {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.add-book {
+    margin-bottom: 20px;
+}

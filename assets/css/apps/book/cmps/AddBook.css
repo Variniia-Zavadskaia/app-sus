@@ -1,0 +1,47 @@
+
+.book-search {
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.add-book-title .bold-txt {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.add-book-title input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.add-book-title button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-book-title button:hover {
+    background-color: #ff3b3b;
+}

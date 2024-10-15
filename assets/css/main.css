@@ -17,6 +17,10 @@
 
 @import './apps/mail/pages/MailIndex.css'; 
 
+@import './apps/book/pages/BookIndex.css';
+@import './apps/book/pages/BookDetails.css';
+@import './apps/book/pages/BookEdite.css';
+
 /* Cmps */
 
 @import './cmps/UserMsg.css';
@@ -44,3 +48,13 @@
 @import './apps/mail/cmps/MailDetails.css';
 @import './apps/mail/cmps/AddMail.css';
 @import './apps/mail/cmps/NewMailTextEditor.css';
+
+@import './apps/book/cmps/BookList.css';
+@import './apps/book/cmps/BookPreview.css';
+@import './apps/book/cmps/AddBook.css';
+@import './apps/book/cmps/LongTxt.css';
+@import './apps/book/cmps/AddReview.css';
+@import './apps/book/cmps/ReviewList.css';
+@import './apps/book/cmps/BookFilter.css';
+
+@import './apps/book/cmps/dynamic-inputs/StarRating.css';

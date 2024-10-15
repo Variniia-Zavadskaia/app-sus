@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--clr2bg);
+    overflow: auto;
+}
+
+.book-index {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.book-header {
+    position: sticky;
+     top: 0;
+     left: 0;
+     padding: 0.25em 0.5rem;
+     width: 100%;
+     height: 60px;
+     background-color: var(--clr2bg);
+     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.book-body {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    background-color: var(--clr2bg);
+    height: calc(100vh - 130px);
+    gap: 20px; /* Space between items in the body */
+}
+
+.add-book {
+    padding: 10px 20px; /* Button padding */
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.add-book:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}

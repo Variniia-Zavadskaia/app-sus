@@ -1,0 +1,61 @@
+.book-preview {
+    /* position: relative;  */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-nav {
+    display: flex;
+    align-self: center;
+    gap: 5px;
+}
+
+.book-preview h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.book-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.bold-txt {
+    font-weight: 600;
+}
+
+.book-preview p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.on-sale-icon {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 5rem;
+    height: 5rem;
+    background-image: url('/assets/img/onSale.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .book-preview {
+        max-width: 100%;
+    }
+}
