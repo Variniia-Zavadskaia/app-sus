@@ -30,6 +30,7 @@
 }
 
 .close-btn {
+    color:black;
     border: none;
     align-self: flex-end;
     font-size: 16px;
