@@ -65,12 +65,3 @@
     transform: translate(24px, 0);
   }
 }
-
-section.coming-soon {
-  padding-block-start: 2rem;
-}
-
-.go-back-to-site {
-  border-radius: 8px;
-  padding-block-start: 2rem;
-}
