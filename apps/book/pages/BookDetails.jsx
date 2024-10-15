@@ -188,7 +188,7 @@ export function BookDetails() {
                 <Link to="/book"><i className="fa-solid fa-xmark"></i></Link>
             </button>
             <div className="brake-line"></div>
-            <button onClick={onToggleReviewModal}>Add Review</button>
+            <button className='add-rev' onClick={onToggleReviewModal}>Add Review</button>
             {isShowReviewModal && (
                 <AddReview
                     toggleReview={onToggleReviewModal}

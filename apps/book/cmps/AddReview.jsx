@@ -33,7 +33,7 @@ export function AddReview({ saveReview, toggleReview }) {
             <form onSubmit={onAddReview} className="review-form">
                 <div className="review-modal">
                     <h1>Add review</h1>
-                    <button className="btn-toggle-modal" onClick={toggleReview}>
+                    <button className="btn-toggle-modal add-rev" onClick={toggleReview}>
                         X
                     </button>
                     <label className="bold-txt-book" htmlFor="fullname">

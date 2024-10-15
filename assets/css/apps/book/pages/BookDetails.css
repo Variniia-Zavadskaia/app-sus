@@ -12,6 +12,7 @@
     position: relative;
     text-align: left;
     overflow: auto;
+    height: 80vh;
 }
 
 .book-details-nav {
