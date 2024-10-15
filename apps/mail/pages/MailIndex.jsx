@@ -123,8 +123,8 @@ export function MailIndex() {
 
   function removeMailToBin(mailId) {
     const currentDate = new Date().toISOString()
-    updateMailStatus(mailId, {removedAt: currentDate})
-    filterMails(updatedMail)
+    updateMailStatus(mailId, {...mails, removedAt: currentDate })
+
   }
 
   function onRemoveMail(mailId) {
@@ -155,12 +155,11 @@ export function MailIndex() {
   // Update mail status without reloading all mails
   function updateMailStatus(mailId, updatedMail) {
     const updatedMails = mails.map((mail) => (mail.id === mailId ? {...mail, ...updatedMail} : mail))
-    setMails(updatedMails)
     setFilteredMails(updatedMails)
     mailService
-      .update(mailId, updatedMail)
-      .then(() => {
-        filterMails(mails)
+    .update(mailId, updatedMail)
+    .then(() => {
+      setMails(updatedMails)
       })
       .catch((err) => {
         console.error('Error updating mail status:', err)
