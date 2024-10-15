@@ -131,7 +131,7 @@ export function NoteFooter({ note, onRemoveNote, onEditNote, onSaveNote, onSaveC
                     {note.folder !== "Archive" ? (
                         <div className="tooltip">
                             <button className="icon-button" onClick={onArchive} aria-label="Archive">
-                                <i className="fa-solid fa-floppy-disk"></i>
+                                <i className="fa-regular fa-share-from-square"></i>
                             </button>
                             <span className="tooltip-text">Archive</span>
                         </div>) : (

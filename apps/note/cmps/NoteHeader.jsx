@@ -31,22 +31,25 @@ export function NoteHeader({ filterBy, onSetFilterBy, onMenuClick }) {
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
 
             <div className="profile-actions-area">
-                <div className="tooltip">
+                {/* <div className="tooltip">
                     <button className="icon-button" aria-label="List View">
                         <i className="fa-solid fa-list"></i>
                     </button>
                     <span className="tooltip-text">List View</span>
-                </div>
+                </div> */}
 
                 <div className="tooltip">
-                    <button className="icon-button prof-button" aria-label="Account">
-                    <i className="fa-regular fa-circle-user"></i>
-                    </button>
-                    <span className="tooltip-text">Account</span>
+                    <img
+                        className="logo-img"
+                        src="assets/img/ghost.png"
+                        alt="Logo"
+                        aria-hidden="true"
+                    />
+                    <span className="tooltip-text">Mr Ghost</span>
                 </div>
-            </div>
+            </div >
         </nav >
-        // </div >
+
 
     );
 };
